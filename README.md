@@ -12703,7 +12703,7 @@ A cinematic fantasy scene of a fierce female use image for face reference warrio
 
 ***
 
-<a id="section-templates"></a>
+<a name="section-templates"></a>
 
 ## 🧩 工业级提示词模板与防坑指南（建议收藏）
 
