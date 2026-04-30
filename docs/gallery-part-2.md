@@ -6539,3 +6539,280 @@ Create a 3D Insane detailed exploded assembly drawing of [subject or object]
 ```
 
 ***
+
+<a name="case-362"></a>
+
+### 例 362：抹茶品牌触点系统视觉板
+
+![抹茶品牌触点系统视觉板](../data/images/case362.jpg)
+
+**来源：** [@Preda2005](https://x.com/Preda2005/status/2049846981271699685)
+
+**提示词：**
+
+```text
+Create a premium “Matcha Brand Touchpoint System” visual board for a modern lifestyle brand called:
+
+“MATCHA MODE”
+
+Build a full brand identity system, not a single image.
+
+HERO SCENE:
+
+A hyper-realistic matcha drink in a ceramic cup placed on a clean natural surface.
+
+– vibrant green matcha foam with micro-bubbles
+– bamboo whisk (chasen) nearby
+– soft natural light
+– slight matcha powder dust on the surface
+– minimal Japanese aesthetic
+ATMOSPHERE:
+– calm, warm, soft daylight
+– clean background (off-white or beige)
+– subtle shadows and reflections
+– feeling of wellness and luxury
+FULL BRAND SYSTEM:
+– takeout cups (paper + glass bottles)
+– packaging boxes (minimalist design)
+– tote bags (premium lifestyle)
+– labels, stickers, seals
+– menu cards with pricing ($6.50, $8.90, etc.)
+– small typography everywhere
+– subtle imperfections (realism)
+
+DESIGN LANGUAGE:
+
+– modern minimalist typography
+– Japanese-inspired layout
+– soft green palette
+– elegant spacing
+
+INCLUDE:
+– matcha latte
+– iced matcha
+– matcha desserts
+– combo sets
+– lifestyle shots
+The composition must feel like a high-end design agency presentation.
+
+Ultra-detailed, realistic, clean, aesthetic, and highly shareable.
+```
+
+***
+
+<a name="case-363"></a>
+
+### 例 363：磁场铁粉 Logo 物理成像
+
+![磁场铁粉 Logo 物理成像](../data/images/case363.jpg)
+
+**来源：** [@Naiknelofar788](https://x.com/Naiknelofar788/status/2049835482331357460)
+
+**提示词：**
+
+```text
+Transform the uploaded logo into a hyper-realistic scene where the logo silhouette is formed by iron filings reacting to a magnetic field. The logo must keep its exact shape and proportions, appearing as if a magnet shaped like the logo (or hidden beneath the surface) is influencing the filings to align naturally into that recognizable formation. Material details:
+Fine iron filings with sharp, spiky, needle-like structures.
+Dense clustering along magnetic field lines forming the logo silhouette.
+Variation in density — thick near magnetic poles, thinner outward.
+Matte dark metallic texture with subtle reflections.
+
+Physics behavior:
+Iron filings must follow realistic magnetic field patterns — radial and curved lines forming spikes and ridges.
+Stronger attraction zones create thicker, raised clusters.
+Outer areas show softer, more dispersed alignment.
+Natural randomness and slight irregularity — no perfect edges.
+Some loose filings scattered beyond the main shape.
+
+Surface interaction:
+Flat surface such as a lab table, glass plate, or matte black tray.
+Filings resting on surface but visibly lifted in areas due to magnetic force (spiky texture).
+Subtle dust and micro particles around.
+
+Environment & human presence:
+Realistic classroom, science lab, or creative studio environment.
+A person partially visible — hands holding or moving a magnet beneath the surface or nearby.
+Possibly a child or adult observing or interacting (adds emotional curiosity).
+Other subtle elements: notebooks, tools, or lab items out of focus.
+
+Lighting:
+Directional overhead light creating shadows from raised filings.
+Subtle highlights on metallic edges.
+Balanced natural or indoor lighting.
+
+Atmosphere:
+Curiosity.
+Discovery.
+Educational yet visually satisfying.
+Quiet but engaging moment.
+
+Camera & composition:
+Top-down or slightly angled close-up view.
+Logo clearly visible through iron filing formation.
+Human hands or interaction slightly off-center for storytelling.
+
+Format:
+Aspect ratio: STRICT 4:5 vertical.
+No text overlays.
+
+Style:
+Hyper-real macro + environmental photography.
+Physically accurate magnetic behavior.
+Cinematic yet grounded realism.
+```
+
+***
+
+<a name="case-364"></a>
+
+### 例 364：奢华个人色彩档案信息图
+
+![奢华个人色彩档案信息图](../data/images/case364.jpg)
+
+**来源：** [@meng\_dagg695](https://x.com/meng_dagg695/status/2049822844918575586)
+
+**提示词：**
+
+```text
+LUXURY PERSONAL COLOR PROFILE — EDITORIAL LAYOUT
+Studio portrait of subject as anchor — skin retouched to luminous glass-like perfection, preserved natural structure, realistic pore texture, soft directional key lighting, no facial alteration. Background: warm ecru parchment with subtle linen grain texture. Layout reads like a Vogue Italia beauty supplement printed on heavyweight matte stock. Structured editorial grid, 3-column asymmetric, wide negative space, serif condensed display headers, all labels in spaced uppercase tracking, cohesive warm ivory/sand/ecru background system throughout all panels, ultra-photorealistic 8K, soft diffused studio lighting, flat elegant surfaces, no drop shadows.
+PANELS:
+① UNDERTONE DIAGNOSIS — Tonal spectrum bar from cool ash to warm amber, precision needle marker on subject's reading. Labels: Cool / Neutral-Cool / Neutral / Neutral-Warm / Warm. Fine annotation text.
+② SEASONAL COLOR PALETTE — 10–12 fabric-textured swatches in subject's optimal season. Each labeled with poetic color name and HEX. Grouped: Power Colors / Softest Options / Harmonizing Neutrals.
+③ COLORS TO AVOID — Desaturated row of clashing tones with fine editorial strikethrough. Clean, non-harsh presentation.
+④ MAKEUP CARTOGRAPHY — Eyeshadow gradient dust swatches / blush tones fanned on skin strip / lip spectrum barely-there to bold / highlighter finishes labeled: champagne, rose gold, pearlescent ivory.
+⑤ HAIR COLOR SPECTRUM — Curved gradient strip: base, dimension, highlight, contrast tones. Gold bracket indicators on best options.
+⑥ JEWELRY & METAL GUIDE — Flat-lay editorial render: yellow gold, rose gold, oxidized silver, platinum finishes alongside complementary stone tones. Minimal styling.
+⑦ YOU IN YOUR PALETTE — 3–4 editorial lookbook frames, subject in palette-correct outfits. Mood labels: Quiet Luxury / Off-Duty Editorial / Evening Presence.
+⑧ CAPSULE WARDROBE GRID — Outfit flatlay: tops, bottoms, outerwear, shoes, bag — all palette-correct. Coordinating lines showing interchangeability. Net-a-Porter editorial aesthetic.
+⑨ PRINTS & PATTERNS — 4 fabric print thumbnails: micro geometric, tonal abstract, classic stripe, floral scale. One-line styling note per print.
+⑩ STYLE ARCHETYPE — Single typographic panel. Style identity title set large (e.g. "Modern Romantic / Warm Classicist"). Three defining aesthetic words. Four-line editorial wardrobe philosophy note.
+RENDER SPECS: Ultra-photorealistic, 8K, editorial magazine print quality, warm neutral color grading, soft diffused studio lighting consistent across all panels, one serif display font + one fine sans-serif body font, no gradients, flat matte surfaces only.
+```
+
+***
+
+<a name="case-365"></a>
+
+### 例 365：科学家收藏级玩具发布板
+
+![科学家收藏级玩具发布板](../data/images/case365.jpg)
+
+**来源：** [@Gdgtify](https://x.com/Gdgtify/status/2049766203392921897)
+
+**提示词：**
+
+```text
+2x2 grid, do this for 4 famous scientists in history: Design a collector-grade launch visual for [TOY / FIGURE / DESIGNER OBJECT] shown in pristine hero form along with interchangeable accessories, alternate expressions, packaging design, scale references, sticker details, rarity indicators, and close-up material highlights. The object should feel like a luxury drop, somewhere between art toy culture and elite product branding.  Accessory Layout: Arrange [ACCESSORY 1], [ACCESSORY 2], [ALT VERSION], [PACKAGING FEATURE], and [LIMITED EDITION DETAIL] around the figure in carefully staged clusters. Everything should feel desirable, neat, and “unboxable.”  Visual Style: Hype-culture collectible reveal meets premium e-commerce launch campaign. Clean, glossy, tactile, designer-toy sophistication with a playful but expensive sensibility.  Composition Guidelines: Hero figure remains dominant. Accessories should be balanced and elegantly spaced. Packaging should be visible but not steal the scene. The entire image should feel like a product collectors would screenshot instantly.  Lighting & Background: Soft commercial lighting with subtle specular highlights, polished background in [BACKGROUND STYLE], crisp shadows, premium color separation, ultra-sharp details, no watermark.
+```
+
+***
+
+<a name="case-366"></a>
+
+### 例 366：咖啡馆写实照片与 2D 涂鸦叠加
+
+![咖啡馆写实照片与 2D 涂鸦叠加](../data/images/case366.jpg)
+
+**来源：** [@Jawad\_Rahman\_](https://x.com/Jawad_Rahman_/status/2049796647237066971)
+
+**提示词：**
+
+```text
+A trendy young woman sitting at an outdoor café table, holding a hot coffee cup near her lips. She has short curly black hair and wears oversized tinted sunglasses, a cropped beige sweater, loose brown high-waisted pants, and chunky white sneakers. A tote bag with minimal coffee-themed illustrations hangs on her shoulder.
+
+The scene blends realistic photography with playful 2D cartoon overlays. Floating around her are animated coffee elements: a smiling cappuccino cup with heart-shaped latte art, cute coffee beans with tiny faces, and stylized splashes of caramel forming comic-style shapes. Soft doodle steam rises into hearts and stars.
+
+On the table: a croissant, a notebook with sketch drawings, and a second coffee cup.
+
+Background: a realistic cozy café street with brick walls, plants, warm golden hour lighting, and soft shadows. Slight depth of field, subject in sharp focus.
+
+Style: mix of photorealism and vibrant cartoon illustration, pop-art aesthetic, high saturation but warm tones, clean composition, Instagram-worthy, soft glow, 4k detail.
+```
+
+***
+
+<a name="case-367"></a>
+
+### 例 367：VELORA 奢华香水广告海报
+
+![VELORA 奢华香水广告海报](../data/images/case367.jpg)
+
+**来源：** [@akkiwani703](https://x.com/akkiwani703/status/2049778680969437564)
+
+**提示词：**
+
+```text
+{
+  "image_type": "luxury perfume advertisement poster",
+  "resolution": "4K ultra HD (4096x5120)",
+  "aspect_ratio": "portrait (4:5)",
+  "style": {
+    "aesthetic": "high-end fragrance campaign (Tom Ford, Dior inspired)",
+    "tone": "dark luxury, sensual, elegant, powerful",
+    "color_grading": "deep black shadows with rich golden highlights and warm amber glow",
+    "lighting": "cinematic spotlight + golden rim light + soft fill light, dramatic shadows",
+    "contrast": "high cinematic contrast",
+    "depth_of_field": "shallow, sharp focus on face and perfume bottle"
+  },
+  "camera": {
+    "type": "85mm portrait lens",
+    "aperture": "f/1.6",
+    "angle": "slightly low angle, premium perspective",
+    "framing": "model upper body + product foreground"
+  },
+  "subject": {
+    "gender": "female",
+    "age_appearance": "young adult",
+    "expression": "confident, sensual, calm",
+    "styling": {
+      "hair": "voluminous, slightly messy, glossy strands with golden highlights",
+      "makeup": "soft glam, glowing skin, bold lips",
+      "outfit": "brown tailored blazer with patterned silk scarf",
+      "accessory": "thin transparent eyeglasses"
+    }
+  },
+  "product": {
+    "type": "luxury perfume bottle",
+    "brand": "VELORA PARFUMS",
+    "label": "EAU DE PARFUM",
+    "design": "clear crystal glass bottle, golden liquid inside, metallic gold cap",
+    "placement": "bottom center foreground on glossy black marble surface",
+    "effects": "strong reflections, golden glow, subtle condensation, cinematic shine"
+  },
+  "environment": {
+    "background": "dark blurred luxury interior with warm golden light streaks",
+    "surface": "black marble with reflections",
+    "extra_elements": "small flowers near bottle, golden particles, soft smoke"
+  },
+  "typography": {
+    "logo": "V monogram + VELORA PARFUMS",
+    "headline": "Not just a scent, It’s your Signature.",
+    "tagline": "A fragrance that speaks before you do.",
+    "secondary": "Own your essence. Leave a legacy.",
+    "features": [
+      "Long Lasting",
+      "Premium Ingredients",
+      "Crafted with Passion"
+    ],
+    "notes": [
+      "Top: Pear, Bergamot, Pink Pepper",
+      "Heart: Jasmine, Rose, Orris",
+      "Base: Vanilla, Patchouli, Musk"
+    ],
+    "font_style": "luxury serif + elegant handwritten script",
+    "color": "gold metallic",
+    "placement": "top left + mid left + bottom balanced layout"
+  },
+  "post_processing": {
+    "sharpness": "ultra sharp on face and bottle",
+    "glow": "golden cinematic glow",
+    "retouch": "high-end editorial finish",
+    "vignette": "subtle dark vignette"
+  },
+  "mood": "premium luxury perfume campaign, cinematic, bold brand identity",
+  "quality": "hyper-realistic, 4K ultra HD, commercial grade, award-winning fragrance ad"
+}
+```
+
+***

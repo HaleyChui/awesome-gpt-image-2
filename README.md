@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/canghe/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/canghe/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-361-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-367-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -28,7 +28,7 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 
 - [完整案例总览](docs/gallery.md)
 - [案例画廊 Part 1：例 1-165](docs/gallery-part-1.md)
-- [案例画廊 Part 2：例 166-361](docs/gallery-part-2.md)
+- [案例画廊 Part 2：例 166-367](docs/gallery-part-2.md)
 - [工业级提示词模板与防坑指南](docs/templates.md#section-templates)
 - [MIT License](LICENSE)
 - [完整声明页](docs/disclaimer.md#section-disclaimer)
@@ -36,18 +36,18 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 ## 🗂️ 分类概览
 
 - UI与界面：68
-- 图表与信息可视化：52
-- 海报与排版：69
-- 商品与电商：19
-- 品牌与标志：17
+- 图表与信息可视化：54
+- 海报与排版：71
+- 商品与电商：22
+- 品牌与标志：19
 - 建筑与空间：25
-- 摄影与写实：29
+- 摄影与写实：31
 - 插画与艺术：24
 - 人物与角色：12
 - 场景与叙事：7
 - 历史与古风题材：8
 - 文档与出版物：7
-- 其他应用场景：18
+- 其他应用场景：19
 
 需要按案例细看，直接进：
 
@@ -137,6 +137,12 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 - [例 359：水墨双重曝光人物海报](docs/gallery-part-2.md#case-359)
 - [例 360：长发造型分析信息图](docs/gallery-part-2.md#case-360)
 - [例 361：手机爆炸拆解图](docs/gallery-part-2.md#case-361)
+- [例 362：抹茶品牌触点系统视觉板](docs/gallery-part-2.md#case-362)
+- [例 363：磁场铁粉 Logo 物理成像](docs/gallery-part-2.md#case-363)
+- [例 364：奢华个人色彩档案信息图](docs/gallery-part-2.md#case-364)
+- [例 365：科学家收藏级玩具发布板](docs/gallery-part-2.md#case-365)
+- [例 366：咖啡馆写实照片与 2D 涂鸦叠加](docs/gallery-part-2.md#case-366)
+- [例 367：VELORA 奢华香水广告海报](docs/gallery-part-2.md#case-367)
 
 #### 代表案例 1：月下美女直播画面
 
