@@ -10,6 +10,7 @@
 </p>
 
 > 不定期更新最新的玩法，欢迎star。
+> 本项目由 [词元 API](https://ciyuan.today/) 提供赞助支持。词元 API 是一个 AI 聚合平台，可以高性价比使用 GPT Image 2。
 
 <a name="section-vision"></a>
 
