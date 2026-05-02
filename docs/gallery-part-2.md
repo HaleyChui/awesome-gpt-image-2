@@ -6968,3 +6968,19 @@ High quality, clean background, soft lighting.
 ```
 
 ***
+
+<a name="case-374"></a>
+
+### 例 374：彩色潦草小狗线条风格重绘
+
+![彩色潦草小狗线条风格重绘](../data/images/case374.jpg)
+
+**来源：** [@berryxia](https://x.com/berryxia/status/2050226420681757102)
+
+**提示词：**
+
+```text
+彩色潦草小狗线条风格绘制该图，童趣和doodle加入其中，务必使用毫无章法的绘制手法，凌乱和草率即可。
+```
+
+***
