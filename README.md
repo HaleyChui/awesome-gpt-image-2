@@ -1,6 +1,6 @@
 <p align="center"><img src="./data/images/banner.svg" alt="GPT-Image2 Prompt System" width="800" /></p>
 
-<h3 align="center">GPT-Image2 Prompt as Code：持续收集社区案例，沉淀可复用的工业级图像生成提示词模板库。</h3>
+<h3 align="center">GPT-Image2 Prompt as Code：收录 370+ 社区案例，沉淀 20+ 个可复用的工业级图像生成提示词模板与方法模块。</h3>
 
 <p align="center">
   <a href="https://github.com/canghe/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/canghe/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
