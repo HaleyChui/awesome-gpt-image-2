@@ -4767,44 +4767,7 @@ A stylized 3D cartoon portrait of a young man with short brown hair and expressi
     "noise": "无",
     "compression": "无"
   },
-  "Module_1_Image_1_Style": {
-    "subject": {
-      "character_type": "风格化3D卡通女性",
-      "pose": "站立、身体微微侧转、一手抬起食指触唇",
-      "expression": "灿烂微笑、大眼睛",
-      "hair": {
-        "color": "黑色",
-        "style": "双辫马尾",
-        "accessories": "绿色帽子"
-      },
-      "face": {
-        "eyes": "大而圆、深色瞳孔",
-        "skin": "光滑、哑光、风格化纹理"
-      }
-    },
-    "clothing": {
-      "top": "无袖绿色短款上衣",
-      "bottom": "宽松绿色束脚运动裤配抽绳",
-      "footwear": "白色运动鞋"
-    },
-    "accessories": {
-      "luggage": "绿色硬壳拉杆行李箱"
-    },
-    "color_palette": [
-      "多种绿色",
-      "白色点缀"
-    ],
-    "background": {
-      "color": "纯绿色",
-      "texture": "柔软、微颗粒影棚背景"
-    },
-    "composition": {
-      "framing": "全身",
-      "camera_angle": "平视",
-      "depth": "主体与背景锐利分离"
-    }
-  },
-  "Module_2_Image_2_Style": {
+  "image_style": {
     "subject": {
       "character_type": "风格化3D卡通女性",
       "pose": "微微后仰靠在背景上",
@@ -4835,40 +4798,6 @@ A stylized 3D cartoon portrait of a young man with short brown hair and expressi
       "framing": "全身",
       "pose_emphasis": "弯曲身姿、交叉双腿"
     }
-  },
-  "Module_3_Image_3_Style": {
-    "subject": {
-      "characters": [
-        {
-          "type": "风格化3D卡通女性",
-          "position": "左侧",
-          "wrapped_in": "红色纹理毯子",
-          "expression": "平静、浅笑、眼睛向上看"
-        },
-        {
-          "type": "风格化3D卡通男性",
-          "position": "右侧",
-          "wrapped_in": "橙色纹理毯子",
-          "expression": "中性、温柔目光向上"
-        }
-      ]
-    },
-    "environment": {
-      "furniture": "红色沙发",
-      "floor": "红色地面",
-      "background": {
-        "color": "深红色",
-        "texture": "织物状横向纹理"
-      }
-    },
-    "details": {
-      "feet": "女性赤脚、男性穿袜",
-      "blanket_texture": "厚实针织面料"
-    },
-    "composition": {
-      "framing": "居中、中景宽镜头",
-      "symmetry": "左右平衡构图"
-    }
   }
 }
 
@@ -4884,44 +4813,7 @@ A stylized 3D cartoon portrait of a young man with short brown hair and expressi
     "noise": "none",
     "compression": "none"
   },
-  "Module_1_Image_1_Style": {
-    "subject": {
-      "character_type": "stylized 3D cartoon female",
-      "pose": "standing, body slightly angled, one hand raised with index finger touching lips",
-      "expression": "cheerful smile, wide eyes",
-      "hair": {
-        "color": "black",
-        "style": "two braided pigtails",
-        "accessories": "green cap"
-      },
-      "face": {
-        "eyes": "large, rounded, dark pupils",
-        "skin": "smooth, matte, stylized texture"
-      }
-    },
-    "clothing": {
-      "top": "sleeveless green crop top",
-      "bottom": "loose green jogger-style pants with drawstring",
-      "footwear": "white sneakers"
-    },
-    "accessories": {
-      "luggage": "green hard-shell suitcase with extended handle"
-    },
-    "color_palette": [
-      "multiple shades of green",
-      "white accents"
-    ],
-    "background": {
-      "color": "solid green",
-      "texture": "soft, slightly grainy studio backdrop"
-    },
-    "composition": {
-      "framing": "full body",
-      "camera_angle": "eye-level",
-      "depth": "subject sharply separated from background"
-    }
-  },
-  "Module_2_Image_2_Style": {
+  "image_style": {
     "subject": {
       "character_type": "stylized 3D cartoon female",
       "pose": "leaning slightly backward against background",
@@ -4952,41 +4844,8 @@ A stylized 3D cartoon portrait of a young man with short brown hair and expressi
       "framing": "full body",
       "pose_emphasis": "curved posture, crossed legs"
     }
-  },
-  "Module_3_Image_3_Style": {
-    "subject": {
-      "characters": [
-        {
-          "type": "stylized 3D cartoon female",
-          "position": "left",
-          "wrapped_in": "red textured blanket",
-          "expression": "calm, slight smile, eyes looking upward"
-        },
-        {
-          "type": "stylized 3D cartoon male",
-          "position": "right",
-          "wrapped_in": "orange textured blanket",
-          "expression": "neutral, gentle gaze upward"
-        }
-      ]
-    },
-    "environment": {
-      "furniture": "red sofa",
-      "floor": "red surface",
-      "background": {
-        "color": "deep red",
-        "texture": "fabric-like horizontal texture"
-      }
-    },
-    "details": {
-      "feet": "female barefoot, male wearing socks",
-      "blanket_texture": "thick, knitted fabric"
-    },
-    "composition": {
-      "framing": "centered, medium-wide shot",
-      "symmetry": "balanced left and right composition"
-    }
   }
+}
 ```
 
 ***
