@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 374。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 378。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-374](./gallery-part-2.md)
+- [Part 2：例 166-378](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -42,11 +42,15 @@
 - [例 371：Scrapbook 真人图与迷你分身](./gallery-part-2.md#case-371)
 - [例 373：高端肉类海鲜品牌英雄图](./gallery-part-2.md#case-373)
 - [例 374：彩色潦草小狗线条风格重绘](./gallery-part-2.md#case-374)
+- [例 375：古希腊三哲时间轴城市图](./gallery-part-2.md#case-375)
+- [例 376：泼洒抹茶街头手机照片](./gallery-part-2.md#case-376)
+- [例 377：樱花咖啡户外人像](./gallery-part-2.md#case-377)
+- [例 378：高端 3D 收藏玩具头像](./gallery-part-2.md#case-378)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-374，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
+- `gallery-part-2.md`：例 166-378，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
 
 ## 分类概览
 
