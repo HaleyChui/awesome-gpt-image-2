@@ -6928,3 +6928,322 @@ Smooth matte vinyl finish. Soft studio lighting, clean black background. Ultra-s
 ```
 
 ***
+
+<a name="case-379"></a>
+
+### 例 379：品牌人格漫画信息图
+
+![品牌人格漫画信息图](../data/images/case379.jpg)
+
+**来源：** [@CallumGrey](https://x.com/CallumGrey/status/2051293342139584922) / [PhotoGPT prompt](https://www.photogptai.com/community-gallery/media/0d2fcf15-6ab2-48d3-04b3-71f58b296000)
+
+**提示词：**
+
+```text
+Using the uploaded logo, create a highly detailed, comic-style infographic poster:
+
+“What This Brand Feels Like”
+
+GOAL:
+Turn the brand into a living personality and visually explain how it behaves, speaks, and interacts with the world.
+This must feel like a mix of: brand strategy + character design + comic storytelling.
+
+---
+
+CORE RULE:
+Everything must come from the logo:
+- colors
+- style
+- tone
+- personality
+
+No generic personality traits.
+
+---
+
+MAIN STRUCTURE:
+Vertical 4:5 poster
+Dense layout with multiple panels
+Comic + infographic hybrid
+
+---
+
+TOP SECTION:
+- Brand name
+- Short personality statement (max 6 words)
+Example: “Quiet confidence with sharp edges”
+
+---
+
+MAIN CHARACTER (VERY IMPORTANT):
+Create a central character representing the brand:
+- humanized version of the brand
+- outfit reflects brand style
+- posture + expression reflect personality
+
+---
+
+AROUND THE CHARACTER:
+Create 6–8 comic panels showing how the brand behaves in different situations.
+
+---
+
+SCENARIO IDEAS:
+- Talking to customers
+- Handling competition
+- Selling a product
+- Social media presence
+- Reacting to criticism
+- Daily “brand life” moment
+
+---
+
+FOR EACH PANEL:
+Include:
+- short caption (max 6 words)
+- speech bubble or internal thought
+- clear visual action
+
+---
+
+TONE EXAMPLES:
+Luxury brand: calm, confident, minimal speech
+Playful brand: loud, chaotic, expressive
+Tech brand: precise, logical, clean
+
+---
+
+PERSONALITY TRAITS SECTION:
+Add small labeled blocks:
+- Voice tone (e.g. calm, bold, playful)
+- Energy level (low / medium / high)
+- Social behavior (introvert / extrovert)
+- Communication style
+
+Use:
+- icons
+- short labels
+
+---
+
+DO / DON’T SECTION:
+Add a split block:
+DO:
+- how the brand should act
+DON’T:
+- what breaks the identity
+
+Keep:
+- very short phrases
+
+---
+
+VISUAL ELEMENTS:
+- speech bubbles
+- icons
+- arrows
+- small reactions
+- exaggerated comic expressions
+
+---
+
+STYLE:
+- comic + editorial hybrid
+- slightly exaggerated but still premium
+- expressive but not childish
+
+---
+
+COLOR:
+- strictly based on logo palette
+- use color to reinforce personality
+
+---
+
+DEPTH:
+- 20–40 visual elements
+- multiple small panels
+- layered composition
+
+---
+
+IMPORTANT RULES:
+- must feel alive
+- must feel specific
+- no generic marketing words
+- no empty areas
+- keep text short but impactful
+
+---
+
+FINAL FEEL:
+Like:
+- a brand strategy turned into a character
+- a visual storytelling board
+- something people save and study
+
+NOT:
+- flat
+- generic
+- minimal
+```
+
+***
+
+<a name="case-380"></a>
+
+### 例 380：冠状病毒尺度缩放科学信息图
+
+![冠状病毒尺度缩放科学信息图](../data/images/case380.jpg)
+
+**来源：** [@Gdgtify](https://x.com/Gdgtify/status/2051288232613351571)
+
+**提示词：**
+
+```text
+instructions> [SUBJECT]=Coronavirus. A hyper-realistic 3D zoom-sequence infographic generated from a single input: [SUBJECT]. The system auto-detects scale layers from atomic/subcomponent to full contextual view. Layout Structure (CRITICAL) 6–8 circular or hexagonal frames arranged in expanding sequence Innermost frame = smallest detectable detail; outermost = full subject in environment Frames connected by subtle zoom-path lines No repeated scales — each frame shows new level of detail Frame Design Each zoom level includes: Hyper-detailed 3D render at that scale Micro label: scale name (e.g., "molecular," "cellular," "structural") + 3–5 word insight Optional: measurement tag or magnification factor Contextual Halo Around the sequence, include only scale-specific references: Measurement units, scientific notation, cultural scale metaphors (No generic magnifying glass icons) Scale Panel (Alternative Layout) Zoom level Key insight (3–5 words) Scale factor tag Detail icon (grid, wave, particle, etc.) Title "[SUBJECT]: AT EVERY SCALE" (or) "ZOOM: THE WORLD OF [SUBJECT]" Style: ultra-realistic 3D render, scientific editorial infographic, precise macro lighting, global illumination, shallow depth of field, clean sequential layout. </instructions>
+```
+
+***
+
+<a name="case-381"></a>
+
+### 例 381：90 年代公寓场景参考板
+
+![90 年代公寓场景参考板](../data/images/case381.jpg)
+
+**来源：** [@Iancu_ai](https://x.com/Iancu_ai/status/2051287273581203888) / [提示词回复](https://x.com/Iancu_ai/status/2051287283140096253)
+
+**提示词：**
+
+```text
+{
+  "type": "scene reference board — 90s apartment living room, cinematic night",
+  "style": "cinematic film photography, 35mm grain, warm amber shadow fill, deep chiaroscuro lighting, hyper-detailed interior, production design reference quality",
+  "layout": {
+    "main_panel_center_left": {
+      "label": "CAMERA A — FRONT VIEW",
+      "scene": "Wide shot, L-shaped tan sectional sofa, grey knit throw blanket, wooden coffee table (remote, mug, ashtray, Rolling Stone stack), lava lamp left, table lamp right, rain-streaked city window behind, Nirvana poster left wall. 35mm grain."
+    },
+    "main_panel_center_right": {
+      "label": "CAMERA B — REVERSE VIEW",
+      "scene": "Wide reverse from behind sofa. CRT TV prominent right, grey static screen. Tall bookshelf, VHS tapes. Cool blue backlight from window behind camera. Deep shadow."
+    },
+    "prop_strip_bottom": "6 close-up tiles: 1. LAVA LAMP — chrome base, blue-green wax blobs; 2. COFFEE TABLE — remote, mug, ashtray, magazines; 3. NIRVANA POSTER — black smiley face, wall texture; 4. CRT TELEVISION — static screen, VHS stack; 5. WINDOW/RAIN — city bokeh, water streaks; 6. THROW BLANKET — sofa corner, worn upholstery",
+    "top_right_inset": "SOURCE REF thumbnail — original photo",
+    "footer": "2700K PRACTICAL · 4100K CITY NIGHT · 24mm · 35MM"
+  },
+  "background": "deep charcoal #1a1a1a, thin white separators",
+  "dimensions": "wide landscape 3:1, high resolution"
+}
+```
+
+***
+
+<a name="case-382"></a>
+
+### 例 382：春日花田三联竖版写真拼贴
+
+![春日花田三联竖版写真拼贴](../data/images/case382.jpg)
+
+**来源：** [@frametheory058](https://x.com/frametheory058/status/2051294907214844249)
+
+**提示词：**
+
+```text
+A high-quality 3-panel vertical photo collage of a stunning uploaded woman with soft, voluminous wavy hair glowing in golden sunlight. She is styled in a cream-colored lace-up vintage blouse with delicate textures, olive green high-waisted flowy trousers, and a wide-brimmed straw hat slightly tilted for a fashionable editorial look. Light golden jewelry (thin chains, rings) adds a subtle luxury touch.
+
+The setting is a dreamy, vibrant yellow mustard flower field under a bright blue sky with soft clouds, enhanced by golden hour lighting for a magical glow.
+
+Top panel: Back view of the woman standing in the field with arms wide open, sunlight creating a glowing halo around her hair, slight motion blur in flowers for a cinematic feel.
+
+Middle panel: Close-up portrait, she smiles naturally at the camera, wind softly moving her hair, her hand reaching toward the lens creating depth and a slightly blurred foreground for a DSLR effect.
+
+Bottom panel: Playful pose, she leans sideways in the flowers, making a double peace sign, laughing candidly, capturing an authentic joyful moment.
+
+Add cute, trendy white doodle overlays (smiley faces, sparkles, stars, tiny hearts) with a subtle animated/sketchy feel. Include light leaks, sun flares, and soft film grain for a premium Instagram aesthetic.
+
+Ultra-realistic, 4K, cinematic lighting, shallow depth of field, high dynamic range, natural skin tones, editorial fashion photography, soft pastel color grading.
+
+Aspect ratio: 4:5
+Style tags: viral Instagram aesthetic, Pinterest style, dreamy spring vibe, candid luxury
+```
+
+***
+
+<a name="case-383"></a>
+
+### 例 383：AI 日常生活 iPhone 抓拍
+
+![AI 日常生活 iPhone 抓拍](../data/images/case383.jpg)
+
+**来源：** [@Ciri_ai](https://x.com/Ciri_ai/status/2051292618248904809)
+
+**提示词：**
+
+```text
+I want to see what you really look like.
+Draw a snapshot of your everyday life as if it were accidentally taken on an iPhone.
+Make it feel like a very ordinary, imperfect candid shot.
+The photo should have slight motion blur, with uneven, natural lighting.
+```
+
+***
+
+<a name="case-384"></a>
+
+### 例 384：十国传统服饰时尚拼贴
+
+![十国传统服饰时尚拼贴](../data/images/case384.jpg)
+
+**来源：** [@amynys](https://x.com/amynys/status/2051287229532639677)
+
+**提示词：**
+
+```text
+A 10-Nation Cinematic Fashion Transformation of One Timeless BeautyChatGPT Prompt:
+
+A highly aesthetic, ultra-realistic cinematic collage featuring the exact same beautiful young woman from the reference image, shown in 10 different poses within one single image layout (5x2 grid style). Each frame represents a different country’s traditional cultural dress, styled in a modern, elegant, fashion-forward way. The woman is the SAME person in every frame: she has shoulder-length wavy dark brown hair, captivating dark brown eyes, full plump lips with a subtle confident smile, flawless warm olive-toned skin, high cheekbones, and a voluptuous yet athletic figure with a prominent bust, slim waist, and toned physique — exactly matching the woman in the provided reference photo.
+
+Design details:
+
+Each of the 10 frames shows this same woman in different traditional outfits inspired by the following countries: Suriname, Guyana, Puerto Rico, Spain, Italy, India, Pakistan, Venezuela, Brazil, and the USA.
+
+Every outfit is a modern, elegant, fashion-forward interpretation of that country’s cultural heritage.
+
+Each mini-frame includes a small national flag icon in the top-right corner.
+
+The woman’s expressions vary: smiling, confident, graceful, playful, elegant, royal, modern fusion fashion poses.
+
+High-fashion editorial photography style.
+
+Soft cinematic lighting, ultra-detailed textures, realistic skin tones.
+
+Backgrounds subtly match each country’s cultural aesthetic (landmarks, streets, patterns, colors, architecture).
+
+Luxury fashion magazine layout style.
+
+Clean grid composition, visually balanced, highly shareable social media design.
+
+Style: Ultra-realistic, 8K resolution, Vogue editorial shoot, cinematic lighting, soft depth of field, trending Instagram aesthetic, fashion photography masterpiece.
+```
+
+***
+
+<a name="case-385"></a>
+
+### 例 385：青岛啤酒灵感女装系列
+
+![青岛啤酒灵感女装系列](../data/images/case385.jpg)
+
+**来源：** [@Popcraft_ai](https://x.com/Popcraft_ai/status/2051142270381170754)
+
+**提示词：**
+
+```text
+Inspired by Tsingtao (China beer)🍺
+
+“Inspired by this product, design a set of cool-style women's clothing”
+```
+
+***

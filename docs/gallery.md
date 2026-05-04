@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 378。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 385。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-378](./gallery-part-2.md)
+- [Part 2：例 166-385](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -46,24 +46,31 @@
 - [例 376：泼洒抹茶街头手机照片](./gallery-part-2.md#case-376)
 - [例 377：樱花咖啡户外人像](./gallery-part-2.md#case-377)
 - [例 378：高端 3D 收藏玩具头像](./gallery-part-2.md#case-378)
+- [例 379：品牌人格漫画信息图](./gallery-part-2.md#case-379)
+- [例 380：冠状病毒尺度缩放科学信息图](./gallery-part-2.md#case-380)
+- [例 381：90 年代公寓场景参考板](./gallery-part-2.md#case-381)
+- [例 382：春日花田三联竖版写真拼贴](./gallery-part-2.md#case-382)
+- [例 383：AI 日常生活 iPhone 抓拍](./gallery-part-2.md#case-383)
+- [例 384：十国传统服饰时尚拼贴](./gallery-part-2.md#case-384)
+- [例 385：青岛啤酒灵感女装系列](./gallery-part-2.md#case-385)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-378，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
+- `gallery-part-2.md`：例 166-385，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
 
 ## 分类概览
 
 - UI与界面：68
-- 图表与信息可视化：55
+- 图表与信息可视化：56
 - 海报与排版：71
-- 商品与电商：24
-- 品牌与标志：19
+- 商品与电商：25
+- 品牌与标志：20
 - 建筑与空间：25
-- 摄影与写实：34
+- 摄影与写实：36
 - 插画与艺术：25
-- 人物与角色：14
-- 场景与叙事：7
+- 人物与角色：15
+- 场景与叙事：8
 - 历史与古风题材：9
 - 文档与出版物：7
 - 其他应用场景：20
@@ -83,7 +90,7 @@
 
 <a name="cat-infographic"></a>
 
-### 📊 图表与信息可视化 · 55 cases
+### 📊 图表与信息可视化 · 56 cases
 
 - [例 1：信息图可视化设计](./gallery-part-1.md#case-1)
 - [例 183：一张中文健身信息图](./gallery-part-2.md#case-183)
@@ -91,6 +98,7 @@
 - [例 334：RAG 技术详解图](./gallery-part-2.md#case-334)
 - [例 341：AP Calculus 学习表信息图](./gallery-part-2.md#case-341)
 - [例 360：长发造型分析信息图](./gallery-part-2.md#case-360)
+- [例 380：冠状病毒尺度缩放科学信息图](./gallery-part-2.md#case-380)
 
 <a name="cat-poster"></a>
 
@@ -105,7 +113,7 @@
 
 <a name="cat-product"></a>
 
-### 🛍️ 商品与电商 · 24 cases
+### 🛍️ 商品与电商 · 25 cases
 
 - [例 178：亚马逊详情图设计](./gallery-part-2.md#case-178)
 - [例 181：潮流视角重塑精致商品广告](./gallery-part-2.md#case-181)
@@ -113,10 +121,11 @@
 - [例 194：健身蛋白粉电商详情页](./gallery-part-2.md#case-194)
 - [例 237：夏日柑橘苏打高转化广告图](./gallery-part-2.md#case-237)
 - [例 358：草莓能量饮料商业广告](./gallery-part-2.md#case-358)
+- [例 385：青岛啤酒灵感女装系列](./gallery-part-2.md#case-385)
 
 <a name="cat-brand"></a>
 
-### 🏷️ 品牌与标志 · 19 cases
+### 🏷️ 品牌与标志 · 20 cases
 
 - [例 186：品牌视觉识别图](./gallery-part-2.md#case-186)
 - [例 310：零食品牌技术分解图](./gallery-part-2.md#case-310)
@@ -124,6 +133,7 @@
 - [例 354：Logo 与品牌身份系统提示词合集](./gallery-part-2.md#case-354)
 - [例 362：抹茶品牌触点系统视觉板](./gallery-part-2.md#case-362)
 - [例 367：VELORA 奢华香水广告海报](./gallery-part-2.md#case-367)
+- [例 379：品牌人格漫画信息图](./gallery-part-2.md#case-379)
 
 <a name="cat-architecture"></a>
 
@@ -138,7 +148,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 34 cases
+### 📷 摄影与写实 · 36 cases
 
 - [例 187：韩系极简氛围感少女写真](./gallery-part-2.md#case-187)
 - [例 199：超写实海滩高角度手机自拍](./gallery-part-2.md#case-199)
@@ -146,6 +156,8 @@
 - [例 357：鱼眼镜面复古咖啡馆人像](./gallery-part-2.md#case-357)
 - [例 376：泼洒抹茶街头手机照片](./gallery-part-2.md#case-376)
 - [例 377：樱花咖啡户外人像](./gallery-part-2.md#case-377)
+- [例 382：春日花田三联竖版写真拼贴](./gallery-part-2.md#case-382)
+- [例 383：AI 日常生活 iPhone 抓拍](./gallery-part-2.md#case-383)
 
 <a name="cat-illustration"></a>
 
@@ -160,7 +172,7 @@
 
 <a name="cat-character"></a>
 
-### 🧍 人物与角色 · 14 cases
+### 🧍 人物与角色 · 15 cases
 
 - [例 166：十二黄金圣斗士卡牌合集](./gallery-part-2.md#case-166)
 - [例 212：专业设计师打造角色写真集](./gallery-part-2.md#case-212)
@@ -168,15 +180,17 @@
 - [例 347：4×4 动作分解参考表](./gallery-part-2.md#case-347)
 - [例 372：可爱角色设定表](./gallery-part-2.md#case-372)
 - [例 378：高端 3D 收藏玩具头像](./gallery-part-2.md#case-378)
+- [例 384：十国传统服饰时尚拼贴](./gallery-part-2.md#case-384)
 
 <a name="cat-scene"></a>
 
-### 🎬 场景与叙事 · 7 cases
+### 🎬 场景与叙事 · 8 cases
 
 - [例 182：千禧年日系校园喜剧场景](./gallery-part-2.md#case-182)
 - [例 204：智能动画分镜生成器](./gallery-part-2.md#case-204)
 - [例 238：星云巨鲤与小人的奇幻对话](./gallery-part-2.md#case-238)
 - [例 330：月下美女直播画面](./gallery-part-2.md#case-330)
+- [例 381：90 年代公寓场景参考板](./gallery-part-2.md#case-381)
 
 <a name="cat-history"></a>
 

@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-378-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-385-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-378](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-385](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [MIT License](LICENSE)
 - [Full disclaimer](docs/disclaimer.md#section-disclaimer)
@@ -52,7 +52,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-ui"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📊 Charts & Infographics</strong><br><sub>55 cases</sub></p>
+      <p><strong>📊 Charts & Infographics</strong><br><sub>56 cases</sub></p>
       <a href="docs/gallery.md#cat-infographic"><img src="data/images/category-covers/infographic.jpg" alt="Charts and infographics" width="220"></a><br>
       <sub>Infographics, knowledge maps, technical explainers, and structured diagrams.</sub><br>
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
@@ -66,13 +66,13 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🛍️ Products & E-commerce</strong><br><sub>24 cases</sub></p>
+      <p><strong>🛍️ Products & E-commerce</strong><br><sub>25 cases</sub></p>
       <a href="docs/gallery.md#cat-product"><img src="data/images/category-covers/product.jpg" alt="Products and e-commerce" width="220"></a><br>
       <sub>Product shots, detail pages, packaging, selling points, and ads.</sub><br>
       <a href="docs/gallery.md#cat-product"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🏷️ Brand & Logos</strong><br><sub>19 cases</sub></p>
+      <p><strong>🏷️ Brand & Logos</strong><br><sub>20 cases</sub></p>
       <a href="docs/gallery.md#cat-brand"><img src="data/images/category-covers/brand.jpg" alt="Brand and logos" width="220"></a><br>
       <sub>Logos, identity systems, brand touchpoints, and campaign visuals.</sub><br>
       <a href="docs/gallery.md#cat-brand"><strong>View Cases</strong></a>
@@ -86,7 +86,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>34 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>36 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -98,7 +98,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-illustration"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧍 Characters & People</strong><br><sub>14 cases</sub></p>
+      <p><strong>🧍 Characters & People</strong><br><sub>15 cases</sub></p>
       <a href="docs/gallery.md#cat-character"><img src="data/images/category-covers/character.jpg" alt="Characters and people" width="220"></a><br>
       <sub>Character design, pose references, cards, and 3D toys.</sub><br>
       <a href="docs/gallery.md#cat-character"><strong>View Cases</strong></a>
@@ -106,7 +106,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>7 cases</sub></p>
+      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>8 cases</sub></p>
       <a href="docs/gallery.md#cat-scene"><img src="data/images/category-covers/scene.jpg" alt="Scenes and storytelling" width="220"></a><br>
       <sub>Storyboards, narrative scenes, livestream frames, and worldbuilding.</sub><br>
       <a href="docs/gallery.md#cat-scene"><strong>View Cases</strong></a>
@@ -134,14 +134,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 378 cases by gallery part and category.</sub><br>
+      <sub>Browse all 385 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-378"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-385"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest X community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-378"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-385"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -293,28 +293,54 @@ Only the latest 24-hour collection run is shown here. Older X imports stay in th
 <table>
   <tr>
     <td width="25%" valign="top" align="center">
-      <p><strong>Case 375: Ancient Greek Philosophers Timeline City Map</strong></p>
-      <a href="docs/gallery-part-2.md#case-375"><img src="data/images/case375.jpg" alt="Ancient Greek philosophers timeline city map" width="180"></a><br>
-      <sub>Historical figures, city background, and timeline storytelling.</sub><br>
-      <a href="docs/gallery-part-2.md#case-375"><strong>View Case</strong></a>
+      <p><strong>Case 379: Brand Personality Comic Infographic</strong></p>
+      <a href="docs/gallery-part-2.md#case-379"><img src="data/images/case379.jpg" alt="Brand personality comic infographic" width="180"></a><br>
+      <sub>Logo-driven character, comic panels, and brand strategy blocks.</sub><br>
+      <a href="docs/gallery-part-2.md#case-379"><strong>View Case</strong></a>
     </td>
     <td width="25%" valign="top" align="center">
-      <p><strong>Case 376: Spilled Matcha Street Phone Photo</strong></p>
-      <a href="docs/gallery-part-2.md#case-376"><img src="data/images/category-covers/photo.jpg" alt="Spilled matcha street phone photo" width="180"></a><br>
-      <sub>Phone documentary style, realistic lighting, and negative constraints.</sub><br>
-      <a href="docs/gallery-part-2.md#case-376"><strong>View Case</strong></a>
+      <p><strong>Case 380: Coronavirus Zoom-Scale Infographic</strong></p>
+      <a href="docs/gallery-part-2.md#case-380"><img src="data/images/category-covers/infographic.jpg" alt="Coronavirus zoom-scale infographic" width="180"></a><br>
+      <sub>Scientific scale layers, zoom path, and compact labels.</sub><br>
+      <a href="docs/gallery-part-2.md#case-380"><strong>View Case</strong></a>
     </td>
     <td width="25%" valign="top" align="center">
-      <p><strong>Case 377: Sakura Coffee Outdoor Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-377"><img src="data/images/case377.jpg" alt="Sakura coffee outdoor portrait" width="180"></a><br>
-      <sub>Reference-image editing, identity preservation, and outdoor lifestyle photography.</sub><br>
-      <a href="docs/gallery-part-2.md#case-377"><strong>View Case</strong></a>
+      <p><strong>Case 381: 90s Apartment Scene Reference Board</strong></p>
+      <a href="docs/gallery-part-2.md#case-381"><img src="data/images/case381.jpg" alt="90s apartment scene reference board" width="180"></a><br>
+      <sub>Camera zones, prop strip, and video-friendly spatial guidance.</sub><br>
+      <a href="docs/gallery-part-2.md#case-381"><strong>View Case</strong></a>
     </td>
     <td width="25%" valign="top" align="center">
-      <p><strong>Case 378: Premium 3D Collectible Toy Avatar</strong></p>
-      <a href="docs/gallery-part-2.md#case-378"><img src="data/images/category-covers/latest.jpg" alt="Premium 3D collectible toy avatar" width="180"></a><br>
-      <sub>Reference photo to 3D collectible toy while preserving identity anchors.</sub><br>
-      <a href="docs/gallery-part-2.md#case-378"><strong>View Case</strong></a>
+      <p><strong>Case 382: Spring Field Triple Portrait Collage</strong></p>
+      <a href="docs/gallery-part-2.md#case-382"><img src="data/images/case382.jpg" alt="Spring field triple portrait collage" width="180"></a><br>
+      <sub>Three-panel social portrait, golden-hour light, and doodle overlays.</sub><br>
+      <a href="docs/gallery-part-2.md#case-382"><strong>View Case</strong></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 383: AI Everyday iPhone Candid</strong></p>
+      <a href="docs/gallery-part-2.md#case-383"><img src="data/images/category-covers/photo.jpg" alt="AI everyday iPhone candid" width="180"></a><br>
+      <sub>Ordinary accidental phone-photo realism with imperfect lighting.</sub><br>
+      <a href="docs/gallery-part-2.md#case-383"><strong>View Case</strong></a>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 384: Ten-Nation Fashion Collage</strong></p>
+      <a href="docs/gallery-part-2.md#case-384"><img src="data/images/case384.jpg" alt="Ten-nation fashion collage" width="180"></a><br>
+      <sub>Same-person consistency across a 5x2 cultural fashion layout.</sub><br>
+      <a href="docs/gallery-part-2.md#case-384"><strong>View Case</strong></a>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 385: Tsingtao-Inspired Womenswear Series</strong></p>
+      <a href="docs/gallery-part-2.md#case-385"><img src="data/images/case385.jpg" alt="Tsingtao-inspired womenswear series" width="180"></a><br>
+      <sub>Product inspiration translated into a fashion design series.</sub><br>
+      <a href="docs/gallery-part-2.md#case-385"><strong>View Case</strong></a>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Full Gallery</strong></p>
+      <a href="docs/gallery.md"><img src="data/images/category-covers/latest.jpg" alt="Latest gallery additions" width="180"></a><br>
+      <sub>Browse the full case index and reusable template library.</sub><br>
+      <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
   </tr>
 </table>
