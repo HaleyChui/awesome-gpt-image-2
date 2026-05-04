@@ -87,111 +87,133 @@ const copy = {
 const templateCards = [
   {
     anchor: 'tpl-ui',
+    cover: '/images/case17.jpg',
     en: ['UI Screenshot System', 'High-fidelity app, web, dashboard, and social interface prompts.'],
     zh: ['UI 截图系统', '生成 App、网页、仪表盘、社媒截图等高保真界面。']
   },
   {
     anchor: 'tpl-infographic',
+    cover: '/images/case334.png',
     en: ['Infographic Engine', 'Structured diagrams, timelines, knowledge maps, and explainers.'],
     zh: ['信息图引擎', '生成结构化图解、时间线、知识图谱和技术解释图。']
   },
   {
     anchor: 'tpl-infographic',
+    cover: '/images/case341.jpg',
     en: ['Scientific Scale Diagram', 'Multi-scale science visuals with readable labels and hierarchy.'],
     zh: ['科学尺度缩放图', '生成多尺度科学信息图，强调层级、标签和可读性。']
   },
   {
     anchor: 'tpl-poster',
+    cover: '/images/case345.jpg',
     en: ['Poster Layout System', 'Event, product, movie, and social poster compositions.'],
     zh: ['海报排版系统', '生成活动、产品、电影和社媒传播海报。']
   },
   {
     anchor: 'tpl-poster',
+    cover: '/images/case350.jpg',
     en: ['Sports Campaign Poster', 'Commercial sports visuals with athletes, props, and brand color.'],
     zh: ['运动商业 Campaign', '生成运动员、道具、品牌色统一的商业运动海报。']
   },
   {
     anchor: 'tpl-poster',
+    cover: '/images/case355.jpg',
     en: ['Conceptual Typography Poster', 'Premium title-led posters with strong typographic systems.'],
     zh: ['概念字体海报', '生成以标题文字为主视觉的高级字体海报。']
   },
   {
     anchor: 'tpl-poster',
+    cover: '/images/case359.jpg',
     en: ['Ink Double Exposure Poster', 'Chinese ink, portrait, and layered atmosphere composition.'],
     zh: ['水墨双重曝光海报', '生成水墨、人像与层叠氛围结合的视觉海报。']
   },
   {
     anchor: 'tpl-poster',
+    cover: '/images/case339.jpg',
     en: ['Nature Science Poster', 'Minimal product-style science posters for natural subjects.'],
     zh: ['自然科普海报', '生成极简产品感自然科普海报。']
   },
   {
     anchor: 'tpl-product',
+    cover: '/images/case373.jpg',
     en: ['Product Commerce Visual', 'Product shots, packaging, detail pages, and selling-point layouts.'],
     zh: ['商品商业视觉', '生成商品图、包装、详情页和卖点排版。']
   },
   {
     anchor: 'tpl-product',
+    cover: '/images/case353.jpg',
     en: ['Personalized Beauty Report', 'Recommendation-report layouts for beauty and lifestyle products.'],
     zh: ['个性化美妆报告', '生成美妆与生活方式产品的推荐报告版式。']
   },
   {
     anchor: 'tpl-brand',
+    cover: '/images/case354.jpg',
     en: ['Brand Identity Package', 'Logo, palette, typography, applications, and brand touchpoints.'],
     zh: ['品牌身份包', '生成 Logo、配色、字体、应用触点与品牌系统。']
   },
   {
     anchor: 'tpl-brand',
+    cover: '/images/case362.jpg',
     en: ['Brand Touchpoint Board', 'Campaign boards across packaging, social, web, and display contexts.'],
     zh: ['品牌触点视觉板', '生成包装、社媒、网页和展示场景里的品牌触点板。']
   },
   {
     anchor: 'tpl-architecture',
+    cover: '/images/case331.png',
     en: ['Architecture & Space', 'Interior, exterior, city, map, and spatial concept visuals.'],
     zh: ['建筑与空间', '生成室内、建筑、城市地图和空间概念视觉。']
   },
   {
     anchor: 'tpl-photo',
+    cover: '/images/case377.jpg',
     en: ['Realistic Photography', 'Lens, lighting, film texture, and documentary-style photo prompts.'],
     zh: ['写实摄影', '控制镜头、光线、胶片质感和纪实摄影效果。']
   },
   {
     anchor: 'tpl-photo',
+    cover: '/images/case376.jpg',
     en: ['Street Accident Moment', 'Realistic phone-photo scenes with negative constraints.'],
     zh: ['街头意外瞬间摄影', '生成手机纪实风街头瞬间，并加入负面约束。']
   },
   {
     anchor: 'tpl-illustration',
+    cover: '/images/case346.jpg',
     en: ['Illustration & Art Style', 'Anime, watercolor, ink, material experiments, and art direction.'],
     zh: ['插画与艺术风格', '生成动漫、水彩、水墨、材质实验和艺术风格图。']
   },
   {
     anchor: 'tpl-character',
+    cover: '/images/case347.jpg',
     en: ['Character Design Sheet', 'Characters, pose sheets, action grids, and identity consistency.'],
     zh: ['角色设定表', '生成角色设定、动作分解和一致性参考。']
   },
   {
     anchor: 'tpl-character',
+    cover: '/images/case378.jpg',
     en: ['3D Collectible Toy', 'Reference photo to premium 3D collectible figure prompts.'],
     zh: ['3D 收藏玩具', '把参考图转换成高级 3D 收藏玩具效果。']
   },
   {
     anchor: 'tpl-scene',
+    cover: '/images/case330.png',
     en: ['Scene Storytelling', 'Storyboards, worldbuilding, narrative scenes, and emotional pacing.'],
     zh: ['场景叙事', '生成分镜、世界观、故事场景和情绪节奏。']
   },
   {
     anchor: 'tpl-history',
+    cover: '/images/case375.jpg',
     en: ['History & Classical Themes', 'Dynasty clothing, scroll narrative, poetry, and traditional motifs.'],
     zh: ['历史与古风题材', '生成朝代服饰、长卷叙事、诗词和传统题材。']
   },
   {
     anchor: 'tpl-document',
+    cover: '/images/case360.jpg',
     en: ['Document & Publishing', 'White papers, manuals, encyclopedic plates, and page systems.'],
     zh: ['文档与出版物', '生成白皮书、手册、百科图鉴和页面系统。']
   },
   {
     anchor: 'tpl-other',
+    cover: '/images/case370.jpg',
     en: ['Concept Product Breakdown', 'R&D boards, exploded views, mixed tasks, and special outputs.'],
     zh: ['概念产品研发拆解', '生成研发板、拆解图、混合任务和特殊输出。']
   }
@@ -471,6 +493,7 @@ function TemplateSection({ language }) {
         {templateCards.map((item, index) => {
           const [title, description] = item[language];
           const visual = templateVisuals[item.anchor] || templateVisuals['tpl-other'];
+          const cover = item.cover || visual.cover;
           return (
             <article className="caseCard templateVisualCard" key={`${item.anchor}-${title}`}>
               <a
@@ -479,7 +502,7 @@ function TemplateSection({ language }) {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={visual.cover} alt={title} loading="lazy" />
+                <img src={cover} alt={title} loading="lazy" />
                 <span className="caseBadge">
                   {language === 'zh' ? '模板' : 'Template'} {String(index + 1).padStart(2, '0')}
                 </span>
