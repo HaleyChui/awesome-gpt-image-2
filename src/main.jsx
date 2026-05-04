@@ -18,6 +18,7 @@ const copy = {
     loading: 'Loading GPT-Image2 cases...',
     brand: 'GPT-Image2 Gallery',
     navCases: 'Cases',
+    navTemplates: 'Templates',
     eyebrow: 'Live GPT-Image2 prompt gallery',
     title: 'From viral images to reusable prompts.',
     subtitle:
@@ -29,6 +30,11 @@ const copy = {
     templates: 'templates',
     sectionEyebrow: 'Copy, filter, remix',
     sectionTitle: 'Viral cases with prompts one click away.',
+    templateEyebrow: '20+ industrial prompt templates',
+    templateTitle: 'Start from a proven template, then remix the case library.',
+    templateSubtitle:
+      'Each template is distilled from real GPT-Image2 examples and includes structure, constraints, and pitfalls for production use.',
+    openTemplate: 'Open Template',
     search: 'Search cases, sources, prompts...',
     category: 'Category',
     style: 'Style',
@@ -45,6 +51,7 @@ const copy = {
     loading: '正在加载 GPT-Image2 案例...',
     brand: 'GPT-Image2 画廊',
     navCases: '案例',
+    navTemplates: '模板',
     eyebrow: '实时更新的 GPT-Image2 提示词画廊',
     title: '从爆款图片，到可复用 Prompt。',
     subtitle:
@@ -56,6 +63,11 @@ const copy = {
     templates: '套模板',
     sectionEyebrow: '复制、筛选、复用',
     sectionTitle: '爆款案例和 Prompt，一键可取。',
+    templateEyebrow: '20+ 套工业级提示词模板',
+    templateTitle: '先用成熟模板起稿，再从案例库里继续 remix。',
+    templateSubtitle:
+      '每套模板都从真实 GPT-Image2 案例里提炼，包含结构、约束和防坑经验，适合生产流程直接复用。',
+    openTemplate: '打开模板',
     search: '搜索案例、来源、Prompt...',
     category: '分类',
     style: '风格',
@@ -69,6 +81,119 @@ const copy = {
     limit: (count) => `为了保证浏览速度，当前展示前 ${count} 条结果。可以用搜索或筛选缩小范围。`
   }
 };
+
+const templateCards = [
+  {
+    anchor: 'tpl-ui',
+    en: ['UI Screenshot System', 'High-fidelity app, web, dashboard, and social interface prompts.'],
+    zh: ['UI 截图系统', '生成 App、网页、仪表盘、社媒截图等高保真界面。']
+  },
+  {
+    anchor: 'tpl-infographic',
+    en: ['Infographic Engine', 'Structured diagrams, timelines, knowledge maps, and explainers.'],
+    zh: ['信息图引擎', '生成结构化图解、时间线、知识图谱和技术解释图。']
+  },
+  {
+    anchor: 'tpl-infographic',
+    en: ['Scientific Scale Diagram', 'Multi-scale science visuals with readable labels and hierarchy.'],
+    zh: ['科学尺度缩放图', '生成多尺度科学信息图，强调层级、标签和可读性。']
+  },
+  {
+    anchor: 'tpl-poster',
+    en: ['Poster Layout System', 'Event, product, movie, and social poster compositions.'],
+    zh: ['海报排版系统', '生成活动、产品、电影和社媒传播海报。']
+  },
+  {
+    anchor: 'tpl-poster',
+    en: ['Sports Campaign Poster', 'Commercial sports visuals with athletes, props, and brand color.'],
+    zh: ['运动商业 Campaign', '生成运动员、道具、品牌色统一的商业运动海报。']
+  },
+  {
+    anchor: 'tpl-poster',
+    en: ['Conceptual Typography Poster', 'Premium title-led posters with strong typographic systems.'],
+    zh: ['概念字体海报', '生成以标题文字为主视觉的高级字体海报。']
+  },
+  {
+    anchor: 'tpl-poster',
+    en: ['Ink Double Exposure Poster', 'Chinese ink, portrait, and layered atmosphere composition.'],
+    zh: ['水墨双重曝光海报', '生成水墨、人像与层叠氛围结合的视觉海报。']
+  },
+  {
+    anchor: 'tpl-poster',
+    en: ['Nature Science Poster', 'Minimal product-style science posters for natural subjects.'],
+    zh: ['自然科普海报', '生成极简产品感自然科普海报。']
+  },
+  {
+    anchor: 'tpl-product',
+    en: ['Product Commerce Visual', 'Product shots, packaging, detail pages, and selling-point layouts.'],
+    zh: ['商品商业视觉', '生成商品图、包装、详情页和卖点排版。']
+  },
+  {
+    anchor: 'tpl-product',
+    en: ['Personalized Beauty Report', 'Recommendation-report layouts for beauty and lifestyle products.'],
+    zh: ['个性化美妆报告', '生成美妆与生活方式产品的推荐报告版式。']
+  },
+  {
+    anchor: 'tpl-brand',
+    en: ['Brand Identity Package', 'Logo, palette, typography, applications, and brand touchpoints.'],
+    zh: ['品牌身份包', '生成 Logo、配色、字体、应用触点与品牌系统。']
+  },
+  {
+    anchor: 'tpl-brand',
+    en: ['Brand Touchpoint Board', 'Campaign boards across packaging, social, web, and display contexts.'],
+    zh: ['品牌触点视觉板', '生成包装、社媒、网页和展示场景里的品牌触点板。']
+  },
+  {
+    anchor: 'tpl-architecture',
+    en: ['Architecture & Space', 'Interior, exterior, city, map, and spatial concept visuals.'],
+    zh: ['建筑与空间', '生成室内、建筑、城市地图和空间概念视觉。']
+  },
+  {
+    anchor: 'tpl-photo',
+    en: ['Realistic Photography', 'Lens, lighting, film texture, and documentary-style photo prompts.'],
+    zh: ['写实摄影', '控制镜头、光线、胶片质感和纪实摄影效果。']
+  },
+  {
+    anchor: 'tpl-photo',
+    en: ['Street Accident Moment', 'Realistic phone-photo scenes with negative constraints.'],
+    zh: ['街头意外瞬间摄影', '生成手机纪实风街头瞬间，并加入负面约束。']
+  },
+  {
+    anchor: 'tpl-illustration',
+    en: ['Illustration & Art Style', 'Anime, watercolor, ink, material experiments, and art direction.'],
+    zh: ['插画与艺术风格', '生成动漫、水彩、水墨、材质实验和艺术风格图。']
+  },
+  {
+    anchor: 'tpl-character',
+    en: ['Character Design Sheet', 'Characters, pose sheets, action grids, and identity consistency.'],
+    zh: ['角色设定表', '生成角色设定、动作分解和一致性参考。']
+  },
+  {
+    anchor: 'tpl-character',
+    en: ['3D Collectible Toy', 'Reference photo to premium 3D collectible figure prompts.'],
+    zh: ['3D 收藏玩具', '把参考图转换成高级 3D 收藏玩具效果。']
+  },
+  {
+    anchor: 'tpl-scene',
+    en: ['Scene Storytelling', 'Storyboards, worldbuilding, narrative scenes, and emotional pacing.'],
+    zh: ['场景叙事', '生成分镜、世界观、故事场景和情绪节奏。']
+  },
+  {
+    anchor: 'tpl-history',
+    en: ['History & Classical Themes', 'Dynasty clothing, scroll narrative, poetry, and traditional motifs.'],
+    zh: ['历史与古风题材', '生成朝代服饰、长卷叙事、诗词和传统题材。']
+  },
+  {
+    anchor: 'tpl-document',
+    en: ['Document & Publishing', 'White papers, manuals, encyclopedic plates, and page systems.'],
+    zh: ['文档与出版物', '生成白皮书、手册、百科图鉴和页面系统。']
+  },
+  {
+    anchor: 'tpl-other',
+    en: ['Concept Product Breakdown', 'R&D boards, exploded views, mixed tasks, and special outputs.'],
+    zh: ['概念产品研发拆解', '生成研发板、拆解图、混合任务和特殊输出。']
+  }
+];
 
 const labelMap = {
   zh: {
@@ -224,6 +349,49 @@ function LanguageSwitch({ language, setLanguage }) {
   );
 }
 
+function TemplateSection({ language }) {
+  const t = copy[language];
+  const repoDocsUrl = `${fallbackRepoUrl}/blob/main/docs/templates.md`;
+
+  return (
+    <section className="templateSection" id="templates">
+      <div className="sectionHead templateHead">
+        <div>
+          <span className="eyebrow">{t.templateEyebrow}</span>
+          <h2>{t.templateTitle}</h2>
+          <p>{t.templateSubtitle}</p>
+        </div>
+        <a className="templateCta" href={`${repoDocsUrl}#section-templates`} target="_blank" rel="noreferrer">
+          {t.openTemplate}
+          <ArrowUpRight size={16} />
+        </a>
+      </div>
+      <div className="templateGrid">
+        {templateCards.map((item, index) => {
+          const [title, description] = item[language];
+          return (
+            <a
+              className="templateCard"
+              href={`${repoDocsUrl}#${item.anchor}`}
+              target="_blank"
+              rel="noreferrer"
+              key={`${item.anchor}-${title}`}
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <strong>
+                {t.openTemplate}
+                <ArrowUpRight size={15} />
+              </strong>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function PromptCard({ caseItem, copied, language, onCopy }) {
   const t = copy[language];
   const tags = [...new Set([...caseItem.styles, ...caseItem.scenes])].slice(0, 4);
@@ -339,6 +507,7 @@ function App() {
         </a>
         <div className="topbarControls">
           <nav>
+            <a href="#templates">{t.navTemplates}</a>
             <a href="#gallery">{t.navCases}</a>
             <a href={repoUrl} target="_blank" rel="noreferrer">
               GitHub
@@ -364,6 +533,8 @@ function App() {
           </a>
         ))}
       </section>
+
+      <TemplateSection language={language} />
 
       <section className="gallerySection" id="gallery">
         <div className="sectionHead">
