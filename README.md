@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-393-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-395-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-393](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-395](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [MIT License](LICENSE)
 - [Full disclaimer](docs/disclaimer.md#section-disclaimer)
@@ -106,7 +106,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>9 cases</sub></p>
+      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>11 cases</sub></p>
       <a href="docs/gallery.md#cat-scene"><img src="data/images/category-covers/scene.jpg" alt="Scenes and storytelling" width="220"></a><br>
       <sub>Storyboards, narrative scenes, livestream frames, and worldbuilding.</sub><br>
       <a href="docs/gallery.md#cat-scene"><strong>View Cases</strong></a>
@@ -134,14 +134,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 393 cases by gallery part and category.</sub><br>
+      <sub>Browse all 395 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-393"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-395"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest X community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-393"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-395"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -292,55 +292,23 @@ Only the latest 24-hour collection run is shown here. Older X imports stay in th
 
 <table>
   <tr>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 386: Brand Envelope Product Ad</strong></p>
-      <a href="docs/gallery-part-2.md#case-386"><img src="data/images/case386.jpg" alt="Brand envelope product ad" width="180"></a><br>
-      <sub>Four-phase product insertion into a consistent brand world.</sub><br>
-      <a href="docs/gallery-part-2.md#case-386"><strong>View Case</strong></a>
+    <td width="33%" valign="top" align="center">
+      <p><strong>Case 394: Censored Elven Adventurers</strong></p>
+      <a href="docs/gallery-part-2.md#case-394"><img src="data/images/case394.jpg" alt="Censored elven adventurers" width="180"></a><br>
+      <sub>Two detailed elven adventurers in a medieval village concept-art scene.</sub><br>
+      <a href="docs/gallery-part-2.md#case-394"><strong>View Case</strong></a>
     </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 387: Netflix Hero UI</strong></p>
-      <a href="docs/gallery-part-2.md#case-387"><img src="data/images/case387.jpg" alt="Netflix hero UI" width="180"></a><br>
-      <sub>Reference-image driven title and hero still inside a streaming homepage.</sub><br>
-      <a href="docs/gallery-part-2.md#case-387"><strong>View Case</strong></a>
+    <td width="33%" valign="top" align="center">
+      <p><strong>Case 395: Knight-Mage Battles Stone Golem</strong></p>
+      <a href="docs/gallery-part-2.md#case-395"><img src="data/images/case395.jpg" alt="Knight-mage battles stone golem" width="180"></a><br>
+      <sub>Low-angle fantasy combat with armor, magic light, and cathedral ruins.</sub><br>
+      <a href="docs/gallery-part-2.md#case-395"><strong>View Case</strong></a>
     </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 388: 1980s Claude Magazine Ad</strong></p>
-      <a href="docs/gallery-part-2.md#case-388"><img src="data/images/case388.jpg" alt="1980s Claude magazine ad" width="180"></a><br>
-      <sub>Retro computer ad layout with dense readable copy and negative constraints.</sub><br>
-      <a href="docs/gallery-part-2.md#case-388"><strong>View Case</strong></a>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 389: Transparent Labs Hydrate Campaign</strong></p>
-      <a href="docs/gallery-part-2.md#case-389"><img src="data/images/case389.jpg" alt="Transparent Labs Hydrate campaign" width="180"></a><br>
-      <sub>Sports nutrition poster with product, model, and benefit callouts.</sub><br>
-      <a href="docs/gallery-part-2.md#case-389"><strong>View Case</strong></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 390: Felt Country Miniature World</strong></p>
-      <a href="docs/gallery-part-2.md#case-390"><img src="data/images/case390.jpg" alt="Felt country miniature world" width="180"></a><br>
-      <sub>Foreground, midground, and background guide a cohesive craft diorama.</sub><br>
-      <a href="docs/gallery-part-2.md#case-390"><strong>View Case</strong></a>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 391: Cultural Anchor Fashion Grid</strong></p>
-      <a href="docs/gallery-part-2.md#case-391"><img src="data/images/case391.jpg" alt="Cultural anchor fashion grid" width="180"></a><br>
-      <sub>Architecture, fashion, and food anchors blended into dress design.</sub><br>
-      <a href="docs/gallery-part-2.md#case-391"><strong>View Case</strong></a>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 392: Micro City Hidden in Hair</strong></p>
-      <a href="docs/gallery-part-2.md#case-392"><img src="data/images/case392.jpg" alt="Micro city hidden in hair" width="180"></a><br>
-      <sub>Macro realism, skin texture, and tiny urban scale in one shot.</sub><br>
-      <a href="docs/gallery-part-2.md#case-392"><strong>View Case</strong></a>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <p><strong>Case 393: Y2K Golden-Hour Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-393"><img src="data/images/case393.jpg" alt="Y2K golden-hour portrait" width="180"></a><br>
-      <sub>Short portrait prompt with a clear Y2K fashion and light recipe.</sub><br>
-      <a href="docs/gallery-part-2.md#case-393"><strong>View Case</strong></a>
+    <td width="33%" valign="top" align="center">
+      <p><strong>Full Gallery</strong></p>
+      <a href="docs/gallery.md"><img src="data/images/category-covers/latest.jpg" alt="Latest gallery additions" width="180"></a><br>
+      <sub>Browse every collected prompt case and reusable template entry.</sub><br>
+      <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
   </tr>
 </table>
