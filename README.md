@@ -1,11 +1,11 @@
 <p align="center"><img src="./data/images/banner.svg" alt="GPT-Image2 Prompt System" width="800" /></p>
 
-<h3 align="center">Prompt as Code | GPT-Image2 Industrial Prompt Engine & Template Library, 370+ Reverse-Engineered Cases, 20+ Industrial Templates</h3>
+<h3 align="center">Prompt as Code | GPT-Image2 Industrial Prompt Engine & Template Library, 390+ Reverse-Engineered Cases, 20+ Industrial Templates</h3>
 
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-395-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-399-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-395](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-399](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [MIT License](LICENSE)
 - [Full disclaimer](docs/disclaimer.md#section-disclaimer)
@@ -86,7 +86,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>38 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>40 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -98,7 +98,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-illustration"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧍 Characters & People</strong><br><sub>16 cases</sub></p>
+      <p><strong>🧍 Characters & People</strong><br><sub>17 cases</sub></p>
       <a href="docs/gallery.md#cat-character"><img src="data/images/category-covers/character.jpg" alt="Characters and people" width="220"></a><br>
       <sub>Character design, pose references, cards, and 3D toys.</sub><br>
       <a href="docs/gallery.md#cat-character"><strong>View Cases</strong></a>
@@ -118,7 +118,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-history"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📚 Documents & Publishing</strong><br><sub>7 cases</sub></p>
+      <p><strong>📚 Documents & Publishing</strong><br><sub>8 cases</sub></p>
       <a href="docs/gallery.md#cat-document"><img src="data/images/category-covers/document.jpg" alt="Documents and publishing" width="220"></a><br>
       <sub>White papers, manuals, encyclopedic plates, and publishing layouts.</sub><br>
       <a href="docs/gallery.md#cat-document"><strong>View Cases</strong></a>
@@ -134,14 +134,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 395 cases by gallery part and category.</sub><br>
+      <sub>Browse all 399 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-395"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-399"><img src="data/images/category-covers/latest.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest X community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-395"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-399"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -292,23 +292,29 @@ Only the latest 24-hour collection run is shown here. Older X imports stay in th
 
 <table>
   <tr>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 394: Censored Elven Adventurers</strong></p>
-      <a href="docs/gallery-part-2.md#case-394"><img src="data/images/case394.jpg" alt="Censored elven adventurers" width="180"></a><br>
-      <sub>Two detailed elven adventurers in a medieval village concept-art scene.</sub><br>
-      <a href="docs/gallery-part-2.md#case-394"><strong>View Case</strong></a>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 396: Dragon Species Encyclopedia Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-396"><img src="data/images/case396.jpg" alt="Dragon species encyclopedia poster" width="160"></a><br>
+      <sub>Vintage fantasy encyclopedia plate with creature diagrams and atlas texture.</sub><br>
+      <a href="docs/gallery-part-2.md#case-396"><strong>View Case</strong></a>
     </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 395: Knight-Mage Battles Stone Golem</strong></p>
-      <a href="docs/gallery-part-2.md#case-395"><img src="data/images/case395.jpg" alt="Knight-mage battles stone golem" width="180"></a><br>
-      <sub>Low-angle fantasy combat with armor, magic light, and cathedral ruins.</sub><br>
-      <a href="docs/gallery-part-2.md#case-395"><strong>View Case</strong></a>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 397: Street Dancer Character Sheet</strong></p>
+      <a href="docs/gallery-part-2.md#case-397"><img src="data/images/case397.jpg" alt="Street dancer character sheet" width="160"></a><br>
+      <sub>Full-body dance poses with a multi-angle head reference strip.</sub><br>
+      <a href="docs/gallery-part-2.md#case-397"><strong>View Case</strong></a>
     </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Full Gallery</strong></p>
-      <a href="docs/gallery.md"><img src="data/images/category-covers/latest.jpg" alt="Latest gallery additions" width="180"></a><br>
-      <sub>Browse every collected prompt case and reusable template entry.</sub><br>
-      <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 398: Everyday Outfit Editorial Collage</strong></p>
+      <a href="docs/gallery-part-2.md#case-398"><img src="data/images/case398.jpg" alt="Everyday outfit editorial collage" width="160"></a><br>
+      <sub>Eight casual looks arranged as a freeform fashion editorial collage.</sub><br>
+      <a href="docs/gallery-part-2.md#case-398"><strong>View Case</strong></a>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <p><strong>Case 399: Record Label Stairwell Portrait</strong></p>
+      <a href="docs/gallery-part-2.md#case-399"><img src="data/images/case399.jpg" alt="Record label stairwell portrait" width="160"></a><br>
+      <sub>Japanese negative-film portrait with backstage stairwell realism.</sub><br>
+      <a href="docs/gallery-part-2.md#case-399"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>

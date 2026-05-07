@@ -7515,3 +7515,121 @@ Create a cinematic dark fantasy action scene in a ruined cathedral hall: a {argu
 ```
 
 ***
+
+<a name="case-396"></a>
+
+### 例 396：龙类物种复古百科海报
+
+![龙类物种复古百科海报](../data/images/case396.jpg)
+
+**来源：** [@sha_zdiii](https://x.com/sha_zdiii/status/2052237839119835280)
+
+**提示词：**
+
+```text
+Create a highly detailed A4 vertical vintage fantasy encyclopedia style dragon species poster.
+
+Style: medieval creature atlas, ancient mythology manuscript, museum fantasy archive, old explorer journal.
+
+Main subject:
+a massive hyper realistic dragon standing proudly in center with detailed scales, smoke from nostrils, giant wings partially open.
+
+Background:
+stormy mountains, ancient ruins, fog layers, burnt parchment texture.
+
+Color palette:
+dark emerald, ash gray, faded gold, ancient brown, deep crimson.
+
+Include infographic sections:
+Species Type,
+Fire Capacity,
+Wing Structure,
+Temperament Scale,
+Habitat Region,
+Battle Strength,
+Ancient Legends,
+Scale Patterns,
+Skull Diagram,
+Hunter Notes.
+
+Add:
+engraved fantasy sketches,
+ancient symbols,
+old map textures,
+ink grain,
+collectible poster layout.
+
+NO modern UI.
+NO futuristic elements.
+NO flat minimalism.
+
+Ultra detailed.
+8K printable masterpiece.
+```
+
+***
+
+<a name="case-397"></a>
+
+### 例 397：街舞角色设定参考图
+
+![街舞角色设定参考图](../data/images/case397.jpg)
+
+**来源：** [@ChangningL29508](https://x.com/ChangningL29508/status/2052229452080591276)
+
+**提示词：**
+
+```text
+角色设定图布局，聚焦于一位18岁的亚裔女性街舞舞者。包含4个大型、高细节度的全身动态舞姿（突出舞蹈动作，面部清晰）。侧边附一条清晰的多角度参考条，仅含3个精细头部特写（正面、侧面、3/4侧面）。最大限度减少文字元素，将像素空间优先用于面部细节刻画。背景为粗砺工业风，搭配写实光影效果
+```
+
+***
+
+<a name="case-398"></a>
+
+### 例 398：8 套日常穿搭编辑拼贴
+
+![8 套日常穿搭编辑拼贴](../data/images/case398.jpg)
+
+**来源：** [@aiwithaly](https://x.com/aiwithaly/status/2052218645951205463)
+
+**提示词：**
+
+```text
+Create a freeform fashion-editorial collage of me in 8 distinct full-body casual wear, arranged organically on a clean cream studio backdrop. Keep my face identical across all looks, w/ consistent proportions that visually read as around (height) w/o stating height. Include subtle handwritten-style arrows & labels highlighting key pieces. Avoid any grids, borders, or boxed layouts.
+```
+
+***
+
+<a name="case-399"></a>
+
+### 例 399：唱片公司楼梯间写真人像
+
+![唱片公司楼梯间写真人像](../data/images/case399.jpg)
+
+**来源：** [@BubbleBrain](https://x.com/BubbleBrain/status/2052217544388546827)
+
+**提示词：**
+
+```text
+Use case: photorealistic-natural
+Asset type: cinematic portrait image, final target size 1216x1536 portrait
+
+Create a photorealistic image of a fictional adult Korean female idol in her mid-20s, not resembling any real celebrity. Maintain a Japanese negative film look: soft overexposure, faded neutrals, low contrast, subtle grain, and imperfect snapshot framing.
+
+Scene/backdrop: the back stairwell of a small record label building, with moving boxes, scuffed concrete steps, a gray metal handrail, and a pale security light. The atmosphere should feel quiet, slightly intimate, and workaday, as if caught in a private in-between moment after practice and during moving day.
+
+Subject: a Korean female idol with a naturally attractive, understated sensuality rather than overt glamour. She should feel quietly magnetic, relaxed, and a little teasing without being provocative.
+
+Wardrobe/props: a slightly cropped black blazer worn casually and slightly open, over a fitted heather-gray ribbed tee that softly outlines the figure without revealing cleavage, loose khaki cargo pants sitting naturally on the waist, a thin silver chain necklace, a roll of black gaffer tape placed beside her, and one sneaker lace still half-tied. The styling should feel subtly sexier and more feminine than purely casual, but still fully modest and non-revealing.
+
+Composition/framing: tall portrait. The subject is seated on the stairs with one knee slightly raised and one leg relaxed lower on the step, leaning back lightly with one hand braced behind her on the stair for support. The other hand is near her half-tied sneaker, as if she has just paused while tying it. Her blazer falls naturally along the body, her posture creating a soft, elegant silhouette. Her head is tilted up toward the camera with a calm, slightly sultry, self-possessed expression. The pose should feel candid yet subtly alluring, natural rather than staged.
+
+Lighting/mood: flat stairwell light, understated backstage realism, soft grain, muted tones, gentle highlight bloom, and a quiet intimate mood. Keep the image photorealistic, restrained, and cinematic, with no excessive glamour and no nudity.
+
+Add small white handwriting signature text "BubbleBrain" on the bottom right corner.
+
+--2:3
+```
+
+***

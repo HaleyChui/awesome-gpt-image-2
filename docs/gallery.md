@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 395。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 399。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-395](./gallery-part-2.md)
+- [Part 2：例 166-399](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -63,11 +63,15 @@
 - [例 393：Y2K 金色时刻人像](./gallery-part-2.md#case-393)
 - [例 394：中世纪村庄双精灵冒险者](./gallery-part-2.md#case-394)
 - [例 395：骑士法师大战石像魔像](./gallery-part-2.md#case-395)
+- [例 396：龙类物种复古百科海报](./gallery-part-2.md#case-396)
+- [例 397：街舞角色设定参考图](./gallery-part-2.md#case-397)
+- [例 398：8 套日常穿搭编辑拼贴](./gallery-part-2.md#case-398)
+- [例 399：唱片公司楼梯间写真人像](./gallery-part-2.md#case-399)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-395，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
+- `gallery-part-2.md`：例 166-399，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与 X 社区近 24 小时案例。
 
 ## 分类概览
 
@@ -77,12 +81,12 @@
 - 商品与电商：26
 - 品牌与标志：21
 - 建筑与空间：25
-- 摄影与写实：38
+- 摄影与写实：40
 - 插画与艺术：25
-- 人物与角色：16
+- 人物与角色：17
 - 场景与叙事：11
 - 历史与古风题材：9
-- 文档与出版物：7
+- 文档与出版物：8
 - 其他应用场景：20
 
 ## 分类案例入口
@@ -162,7 +166,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 38 cases
+### 📷 摄影与写实 · 40 cases
 
 - [例 187：韩系极简氛围感少女写真](./gallery-part-2.md#case-187)
 - [例 199：超写实海滩高角度手机自拍](./gallery-part-2.md#case-199)
@@ -174,6 +178,8 @@
 - [例 383：AI 日常生活 iPhone 抓拍](./gallery-part-2.md#case-383)
 - [例 392：头发里的微型城市](./gallery-part-2.md#case-392)
 - [例 393：Y2K 金色时刻人像](./gallery-part-2.md#case-393)
+- [例 398：8 套日常穿搭编辑拼贴](./gallery-part-2.md#case-398)
+- [例 399：唱片公司楼梯间写真人像](./gallery-part-2.md#case-399)
 
 <a name="cat-illustration"></a>
 
@@ -188,7 +194,7 @@
 
 <a name="cat-character"></a>
 
-### 🧍 人物与角色 · 16 cases
+### 🧍 人物与角色 · 17 cases
 
 - [例 166：十二黄金圣斗士卡牌合集](./gallery-part-2.md#case-166)
 - [例 212：专业设计师打造角色写真集](./gallery-part-2.md#case-212)
@@ -198,6 +204,7 @@
 - [例 378：高端 3D 收藏玩具头像](./gallery-part-2.md#case-378)
 - [例 384：十国传统服饰时尚拼贴](./gallery-part-2.md#case-384)
 - [例 391：四国文化锚点服装设计宫格](./gallery-part-2.md#case-391)
+- [例 397：街舞角色设定参考图](./gallery-part-2.md#case-397)
 
 <a name="cat-scene"></a>
 
@@ -225,12 +232,13 @@
 
 <a name="cat-document"></a>
 
-### 📚 文档与出版物 · 7 cases
+### 📚 文档与出版物 · 8 cases
 
 - [例 168：手写中西药方图片](./gallery-part-2.md#case-168)
 - [例 201：三甲医院真实门诊处方笺](./gallery-part-2.md#case-201)
 - [例 222：精致模块化科普百科图鉴](./gallery-part-2.md#case-222)
 - [例 235：治愈系助眠指南九宫格](./gallery-part-2.md#case-235)
+- [例 396：龙类物种复古百科海报](./gallery-part-2.md#case-396)
 
 <a name="cat-other"></a>
 
