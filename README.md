@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-402-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-403-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-402](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-403](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -47,7 +47,7 @@ Start with the case album to find a visual direction, then open the prompt templ
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧩 UI & Interfaces</strong><br><sub>61 cases</sub></p>
+      <p><strong>🧩 UI & Interfaces</strong><br><sub>62 cases</sub></p>
       <a href="docs/gallery.md#cat-ui"><img src="data/images/category-covers/ui.jpg" alt="UI and interfaces" width="220"></a><br>
       <sub>Apps, websites, dashboards, social screenshots, and product interfaces.</sub><br>
       <a href="docs/gallery.md#cat-ui"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 402 cases by gallery part and category.</sub><br>
+      <sub>Browse all 403 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-402"><img src="data/images/case402.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-403"><img src="data/images/case403.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-402"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-403"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -369,10 +369,10 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 402: 3D Xiaohongshu Profile Card</strong></p>
-      <a href="docs/gallery-part-2.md#case-402"><img src="data/images/case402.jpg" alt="3D Xiaohongshu profile card" width="140"></a><br>
-      <sub>A hand-held 3D social profile card with floating engagement icons and soft influencer-room lighting.</sub><br>
-      <a href="docs/gallery-part-2.md#case-402"><strong>View Case</strong></a>
+      <p><strong>Case 403: 3D Xiaohongshu Screen Breakthrough</strong></p>
+      <a href="docs/gallery-part-2.md#case-403"><img src="data/images/case403.jpg" alt="3D Xiaohongshu screen breakthrough" width="140"></a><br>
+      <sub>A vertical social UI scene with cracked glass, pixel particles, and a cinematic 3D character breaking through the screen.</sub><br>
+      <a href="docs/gallery-part-2.md#case-403"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>
