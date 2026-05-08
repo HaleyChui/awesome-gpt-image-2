@@ -1,6 +1,6 @@
 {
   "name": "gpt-image-2-style-library",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Agent skill for choosing GPT-Image2 visual styles, prompt templates, categories, and scene tags.",
   "type": "module",
   "license": "MIT",
@@ -29,6 +29,7 @@
   "files": [
     "SKILL.md",
     "agents",
+    "assets",
     "bin",
     "references"
   ],

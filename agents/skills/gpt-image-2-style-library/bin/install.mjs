@@ -30,7 +30,7 @@ if (!allowedCommands.has(command)) {
 }
 
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
-const entries = ['SKILL.md', 'agents', 'references'];
+const entries = ['SKILL.md', 'agents', 'assets', 'references'];
 const targetDefinitions = {
   codex: {
     label: 'Codex',

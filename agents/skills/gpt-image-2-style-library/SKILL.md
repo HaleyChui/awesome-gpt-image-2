@@ -7,6 +7,12 @@ description: Choose GPT-Image2 / gpt-image-2 visual styles and industrial prompt
 
 Use this skill to turn a user's image-generation intent into a production-ready GPT-Image2 prompt using the awesome-gpt-image-2 style library.
 
+## Example Output
+
+![City life system map example](assets/city-life-system-map.png)
+
+Example request: `用 gpt-image-2-style-library 技能生成城市生命系统图谱`
+
 ## Reference
 
 - Read `references/style-library.md` before choosing a template or style.

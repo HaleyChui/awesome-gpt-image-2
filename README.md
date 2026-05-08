@@ -202,6 +202,12 @@ This repository includes an agent skill for choosing GPT-Image2 styles, template
 
 Package links: [npm](https://www.npmjs.com/package/gpt-image-2-style-library) / [GitHub Packages](https://github.com/freestylefly/awesome-gpt-image-2/pkgs/npm/gpt-image-2-style-library)
 
+<p align="center">
+  <img src="agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png" alt="City life system map generated with the GPT-Image2 style library skill" width="760">
+</p>
+
+<p align="center"><sub>Example output from a city-life-system-map request using the style library skill.</sub></p>
+
 ### Quick Install for Agent Skills
 
 Recommended for Claude Code, Codex, Cursor, and other tools supported by [`skills`](https://www.npmjs.com/package/skills):

@@ -200,6 +200,12 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 
 包地址：[npm](https://www.npmjs.com/package/gpt-image-2-style-library) / [GitHub Packages](https://github.com/freestylefly/awesome-gpt-image-2/pkgs/npm/gpt-image-2-style-library)
 
+<p align="center">
+  <img src="agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png" alt="使用 GPT-Image2 风格库 skill 生成的城市生命系统图谱示例" width="760">
+</p>
+
+<p align="center"><sub>示例：用 gpt-image-2-style-library 生成“城市生命系统图谱”。</sub></p>
+
 ### Agent 一键安装
 
 推荐给 Claude Code、Codex、Cursor，以及其他 [`skills`](https://www.npmjs.com/package/skills) 支持的本地 Agent：
