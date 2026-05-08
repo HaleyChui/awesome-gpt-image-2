@@ -5,27 +5,17 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const docsDir = join(root, 'docs');
 const outFile = join(root, 'data', 'cases.json');
+const styleLibraryFile = join(root, 'data', 'style-library.json');
+const styleLibrary = JSON.parse(readFileSync(styleLibraryFile, 'utf8'));
 
 const galleryFiles = [
   { file: 'gallery-part-1.md', part: 1 },
   { file: 'gallery-part-2.md', part: 2 }
 ];
 
-const categoryLabels = {
-  'cat-ui': 'UI & Interfaces',
-  'cat-infographic': 'Charts & Infographics',
-  'cat-poster': 'Posters & Typography',
-  'cat-product': 'Products & E-commerce',
-  'cat-brand': 'Brand & Logos',
-  'cat-architecture': 'Architecture & Spaces',
-  'cat-photo': 'Photography & Realism',
-  'cat-illustration': 'Illustration & Art',
-  'cat-character': 'Characters & People',
-  'cat-scene': 'Scenes & Storytelling',
-  'cat-history': 'History & Classical Themes',
-  'cat-document': 'Documents & Publishing',
-  'cat-other': 'Other Use Cases'
-};
+const categoryLabels = Object.fromEntries(
+  styleLibrary.categories.map((category) => [category.anchor, category.value])
+);
 
 const featuredIds = new Set([
   1, 2, 6, 17, 166, 310, 330, 334, 338, 341, 344, 346, 350, 353, 354, 359, 360,
@@ -108,29 +98,18 @@ function inferCategory(caseItem) {
 
 function inferTags(caseItem) {
   const text = `${caseItem.title} ${caseItem.prompt}`.toLowerCase();
-  const styleRules = [
-    ['UI', ['ui', 'interface', 'dashboard', '界面']],
-    ['Infographic', ['infographic', 'diagram', 'chart', '信息图', '图解']],
-    ['Poster', ['poster', 'cover', 'typography', '海报', '封面']],
-    ['Realistic', ['photo', 'realistic', 'camera', '写真', '写实']],
-    ['Illustration', ['illustration', 'painting', 'watercolor', '插画', '绘画']],
-    ['Product', ['product', 'packaging', '商品', '包装']],
-    ['Brand', ['brand', 'logo', '品牌', '标志']],
-    ['Character', ['character', 'avatar', 'pose', '角色', '人物']],
-    ['Classical', ['classical', 'dynasty', 'history', '古风', '历史']],
-    ['3D', ['3d', 'toy', 'render', '玩具']]
-  ];
-  const sceneRules = [
-    ['Tech', ['ai', 'rag', 'tech', 'data', '技术', '数据']],
-    ['Commerce', ['product', 'brand', 'ad', 'campaign', '商品', '商业', '广告']],
-    ['Education', ['guide', 'atlas', 'science', 'learning', '学习', '科普']],
-    ['Social', ['social', 'x ', 'wechat', '朋友圈', '社媒']],
-    ['Fashion', ['fashion', 'clothing', 'portrait', '服饰', '写真']],
-    ['Food', ['food', 'drink', 'coffee', 'tea', '餐厅', '咖啡', '茶']],
-    ['Travel', ['city', 'map', 'street', '城市', '地图', '街头']],
-    ['Story', ['story', 'scene', 'world', '故事', '场景']],
-    ['History', ['history', 'dynasty', 'ancient', '历史', '古希腊', '唐']]
-  ];
+  const styleOrder = ['UI', 'Infographic', 'Poster', 'Realistic', 'Illustration', 'Product', 'Brand', 'Character', 'Classical', '3D'];
+  const sceneOrder = ['Tech', 'Commerce', 'Education', 'Social', 'Fashion', 'Food', 'Travel', 'Story', 'History', 'Creative'];
+  const styleByValue = new Map(styleLibrary.styles.map((style) => [style.value, style]));
+  const sceneByValue = new Map(styleLibrary.scenes.map((scene) => [scene.value, scene]));
+  const styleRules = styleOrder.map((value) => [
+    value,
+    (styleByValue.get(value)?.keywords || []).map((key) => key.toLowerCase())
+  ]);
+  const sceneRules = sceneOrder.map((value) => [
+    value,
+    (sceneByValue.get(value)?.keywords || []).map((key) => key.toLowerCase())
+  ]);
 
   const pick = (rules, fallback) => {
     const tags = rules

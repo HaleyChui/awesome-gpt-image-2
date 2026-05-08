@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/generate-site-data.mjs",
+    "generate:site-data": "node scripts/generate-site-data.mjs",
+    "generate:style-skill": "node scripts/generate-style-skill.mjs",
+    "install:skill": "node scripts/install-style-skill.mjs",
+    "predev": "npm run generate:site-data && npm run generate:style-skill",
     "dev": "vite",
-    "prebuild": "node scripts/generate-site-data.mjs",
+    "prebuild": "npm run generate:site-data && npm run generate:style-skill",
     "build": "vite build",
     "preview": "vite preview"
   },

@@ -84,141 +84,6 @@ const copy = {
   }
 };
 
-const templateCards = [
-  {
-    anchor: 'tpl-ui',
-    cover: '/images/case17.jpg',
-    en: ['UI Screenshot System', 'High-fidelity app, web, dashboard, and social interface prompts.'],
-    zh: ['UI 截图系统', '生成 App、网页、仪表盘、社媒截图等高保真界面。']
-  },
-  {
-    anchor: 'tpl-infographic',
-    cover: '/images/case334.png',
-    en: ['Infographic Engine', 'Structured diagrams, timelines, knowledge maps, and explainers.'],
-    zh: ['信息图引擎', '生成结构化图解、时间线、知识图谱和技术解释图。']
-  },
-  {
-    anchor: 'tpl-infographic',
-    cover: '/images/case341.jpg',
-    en: ['Scientific Scale Diagram', 'Multi-scale science visuals with readable labels and hierarchy.'],
-    zh: ['科学尺度缩放图', '生成多尺度科学信息图，强调层级、标签和可读性。']
-  },
-  {
-    anchor: 'tpl-poster',
-    cover: '/images/case345.jpg',
-    en: ['Poster Layout System', 'Event, product, movie, and social poster compositions.'],
-    zh: ['海报排版系统', '生成活动、产品、电影和社媒传播海报。']
-  },
-  {
-    anchor: 'tpl-poster',
-    cover: '/images/case350.jpg',
-    en: ['Sports Campaign Poster', 'Commercial sports visuals with athletes, props, and brand color.'],
-    zh: ['运动商业 Campaign', '生成运动员、道具、品牌色统一的商业运动海报。']
-  },
-  {
-    anchor: 'tpl-poster',
-    cover: '/images/case355.jpg',
-    en: ['Conceptual Typography Poster', 'Premium title-led posters with strong typographic systems.'],
-    zh: ['概念字体海报', '生成以标题文字为主视觉的高级字体海报。']
-  },
-  {
-    anchor: 'tpl-poster',
-    cover: '/images/case359.jpg',
-    en: ['Ink Double Exposure Poster', 'Chinese ink, portrait, and layered atmosphere composition.'],
-    zh: ['水墨双重曝光海报', '生成水墨、人像与层叠氛围结合的视觉海报。']
-  },
-  {
-    anchor: 'tpl-poster',
-    cover: '/images/case339.jpg',
-    en: ['Nature Science Poster', 'Minimal product-style science posters for natural subjects.'],
-    zh: ['自然科普海报', '生成极简产品感自然科普海报。']
-  },
-  {
-    anchor: 'tpl-product',
-    cover: '/images/case373.jpg',
-    en: ['Product Commerce Visual', 'Product shots, packaging, detail pages, and selling-point layouts.'],
-    zh: ['商品商业视觉', '生成商品图、包装、详情页和卖点排版。']
-  },
-  {
-    anchor: 'tpl-product',
-    cover: '/images/case353.jpg',
-    en: ['Personalized Beauty Report', 'Recommendation-report layouts for beauty and lifestyle products.'],
-    zh: ['个性化美妆报告', '生成美妆与生活方式产品的推荐报告版式。']
-  },
-  {
-    anchor: 'tpl-brand',
-    cover: '/images/case354.jpg',
-    en: ['Brand Identity Package', 'Logo, palette, typography, applications, and brand touchpoints.'],
-    zh: ['品牌身份包', '生成 Logo、配色、字体、应用触点与品牌系统。']
-  },
-  {
-    anchor: 'tpl-brand',
-    cover: '/images/case362.jpg',
-    en: ['Brand Touchpoint Board', 'Campaign boards across packaging, social, web, and display contexts.'],
-    zh: ['品牌触点视觉板', '生成包装、社媒、网页和展示场景里的品牌触点板。']
-  },
-  {
-    anchor: 'tpl-architecture',
-    cover: '/images/case331.png',
-    en: ['Architecture & Space', 'Interior, exterior, city, map, and spatial concept visuals.'],
-    zh: ['建筑与空间', '生成室内、建筑、城市地图和空间概念视觉。']
-  },
-  {
-    anchor: 'tpl-photo',
-    cover: '/images/case377.jpg',
-    en: ['Realistic Photography', 'Lens, lighting, film texture, and documentary-style photo prompts.'],
-    zh: ['写实摄影', '控制镜头、光线、胶片质感和纪实摄影效果。']
-  },
-  {
-    anchor: 'tpl-photo',
-    cover: '/images/case376.jpg',
-    en: ['Street Accident Moment', 'Realistic phone-photo scenes with negative constraints.'],
-    zh: ['街头意外瞬间摄影', '生成手机纪实风街头瞬间，并加入负面约束。']
-  },
-  {
-    anchor: 'tpl-illustration',
-    cover: '/images/case346.jpg',
-    en: ['Illustration & Art Style', 'Anime, watercolor, ink, material experiments, and art direction.'],
-    zh: ['插画与艺术风格', '生成动漫、水彩、水墨、材质实验和艺术风格图。']
-  },
-  {
-    anchor: 'tpl-character',
-    cover: '/images/case347.jpg',
-    en: ['Character Design Sheet', 'Characters, pose sheets, action grids, and identity consistency.'],
-    zh: ['角色设定表', '生成角色设定、动作分解和一致性参考。']
-  },
-  {
-    anchor: 'tpl-character',
-    cover: '/images/case378.jpg',
-    en: ['3D Collectible Toy', 'Reference photo to premium 3D collectible figure prompts.'],
-    zh: ['3D 收藏玩具', '把参考图转换成高级 3D 收藏玩具效果。']
-  },
-  {
-    anchor: 'tpl-scene',
-    cover: '/images/case330.png',
-    en: ['Scene Storytelling', 'Storyboards, worldbuilding, narrative scenes, and emotional pacing.'],
-    zh: ['场景叙事', '生成分镜、世界观、故事场景和情绪节奏。']
-  },
-  {
-    anchor: 'tpl-history',
-    cover: '/images/case375.jpg',
-    en: ['History & Classical Themes', 'Dynasty clothing, scroll narrative, poetry, and traditional motifs.'],
-    zh: ['历史与古风题材', '生成朝代服饰、长卷叙事、诗词和传统题材。']
-  },
-  {
-    anchor: 'tpl-document',
-    cover: '/images/case360.jpg',
-    en: ['Document & Publishing', 'White papers, manuals, encyclopedic plates, and page systems.'],
-    zh: ['文档与出版物', '生成白皮书、手册、百科图鉴和页面系统。']
-  },
-  {
-    anchor: 'tpl-other',
-    cover: '/images/case370.jpg',
-    en: ['Concept Product Breakdown', 'R&D boards, exploded views, mixed tasks, and special outputs.'],
-    zh: ['概念产品研发拆解', '生成研发板、拆解图、混合任务和特殊输出。']
-  }
-];
-
 const labelMap = {
   zh: {
     'Architecture & Spaces': '建筑与空间',
@@ -263,111 +128,41 @@ const labelMap = {
   }
 };
 
-const templateVisuals = {
-  'tpl-ui': {
-    cover: '/images/category-covers/ui.jpg',
-    category: 'UI & Interfaces',
-    tags: ['UI', 'Dashboard', 'Screenshot']
-  },
-  'tpl-infographic': {
-    cover: '/images/category-covers/infographic.jpg',
-    category: 'Charts & Infographics',
-    tags: ['Infographic', 'Chart', 'Education']
-  },
-  'tpl-poster': {
-    cover: '/images/category-covers/poster.jpg',
-    category: 'Posters & Typography',
-    tags: ['Poster', 'Typography', 'Campaign']
-  },
-  'tpl-product': {
-    cover: '/images/category-covers/product.jpg',
-    category: 'Products & E-commerce',
-    tags: ['Product', 'Commerce', 'Packaging']
-  },
-  'tpl-brand': {
-    cover: '/images/category-covers/brand.jpg',
-    category: 'Brand & Logos',
-    tags: ['Brand', 'Logo', 'Identity']
-  },
-  'tpl-architecture': {
-    cover: '/images/category-covers/architecture.jpg',
-    category: 'Architecture & Spaces',
-    tags: ['Architecture', 'Interior', 'Map']
-  },
-  'tpl-photo': {
-    cover: '/images/category-covers/photo.jpg',
-    category: 'Photography & Realism',
-    tags: ['Photography', 'Realistic', 'Lens']
-  },
-  'tpl-illustration': {
-    cover: '/images/category-covers/illustration.jpg',
-    category: 'Illustration & Art',
-    tags: ['Illustration', 'Art', 'Style']
-  },
-  'tpl-character': {
-    cover: '/images/category-covers/character.jpg',
-    category: 'Characters & People',
-    tags: ['Character', 'Pose', '3D']
-  },
-  'tpl-scene': {
-    cover: '/images/category-covers/scene.jpg',
-    category: 'Scenes & Storytelling',
-    tags: ['Scene', 'Story', 'Storyboard']
-  },
-  'tpl-history': {
-    cover: '/images/category-covers/history.jpg',
-    category: 'History & Classical Themes',
-    tags: ['History', 'Classical', 'Scroll']
-  },
-  'tpl-document': {
-    cover: '/images/category-covers/document.jpg',
-    category: 'Documents & Publishing',
-    tags: ['Document', 'Publishing', 'Layout']
-  },
-  'tpl-other': {
-    cover: '/images/category-covers/other.jpg',
-    category: 'Other Use Cases',
-    tags: ['Creative', 'R&D', 'Special']
-  }
-};
-
 function cx(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function localizeLabel(value, language) {
+function textFor(value, language) {
+  if (!value) return '';
+  if (typeof value === 'string') return value;
+  return value[language] || value.en || value.zh || '';
+}
+
+function localizeLabel(value, language, styleLibrary) {
+  const libraryItems = [
+    ...(styleLibrary?.categories || []),
+    ...(styleLibrary?.styles || []),
+    ...(styleLibrary?.scenes || [])
+  ];
+  const match = libraryItems.find((item) => item.value === value || item.id === value);
+  if (match) return textFor(match.title, language);
   return labelMap[language]?.[value] || value;
 }
 
-function localizeTemplateTag(value, language) {
-  const zhTags = {
-    Art: '艺术',
-    Campaign: '商业 Campaign',
-    Chart: '图表',
-    Classical: '古典',
-    Creative: '创意',
-    Dashboard: '仪表盘',
-    Document: '文档',
-    Education: '教育',
-    Identity: '身份系统',
-    Interior: '室内',
-    Layout: '版式',
-    Lens: '镜头',
-    Logo: 'Logo',
-    Map: '地图',
-    Packaging: '包装',
-    Pose: '动作',
-    Publishing: '出版',
-    'R&D': '研发',
-    Scene: '场景',
-    Screenshot: '截图',
-    Scroll: '长卷',
-    Special: '特殊输出',
-    Storyboard: '分镜',
-    Style: '风格',
-    Typography: '字体'
-  };
-  return language === 'zh' ? zhTags[value] || localizeLabel(value, language) : value;
+function localizeTemplateTag(value, language, styleLibrary) {
+  const tagLabel = styleLibrary?.tagLabels?.[value];
+  if (tagLabel) return textFor(tagLabel, language);
+  return localizeLabel(value, language, styleLibrary);
+}
+
+function orderByLibrary(values, libraryItems = []) {
+  const order = new Map(libraryItems.map((item, index) => [item.value, index]));
+  return [...values].sort((a, b) => {
+    const aOrder = order.has(a) ? order.get(a) : Number.MAX_SAFE_INTEGER;
+    const bOrder = order.has(b) ? order.get(b) : Number.MAX_SAFE_INTEGER;
+    if (aOrder !== bOrder) return aOrder - bOrder;
+    return a.localeCompare(b);
+  });
 }
 
 function useCopy() {
@@ -472,9 +267,10 @@ function LanguageSwitch({ language, setLanguage }) {
   );
 }
 
-function TemplateSection({ language }) {
+function TemplateSection({ language, styleLibrary }) {
   const t = copy[language];
-  const repoDocsUrl = `${fallbackRepoUrl}/blob/main/docs/templates.md`;
+  const repoDocsUrl = `${styleLibrary.repository || fallbackRepoUrl}/blob/main/${styleLibrary.templateDocument}`;
+  const templates = styleLibrary.templates || [];
 
   return (
     <section className="templateSection" id="templates">
@@ -490,19 +286,18 @@ function TemplateSection({ language }) {
         </a>
       </div>
       <div className="caseGrid templateCaseGrid">
-        {templateCards.map((item, index) => {
-          const [title, description] = item[language];
-          const visual = templateVisuals[item.anchor] || templateVisuals['tpl-other'];
-          const cover = item.cover || visual.cover;
+        {templates.map((item, index) => {
+          const title = textFor(item.title, language);
+          const description = textFor(item.description, language);
           return (
-            <article className="caseCard templateVisualCard" key={`${item.anchor}-${title}`}>
+            <article className="caseCard templateVisualCard" key={item.id}>
               <a
                 className="caseImage templateImage"
                 href={`${repoDocsUrl}#${item.anchor}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={cover} alt={title} loading="lazy" />
+                <img src={item.cover} alt={title} loading="lazy" />
                 <span className="caseBadge">
                   {language === 'zh' ? '模板' : 'Template'} {String(index + 1).padStart(2, '0')}
                 </span>
@@ -510,13 +305,13 @@ function TemplateSection({ language }) {
               <div className="caseBody">
                 <div className="caseMeta">
                   <span>{t.templateKind}</span>
-                  <span>{localizeLabel(visual.category, language)}</span>
+                  <span>{localizeLabel(item.category, language, styleLibrary)}</span>
                 </div>
                 <h3>{title}</h3>
                 <p>{description}</p>
                 <div className="tagRow">
-                  {visual.tags.map((tag) => (
-                    <span key={`${item.anchor}-${tag}`}>{localizeTemplateTag(tag, language)}</span>
+                  {(item.tags || []).map((tag) => (
+                    <span key={`${item.id}-${tag}`}>{localizeTemplateTag(tag, language, styleLibrary)}</span>
                   ))}
                 </div>
                 <div className="cardActions singleAction">
@@ -534,7 +329,7 @@ function TemplateSection({ language }) {
   );
 }
 
-function PromptCard({ caseItem, copied, language, onCopy }) {
+function PromptCard({ caseItem, copied, language, onCopy, styleLibrary }) {
   const t = copy[language];
   const tags = [...new Set([...caseItem.styles, ...caseItem.scenes])].slice(0, 4);
 
@@ -546,7 +341,7 @@ function PromptCard({ caseItem, copied, language, onCopy }) {
       </a>
       <div className="caseBody">
         <div className="caseMeta">
-          <span>{localizeLabel(caseItem.category, language)}</span>
+          <span>{localizeLabel(caseItem.category, language, styleLibrary)}</span>
           {caseItem.sourceUrl ? (
             <a href={caseItem.sourceUrl} target="_blank" rel="noreferrer">
               {caseItem.sourceLabel}
@@ -559,7 +354,7 @@ function PromptCard({ caseItem, copied, language, onCopy }) {
         <p>{caseItem.promptPreview}</p>
         <div className="tagRow">
           {tags.map((tag) => (
-            <span key={`${caseItem.id}-${tag}`}>{localizeLabel(tag, language)}</span>
+            <span key={`${caseItem.id}-${tag}`}>{localizeLabel(tag, language, styleLibrary)}</span>
           ))}
         </div>
         <div className="cardActions">
@@ -578,6 +373,7 @@ function PromptCard({ caseItem, copied, language, onCopy }) {
 
 function App() {
   const [siteData, setSiteData] = useState(null);
+  const [styleLibrary, setStyleLibrary] = useState(null);
   const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'en');
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
@@ -589,10 +385,15 @@ function App() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/cases.json')
-      .then((response) => response.json())
-      .then((payload) => {
-        if (!cancelled) setSiteData(payload);
+    Promise.all([
+      fetch('/cases.json').then((response) => response.json()),
+      fetch('/style-library.json').then((response) => response.json())
+    ])
+      .then(([payload, library]) => {
+        if (!cancelled) {
+          setSiteData(payload);
+          setStyleLibrary(library);
+        }
       });
     return () => {
       cancelled = true;
@@ -627,9 +428,22 @@ function App() {
     });
   }, [siteData, query, category, style, scene]);
 
+  const orderedCategories = useMemo(
+    () => (siteData && styleLibrary ? orderByLibrary(siteData.categories, styleLibrary.categories) : []),
+    [siteData, styleLibrary]
+  );
+  const orderedStyles = useMemo(
+    () => (siteData && styleLibrary ? orderByLibrary(siteData.styles, styleLibrary.styles) : []),
+    [siteData, styleLibrary]
+  );
+  const orderedScenes = useMemo(
+    () => (siteData && styleLibrary ? orderByLibrary(siteData.scenes, styleLibrary.scenes) : []),
+    [siteData, styleLibrary]
+  );
+
   const visibleCases = filteredCases.slice(0, 72);
 
-  if (!siteData) {
+  if (!siteData || !styleLibrary) {
     return (
       <main>
         <div className="loadingScreen">
@@ -676,7 +490,7 @@ function App() {
         ))}
       </section>
 
-      <TemplateSection language={language} />
+      <TemplateSection language={language} styleLibrary={styleLibrary} />
 
       <section className="gallerySection" id="gallery">
         <div className="sectionHead">
@@ -699,9 +513,9 @@ function App() {
             <strong>{t.category}</strong>
             <div className="filterRow">
               <FilterPill active={category === 'All'} onClick={() => setCategory('All')}>{t.all}</FilterPill>
-              {siteData.categories.map((item) => (
+              {orderedCategories.map((item) => (
                 <FilterPill key={item} active={category === item} onClick={() => setCategory(item)}>
-                  {localizeLabel(item, language)}
+                  {localizeLabel(item, language, styleLibrary)}
                 </FilterPill>
               ))}
             </div>
@@ -710,9 +524,9 @@ function App() {
             <strong>{t.style}</strong>
             <div className="filterRow">
               <FilterPill active={style === 'All'} onClick={() => setStyle('All')}>{t.all}</FilterPill>
-              {siteData.styles.map((item) => (
+              {orderedStyles.map((item) => (
                 <FilterPill key={item} active={style === item} onClick={() => setStyle(item)}>
-                  {localizeLabel(item, language)}
+                  {localizeLabel(item, language, styleLibrary)}
                 </FilterPill>
               ))}
             </div>
@@ -721,9 +535,9 @@ function App() {
             <strong>{t.scene}</strong>
             <div className="filterRow">
               <FilterPill active={scene === 'All'} onClick={() => setScene('All')}>{t.all}</FilterPill>
-              {siteData.scenes.map((item) => (
+              {orderedScenes.map((item) => (
                 <FilterPill key={item} active={scene === item} onClick={() => setScene(item)}>
-                  {localizeLabel(item, language)}
+                  {localizeLabel(item, language, styleLibrary)}
                 </FilterPill>
               ))}
             </div>
@@ -745,6 +559,7 @@ function App() {
               copied={copiedId === caseItem.id}
               language={language}
               onCopy={copyPrompt}
+              styleLibrary={styleLibrary}
               key={caseItem.id}
             />
           ))}

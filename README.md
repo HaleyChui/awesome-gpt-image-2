@@ -34,8 +34,20 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
 - [Gallery Part 2: cases 166-401](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
+- [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
 - [Full disclaimer](docs/disclaimer.md#section-disclaimer)
+
+## 🤖 Agent Skill
+
+This repository now includes a source-level Codex skill for choosing GPT-Image2 styles, templates, categories, and scene tags from the same data used by the website.
+
+```bash
+npm run generate:style-skill
+npm run install:skill
+```
+
+The skill source lives at [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md). Its generated reference comes from [`data/style-library.json`](data/style-library.json), so the website and Agent workflow share one style library.
 
 ## 🗂️ Category Overview
 

@@ -565,6 +565,7 @@
       "category": "Characters & People",
       "styles": [
         "Realistic",
+        "Brand",
         "3D"
       ],
       "scenes": [
@@ -586,6 +587,7 @@
       "category": "Photography & Realism",
       "styles": [
         "Realistic",
+        "Brand",
         "Character"
       ],
       "scenes": [
@@ -713,8 +715,8 @@
       "category": "Characters & People",
       "styles": [
         "Realistic",
-        "Character",
-        "3D"
+        "Brand",
+        "Character"
       ],
       "scenes": [
         "Tech",
@@ -1852,7 +1854,7 @@
       "styles": [
         "Realistic",
         "Product",
-        "Character"
+        "Brand"
       ],
       "scenes": [
         "Tech",
@@ -1875,7 +1877,7 @@
       "styles": [
         "Realistic",
         "Product",
-        "Character"
+        "Brand"
       ],
       "scenes": [
         "Tech",
@@ -3901,7 +3903,8 @@
       "promptPreview": "[中文] 9:16 竖版 — 一个 3x3 网格拼贴（九张图片）形成一系列韩国偶像肖像摄影。每一帧都呈现同一位年轻的韩国女性偶像，在所有九张镜头中保持 100% 一致的面部特征、比例、发型和身份。自然、超逼真的皮肤纹理，无修图，无磨皮。干净的偶像风格极简妆容，柔和的光泽，微妙的瑕疵。发型：长发、蓬松的黑发，微乱，在所有帧中保持一致（自然松散的垂落，轻微的动感）。服装：连贯的韩国偶像摄影造型 — 白色衬衫 + 短款下装（或简单的中性色调服",
       "category": "Photography & Realism",
       "styles": [
-        "Realistic"
+        "Realistic",
+        "Brand"
       ],
       "scenes": [
         "Tech",
@@ -4032,6 +4035,7 @@
       "promptPreview": "[中文] 帮我生成一个以《金瓶梅》为主题的古代 ARPG MMO 开放世界游戏的截图 [English] Help me generate a screenshot of an ancient ARPG MMO open-world game themed around Jin Ping Mei.",
       "category": "UI & Interfaces",
       "styles": [
+        "UI",
         "Classical"
       ],
       "scenes": [
@@ -4781,7 +4785,7 @@
       "promptPreview": "[中文] 苏轼被贬第一天小红书截图 [English] Su Shi's first day of exile Xiaohongshu screenshot",
       "category": "History & Classical Themes",
       "styles": [
-        "History"
+        "UI"
       ],
       "scenes": [
         "Social"
@@ -5706,8 +5710,8 @@
       "category": "UI & Interfaces",
       "styles": [
         "UI",
-        "Infographic",
-        "Brand"
+        "Brand",
+        "3D"
       ],
       "scenes": [
         "Tech",
@@ -6359,7 +6363,6 @@
       "category": "Posters & Typography",
       "styles": [
         "UI",
-        "Infographic",
         "Brand"
       ],
       "scenes": [
@@ -7212,7 +7215,6 @@
       "promptPreview": "{\"type\": \"2x2 grid of promotional banner ads\", \"theme\": \"{argument name=\\\"course theme\\\" default=\\\"Social Media Content Creation School\\\"}\", \"panels\": [{\"position\": \"top-left\", \"color_palette\": \"light blue and pink paste",
       "category": "Posters & Typography",
       "styles": [
-        "Infographic",
         "Poster",
         "Realistic"
       ],
@@ -7256,7 +7258,6 @@
       "promptPreview": "{   \"type\": \"2x2 grid of banner advertisements\",   \"theme\": \"{argument name=\\\"school name\\\" default=\\\"SNSスクール\\\"}\",   \"target_audience\": \"{argument name=\\\"target audience\\\" default=\\\"学生\\\"}\",   \"layout\": {     \"grid\": \"2x2",
       "category": "Posters & Typography",
       "styles": [
-        "Infographic",
         "Poster",
         "Realistic"
       ],
@@ -7972,7 +7973,8 @@
       "category": "Photography & Realism",
       "styles": [
         "UI",
-        "Realistic"
+        "Realistic",
+        "Brand"
       ],
       "scenes": [
         "Tech",

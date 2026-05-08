@@ -34,8 +34,20 @@ GPT-Image2 全量开放后，AI 画图从“能不能出图”变成了“能不
 - [案例画廊 Part 1：例 1-165](docs/gallery-part-1.md)
 - [案例画廊 Part 2：例 166-378](docs/gallery-part-2.md)
 - [工业级提示词模板与防坑指南](docs/templates.md#section-templates)
+- [Agent Skill：GPT-Image2 风格库](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
 - [完整声明页](docs/disclaimer.md#section-disclaimer)
+
+## 🤖 Agent Skill
+
+仓库内新增了 Codex skill，用同一份风格库数据为 Agent 选择 GPT-Image2 模板、分类、风格和场景标签。
+
+```bash
+npm run generate:style-skill
+npm run install:skill
+```
+
+skill 源码位于 [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md)。生成索引来自 [`data/style-library.json`](data/style-library.json)，网站和 Agent 工作流共用这一份风格库。
 
 ## 🗂️ 分类概览
 
