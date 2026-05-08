@@ -5,12 +5,14 @@ import {
   Bot,
   Check,
   Copy,
+  Eye,
   Github,
   PackageCheck,
   Search,
   Sparkles,
   Terminal,
-  WandSparkles
+  WandSparkles,
+  X
 } from 'lucide-react';
 import './styles.css';
 import skillExampleImage from '../agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png';
@@ -64,6 +66,16 @@ const copy = {
     openGithub: 'Open GitHub project',
     copied: 'Copied',
     copyPrompt: 'Copy Prompt',
+    copyTemplatePrompt: 'Copy Template',
+    closePreview: 'Close preview',
+    viewDetails: 'View Details',
+    fullPrompt: 'Full Prompt',
+    templatePrompt: 'Template Prompt',
+    useWhen: 'Use When',
+    guidance: 'Guidance',
+    pitfalls: 'Pitfalls',
+    examples: 'Example Cases',
+    source: 'Source',
     openOnGithub: 'Open on GitHub',
     limit: (count) => `Showing the first ${count} results for speed. Use search or filters to narrow the gallery.`
   },
@@ -113,6 +125,16 @@ const copy = {
     openGithub: '打开 GitHub 项目',
     copied: '已复制',
     copyPrompt: '复制 Prompt',
+    copyTemplatePrompt: '复制模板',
+    closePreview: '关闭预览',
+    viewDetails: '查看详情',
+    fullPrompt: '完整 Prompt',
+    templatePrompt: '模板 Prompt',
+    useWhen: '适用场景',
+    guidance: '使用建议',
+    pitfalls: '防坑指南',
+    examples: '关联案例',
+    source: '来源',
     openOnGithub: '在 GitHub 打开',
     limit: (count) => `为了保证浏览速度，当前展示前 ${count} 条结果。可以用搜索或筛选缩小范围。`
   }
@@ -172,6 +194,16 @@ function textFor(value, language) {
   return value[language] || value.en || value.zh || '';
 }
 
+function listFor(value, language) {
+  const localized = value?.[language] || value?.en || value?.zh || [];
+  return Array.isArray(localized) ? localized : [];
+}
+
+function compactText(value, maxLength = 180) {
+  if (!value || value.length <= maxLength) return value || '';
+  return `${value.slice(0, maxLength)}...`;
+}
+
 function localizeLabel(value, language, styleLibrary) {
   const libraryItems = [
     ...(styleLibrary?.categories || []),
@@ -201,8 +233,13 @@ function orderByLibrary(values, libraryItems = []) {
 
 async function copyToClipboard(text) {
   if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Some embedded browsers block the async clipboard API. Fall back to the
+      // older selection path so the copy button still works in local previews.
+    }
   }
 
   const textarea = document.createElement('textarea');
@@ -219,13 +256,76 @@ async function copyToClipboard(text) {
 function useCopy() {
   const [copiedId, setCopiedId] = useState(null);
 
-  async function copyPrompt(caseItem) {
-    await copyToClipboard(caseItem.prompt);
-    setCopiedId(caseItem.id);
+  async function copyText(text, id) {
+    await copyToClipboard(text);
+    setCopiedId(id);
     window.setTimeout(() => setCopiedId(null), 1600);
   }
 
-  return { copiedId, copyPrompt };
+  async function copyPrompt(caseItem) {
+    await copyText(caseItem.prompt, `case-${caseItem.id}`);
+  }
+
+  return { copiedId, copyPrompt, copyText };
+}
+
+function formatTemplatePrompt(item, language, styleLibrary) {
+  const title = textFor(item.title, language);
+  const description = textFor(item.description, language);
+  const useWhen = textFor(item.useWhen, language);
+  const guidance = listFor(item.guidance, language);
+  const pitfalls = listFor(item.pitfalls, language);
+  const tags = [
+    localizeLabel(item.category, language, styleLibrary),
+    ...(item.styles || []).map((style) => localizeLabel(style, language, styleLibrary)),
+    ...(item.scenes || []).map((scene) => localizeLabel(scene, language, styleLibrary)),
+    ...(item.tags || []).map((tag) => localizeTemplateTag(tag, language, styleLibrary))
+  ].filter(Boolean);
+  const uniqueTags = [...new Set(tags)];
+
+  if (language === 'zh') {
+    return [
+      `模板：${title}`,
+      `用途：${useWhen || description}`,
+      `视觉方向：${uniqueTags.join(' / ')}`,
+      '',
+      '请基于以下结构生成一条可直接用于 GPT Image 2 的图片 Prompt：',
+      '- 主体：[要生成的产品、人物、空间、界面或信息主题]',
+      '- 场景：[使用环境、叙事背景、受众语境]',
+      '- 构图：[画面比例、镜头距离、主体位置、层级关系]',
+      '- 风格：[材质、光线、色彩、时代感、品牌气质]',
+      '- 文本：[必须准确显示的标题、标签、按钮或说明文字]',
+      '- 细节：[关键装饰、辅助元素、信息标注、交互层]',
+      '- 输出：[清晰度、比例、完成度、可读性要求]',
+      '',
+      '核心约束：',
+      ...guidance.map((line) => `- ${line}`),
+      '',
+      '需要避免：',
+      ...pitfalls.map((line) => `- ${line}`)
+    ].join('\n');
+  }
+
+  return [
+    `Template: ${title}`,
+    `Use case: ${useWhen || description}`,
+    `Visual direction: ${uniqueTags.join(' / ')}`,
+    '',
+    'Create a copy-ready GPT Image 2 prompt with this structure:',
+    '- Subject: [product, person, space, interface, or information topic]',
+    '- Scene: [context, audience, narrative setting]',
+    '- Composition: [aspect ratio, camera distance, focal hierarchy, placement]',
+    '- Style: [material, lighting, color, era, brand tone]',
+    '- Text: [exact title, labels, buttons, or annotations that must be readable]',
+    '- Details: [decorative elements, callouts, UI layers, supporting objects]',
+    '- Output: [resolution, aspect ratio, polish level, readability requirements]',
+    '',
+    'Core constraints:',
+    ...guidance.map((line) => `- ${line}`),
+    '',
+    'Avoid:',
+    ...pitfalls.map((line) => `- ${line}`)
+  ].join('\n');
 }
 
 function Hero({ hotCases, language, repoUrl, totalCases, categoryCount }) {
@@ -379,7 +479,7 @@ function SkillSection({ language, repoUrl }) {
   );
 }
 
-function TemplateSection({ language, styleLibrary }) {
+function TemplateSection({ language, styleLibrary, onOpenTemplate }) {
   const t = copy[language];
   const repoDocsUrl = `${styleLibrary.repository || fallbackRepoUrl}/blob/main/${styleLibrary.templateDocument}`;
   const templates = styleLibrary.templates || [];
@@ -403,17 +503,20 @@ function TemplateSection({ language, styleLibrary }) {
           const description = textFor(item.description, language);
           return (
             <article className="caseCard templateVisualCard" key={item.id}>
-              <a
-                className="caseImage templateImage"
-                href={`${repoDocsUrl}#${item.anchor}`}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                className="caseImage imageButton templateImage"
+                type="button"
+                onClick={() => onOpenTemplate(item)}
               >
                 <img src={item.cover} alt={title} loading="lazy" />
                 <span className="caseBadge">
                   {language === 'zh' ? '模板' : 'Template'} {String(index + 1).padStart(2, '0')}
                 </span>
-              </a>
+                <span className="imageHint">
+                  <Eye size={15} />
+                  {t.viewDetails}
+                </span>
+              </button>
               <div className="caseBody">
                 <div className="caseMeta">
                   <span>{t.templateKind}</span>
@@ -426,7 +529,11 @@ function TemplateSection({ language, styleLibrary }) {
                     <span key={`${item.id}-${tag}`}>{localizeTemplateTag(tag, language, styleLibrary)}</span>
                   ))}
                 </div>
-                <div className="cardActions singleAction">
+                <div className="cardActions templateActions">
+                  <button type="button" onClick={() => onOpenTemplate(item)}>
+                    <Eye size={17} />
+                    {t.viewDetails}
+                  </button>
                   <a href={`${repoDocsUrl}#${item.anchor}`} target="_blank" rel="noreferrer">
                     {t.openTemplate}
                     <ArrowUpRight size={17} />
@@ -441,16 +548,20 @@ function TemplateSection({ language, styleLibrary }) {
   );
 }
 
-function PromptCard({ caseItem, copied, language, onCopy, styleLibrary }) {
+function PromptCard({ caseItem, copied, language, onCopy, onOpen, styleLibrary }) {
   const t = copy[language];
   const tags = [...new Set([...caseItem.styles, ...caseItem.scenes])].slice(0, 4);
 
   return (
     <article className="caseCard">
-      <a className="caseImage" href={caseItem.githubUrl} target="_blank" rel="noreferrer">
+      <button className="caseImage imageButton" type="button" onClick={() => onOpen(caseItem)}>
         <img src={caseItem.image} alt={caseItem.imageAlt} loading="lazy" />
         <span className="caseBadge">{language === 'zh' ? '案例' : 'Case'} {caseItem.id}</span>
-      </a>
+        <span className="imageHint">
+          <Eye size={15} />
+          {t.viewDetails}
+        </span>
+      </button>
       <div className="caseBody">
         <div className="caseMeta">
           <span>{localizeLabel(caseItem.category, language, styleLibrary)}</span>
@@ -474,12 +585,167 @@ function PromptCard({ caseItem, copied, language, onCopy, styleLibrary }) {
             {copied ? <Check size={17} /> : <Copy size={17} />}
             {copied ? t.copied : t.copyPrompt}
           </button>
+          <button type="button" onClick={() => onOpen(caseItem)}>
+            <Eye size={17} />
+            {t.viewDetails}
+          </button>
           <a href={caseItem.githubUrl} target="_blank" rel="noreferrer" aria-label={t.openOnGithub}>
             <Github size={18} />
           </a>
         </div>
       </div>
     </article>
+  );
+}
+
+function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onCopyText }) {
+  const t = copy[language];
+  const repoDocsUrl = `${styleLibrary.repository || fallbackRepoUrl}/blob/main/${styleLibrary.templateDocument}`;
+
+  useEffect(() => {
+    if (!preview) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') onClose();
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [preview, onClose]);
+
+  if (!preview) return null;
+
+  const { type, item } = preview;
+  const isTemplate = type === 'template';
+  const title = isTemplate ? textFor(item.title, language) : item.title;
+  const description = isTemplate ? textFor(item.description, language) : compactText(item.promptPreview);
+  const image = isTemplate ? item.cover : item.image;
+  const imageAlt = isTemplate ? title : item.imageAlt;
+  const promptText = isTemplate ? formatTemplatePrompt(item, language, styleLibrary) : item.prompt;
+  const copyId = isTemplate ? `template-${item.id}` : `case-${item.id}`;
+  const isCopied = copiedId === copyId;
+  const primaryLink = isTemplate ? `${repoDocsUrl}#${item.anchor}` : item.githubUrl;
+  const primaryLabel = isTemplate ? t.openTemplate : t.openOnGithub;
+  const meta = isTemplate
+    ? [t.templateKind, localizeLabel(item.category, language, styleLibrary)]
+    : [
+        `${language === 'zh' ? '案例' : 'Case'} ${item.id}`,
+        localizeLabel(item.category, language, styleLibrary)
+      ];
+  const tags = isTemplate
+    ? [...new Set([...(item.tags || []), ...(item.styles || []), ...(item.scenes || [])])].slice(0, 8)
+    : [...new Set([...(item.styles || []), ...(item.scenes || [])])].slice(0, 8);
+  const guidance = listFor(item.guidance, language);
+  const pitfalls = listFor(item.pitfalls, language);
+
+  return (
+    <div
+      className="previewOverlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section className="previewDialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+        <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
+          <X size={20} />
+        </button>
+        <div className="previewMedia">
+          <img src={image} alt={imageAlt} />
+        </div>
+        <div className="previewContent">
+          <div className="previewMeta">
+            {meta.map((itemMeta) => (
+              <span key={itemMeta}>{itemMeta}</span>
+            ))}
+          </div>
+          <h2 id="preview-title">{title}</h2>
+          <p>{description}</p>
+          <div className="tagRow previewTags">
+            {tags.map((tag) => (
+              <span key={`${type}-${item.id}-${tag}`}>
+                {isTemplate
+                  ? localizeTemplateTag(tag, language, styleLibrary)
+                  : localizeLabel(tag, language, styleLibrary)}
+              </span>
+            ))}
+          </div>
+          {isTemplate && item.useWhen ? (
+            <div className="previewSection compactSection">
+              <h3>{t.useWhen}</h3>
+              <p>{textFor(item.useWhen, language)}</p>
+            </div>
+          ) : null}
+          <div className="previewActions">
+            <button type="button" onClick={() => onCopyText(promptText, copyId)}>
+              {isCopied ? <Check size={17} /> : <Copy size={17} />}
+              {isCopied ? t.copied : isTemplate ? t.copyTemplatePrompt : t.copyPrompt}
+            </button>
+            <a href={primaryLink} target="_blank" rel="noreferrer">
+              {primaryLabel}
+              <ArrowUpRight size={17} />
+            </a>
+            {!isTemplate && item.sourceUrl ? (
+              <a href={item.sourceUrl} target="_blank" rel="noreferrer">
+                {t.source}
+                <ArrowUpRight size={17} />
+              </a>
+            ) : null}
+          </div>
+          <div className="previewSection">
+            <h3>{isTemplate ? t.templatePrompt : t.fullPrompt}</h3>
+            <pre className="promptBlock">{promptText}</pre>
+          </div>
+          {isTemplate && (guidance.length || pitfalls.length || item.exampleCases?.length) ? (
+            <div className="previewColumns">
+              {guidance.length ? (
+                <div className="previewSection compactSection">
+                  <h3>{t.guidance}</h3>
+                  <ul>
+                    {guidance.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {pitfalls.length ? (
+                <div className="previewSection compactSection">
+                  <h3>{t.pitfalls}</h3>
+                  <ul>
+                    {pitfalls.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {item.exampleCases?.length ? (
+                <div className="previewSection compactSection">
+                  <h3>{t.examples}</h3>
+                  <div className="exampleCaseRow">
+                    {item.exampleCases.map((caseId) => (
+                      <a
+                        href={`${styleLibrary.repository || fallbackRepoUrl}/blob/main/docs/gallery.md#case-${caseId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        key={caseId}
+                      >
+                        #{caseId}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -491,7 +757,8 @@ function App() {
   const [category, setCategory] = useState('All');
   const [style, setStyle] = useState('All');
   const [scene, setScene] = useState('All');
-  const { copiedId, copyPrompt } = useCopy();
+  const [preview, setPreview] = useState(null);
+  const { copiedId, copyPrompt, copyText } = useCopy();
   const repoUrl = siteData?.repository || fallbackRepoUrl;
   const t = copy[language];
 
@@ -614,7 +881,11 @@ function App() {
 
       <SkillSection language={language} repoUrl={repoUrl} />
 
-      <TemplateSection language={language} styleLibrary={styleLibrary} />
+      <TemplateSection
+        language={language}
+        styleLibrary={styleLibrary}
+        onOpenTemplate={(item) => setPreview({ type: 'template', item })}
+      />
 
       <section className="gallerySection" id="gallery">
         <div className="sectionHead">
@@ -680,9 +951,10 @@ function App() {
           {visibleCases.map((caseItem) => (
             <PromptCard
               caseItem={caseItem}
-              copied={copiedId === caseItem.id}
+              copied={copiedId === `case-${caseItem.id}`}
               language={language}
               onCopy={copyPrompt}
+              onOpen={(item) => setPreview({ type: 'case', item })}
               styleLibrary={styleLibrary}
               key={caseItem.id}
             />
@@ -695,6 +967,14 @@ function App() {
           </p>
         )}
       </section>
+      <PreviewDialog
+        preview={preview}
+        language={language}
+        styleLibrary={styleLibrary}
+        copiedId={copiedId}
+        onClose={() => setPreview(null)}
+        onCopyText={copyText}
+      />
     </main>
   );
 }
