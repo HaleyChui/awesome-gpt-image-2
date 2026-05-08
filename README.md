@@ -38,75 +38,6 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 - [MIT License](LICENSE)
 - [Full disclaimer](docs/disclaimer.md#section-disclaimer)
 
-## 🤖 Agent Skill
-
-This repository includes an agent skill for choosing GPT-Image2 styles, templates, categories, and scene tags from the same data used by the website.
-
-Package links: [npm](https://www.npmjs.com/package/gpt-image-2-style-library) / [GitHub Packages](https://github.com/freestylefly/awesome-gpt-image-2/pkgs/npm/gpt-image-2-style-library)
-
-### Quick Install for Agent Skills
-
-Recommended for Claude Code, Codex, Cursor, and other tools supported by [`skills`](https://www.npmjs.com/package/skills):
-
-```bash
-npx skills add freestylefly/awesome-gpt-image-2 --skill gpt-image-2-style-library --agent claude-code codex --global --yes --copy
-```
-
-Install to every supported local agent:
-
-```bash
-npx skills add freestylefly/awesome-gpt-image-2 --global --all --copy
-```
-
-### Claude Code Plugin Marketplace
-
-Run these commands inside Claude Code:
-
-```text
-/plugin marketplace add freestylefly/awesome-gpt-image-2
-/plugin install gpt-image-2-style-library@awesome-gpt-image-2
-```
-
-### npm CLI
-
-If you prefer npm, install the CLI and then sync the skill into local agent folders:
-
-```bash
-npm install -g gpt-image-2-style-library
-gpt-image-2-style-library install all
-```
-
-You can also run it without a global install:
-
-```bash
-npx gpt-image-2-style-library install all
-```
-
-Install from GitHub Packages:
-
-```bash
-npm login --scope=@freestylefly --registry=https://npm.pkg.github.com
-npm install -g @freestylefly/gpt-image-2-style-library --registry=https://npm.pkg.github.com
-gpt-image-2-style-library install all
-```
-
-`install all` writes the skill to the common local folders used by Codex and Claude Code, including `~/.codex/skills`, `~/.claude/skills`, and `~/.agents/skills`. Restart the agent session after installing.
-
-Use it with a request like:
-
-```text
-Use gpt-image-2-style-library to create an infographic prompt about Codex.
-```
-
-For local source development:
-
-```bash
-npm run generate:style-skill
-npm run install:skill
-```
-
-The skill source lives at [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md). Its generated reference comes from [`data/style-library.json`](data/style-library.json), so the website and Agent workflow share one style library.
-
 ## 🗂️ Category Overview
 
 Start with the case album to find a visual direction, then open the prompt template categories to turn that direction into reusable structure.
@@ -264,6 +195,75 @@ The prompt body remains in the original template document for now. This homepage
 | 🧪 Other Use Cases | [View Prompts](docs/templates.md#tpl-other) | Mixed tasks, experimental workflows, special outputs |
 
 </details>
+
+## 🤖 Agent Skill
+
+This repository includes an agent skill for choosing GPT-Image2 styles, templates, categories, and scene tags from the same data used by the website.
+
+Package links: [npm](https://www.npmjs.com/package/gpt-image-2-style-library) / [GitHub Packages](https://github.com/freestylefly/awesome-gpt-image-2/pkgs/npm/gpt-image-2-style-library)
+
+### Quick Install for Agent Skills
+
+Recommended for Claude Code, Codex, Cursor, and other tools supported by [`skills`](https://www.npmjs.com/package/skills):
+
+```bash
+npx skills add freestylefly/awesome-gpt-image-2 --skill gpt-image-2-style-library --agent claude-code codex --global --yes --copy
+```
+
+Install to every supported local agent:
+
+```bash
+npx skills add freestylefly/awesome-gpt-image-2 --global --all --copy
+```
+
+### Claude Code Plugin Marketplace
+
+Run these commands inside Claude Code:
+
+```text
+/plugin marketplace add freestylefly/awesome-gpt-image-2
+/plugin install gpt-image-2-style-library@awesome-gpt-image-2
+```
+
+### npm CLI
+
+If you prefer npm, install the CLI and then sync the skill into local agent folders:
+
+```bash
+npm install -g gpt-image-2-style-library
+gpt-image-2-style-library install all
+```
+
+You can also run it without a global install:
+
+```bash
+npx gpt-image-2-style-library install all
+```
+
+Install from GitHub Packages:
+
+```bash
+npm login --scope=@freestylefly --registry=https://npm.pkg.github.com
+npm install -g @freestylefly/gpt-image-2-style-library --registry=https://npm.pkg.github.com
+gpt-image-2-style-library install all
+```
+
+`install all` writes the skill to the common local folders used by Codex and Claude Code, including `~/.codex/skills`, `~/.claude/skills`, and `~/.agents/skills`. Restart the agent session after installing.
+
+Use it with a request like:
+
+```text
+Use gpt-image-2-style-library to create an infographic prompt about Codex.
+```
+
+For local source development:
+
+```bash
+npm run generate:style-skill
+npm run install:skill
+```
+
+The skill source lives at [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md). Its generated reference comes from [`data/style-library.json`](data/style-library.json), so the website and Agent workflow share one style library.
 
 <a name="section-gallery"></a>
 
