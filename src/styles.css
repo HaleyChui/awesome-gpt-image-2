@@ -992,6 +992,10 @@ button {
   margin-top: 16px;
 }
 
+.caseActions {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 42px;
+}
+
 .templateActions {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
@@ -1014,6 +1018,13 @@ button {
 .cardActions a:hover {
   border-color: rgba(120, 255, 185, 0.74);
   background: rgba(120, 255, 185, 0.14);
+}
+
+.cardActions button:disabled,
+.previewActions button:disabled,
+.generationPanel button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .previewOverlay {
@@ -1162,6 +1173,10 @@ button {
   background: rgba(103, 232, 249, 0.14);
 }
 
+.spinIcon {
+  animation: spin 0.9s linear infinite;
+}
+
 .previewSection {
   margin-top: 22px;
 }
@@ -1172,6 +1187,32 @@ button {
   font-size: 14px;
   font-weight: 900;
   letter-spacing: 0;
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sectionTitleRow h3 {
+  margin: 0;
+}
+
+.sectionTitleRow button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #dfeaff;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .promptBlock {
@@ -1188,6 +1229,97 @@ button {
   line-height: 1.7;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.promptEditor {
+  display: block;
+  width: 100%;
+  min-height: 220px;
+  max-height: 420px;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  outline: 0;
+  padding: 14px;
+  background: rgba(3, 7, 15, 0.72);
+  color: #e8f7ff;
+  font: 13px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.promptEditor:focus {
+  border-color: rgba(103, 232, 249, 0.72);
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1);
+}
+
+.generationPanel {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  border: 1px solid rgba(120, 255, 185, 0.14);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(120, 255, 185, 0.055);
+}
+
+.generationQuota {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 30px;
+  border: 1px solid rgba(120, 255, 185, 0.24);
+  border-radius: 999px;
+  padding: 0 10px;
+  color: #d8ffe4;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.generationQuota.used {
+  border-color: rgba(255, 198, 102, 0.28);
+  background: rgba(255, 198, 102, 0.08);
+  color: #ffe1a8;
+}
+
+.generationPanel button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid rgba(120, 255, 185, 0.38);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(66, 230, 255, 0.22), rgba(120, 255, 185, 0.18));
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.generationMessage {
+  margin: 0;
+  color: #ffd4a8;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.generatedResult {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(3, 7, 15, 0.72);
+}
+
+.generatedResult img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.generatedResult figcaption {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 12px;
+  color: #b9c6d8;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .previewColumns {
@@ -1255,6 +1387,12 @@ button {
   }
   50% {
     translate: 0 -12px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

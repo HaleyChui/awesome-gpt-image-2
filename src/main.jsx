@@ -7,6 +7,8 @@ import {
   Copy,
   Eye,
   Github,
+  ImageIcon,
+  LoaderCircle,
   PackageCheck,
   Search,
   Sparkles,
@@ -69,6 +71,17 @@ const copy = {
     copyTemplatePrompt: 'Copy Template',
     closePreview: 'Close preview',
     viewDetails: 'View Details',
+    generateTest: 'Generate Test',
+    generateImage: 'Generate Image',
+    generating: 'Generating...',
+    editablePrompt: 'Editable Prompt',
+    generatedResult: 'Generated Result',
+    resetPrompt: 'Reset Prompt',
+    oneFreeGeneration: '1 free test image',
+    freeLimitReached: 'Free generation used. Credits are coming soon.',
+    generationFailed: 'Generation failed. Please try again later.',
+    promptRequired: 'Prompt is required and must stay under 6000 characters.',
+    serverUnavailable: 'Generation service is not configured yet.',
     fullPrompt: 'Full Prompt',
     templatePrompt: 'Template Prompt',
     useWhen: 'Use When',
@@ -128,6 +141,17 @@ const copy = {
     copyTemplatePrompt: '复制模板',
     closePreview: '关闭预览',
     viewDetails: '查看详情',
+    generateTest: '生成测试',
+    generateImage: '生成图片',
+    generating: '生成中...',
+    editablePrompt: '可编辑 Prompt',
+    generatedResult: '生成结果',
+    resetPrompt: '重置 Prompt',
+    oneFreeGeneration: '免费生成 1 张测试图',
+    freeLimitReached: '免费额度已用完，积分购买即将开放。',
+    generationFailed: '生成失败，请稍后再试。',
+    promptRequired: 'Prompt 不能为空，并且不能超过 6000 字符。',
+    serverUnavailable: '生成服务还没有完成配置。',
     fullPrompt: '完整 Prompt',
     templatePrompt: '模板 Prompt',
     useWhen: '适用场景',
@@ -267,6 +291,14 @@ function useCopy() {
   }
 
   return { copiedId, copyPrompt, copyText };
+}
+
+function generationErrorMessage(error, language) {
+  const t = copy[language];
+  if (error === 'FREE_LIMIT_REACHED') return t.freeLimitReached;
+  if (error === 'SERVER_NOT_CONFIGURED') return t.serverUnavailable;
+  if (error === 'INVALID_PROMPT') return t.promptRequired;
+  return t.generationFailed;
 }
 
 function formatTemplatePrompt(item, language, styleLibrary) {
@@ -548,7 +580,7 @@ function TemplateSection({ language, styleLibrary, onOpenTemplate }) {
   );
 }
 
-function PromptCard({ caseItem, copied, language, onCopy, onOpen, styleLibrary }) {
+function PromptCard({ caseItem, copied, language, onCopy, onOpen, onGenerate, styleLibrary }) {
   const t = copy[language];
   const tags = [...new Set([...caseItem.styles, ...caseItem.scenes])].slice(0, 4);
 
@@ -580,7 +612,7 @@ function PromptCard({ caseItem, copied, language, onCopy, onOpen, styleLibrary }
             <span key={`${caseItem.id}-${tag}`}>{localizeLabel(tag, language, styleLibrary)}</span>
           ))}
         </div>
-        <div className="cardActions">
+        <div className="cardActions caseActions">
           <button type="button" onClick={() => onCopy(caseItem)}>
             {copied ? <Check size={17} /> : <Copy size={17} />}
             {copied ? t.copied : t.copyPrompt}
@@ -588,6 +620,10 @@ function PromptCard({ caseItem, copied, language, onCopy, onOpen, styleLibrary }
           <button type="button" onClick={() => onOpen(caseItem)}>
             <Eye size={17} />
             {t.viewDetails}
+          </button>
+          <button type="button" onClick={() => onGenerate(caseItem)}>
+            <ImageIcon size={17} />
+            {t.generateTest}
           </button>
           <a href={caseItem.githubUrl} target="_blank" rel="noreferrer" aria-label={t.openOnGithub}>
             <Github size={18} />
@@ -598,9 +634,24 @@ function PromptCard({ caseItem, copied, language, onCopy, onOpen, styleLibrary }
   );
 }
 
-function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onCopyText }) {
+function PreviewDialog({
+  preview,
+  language,
+  styleLibrary,
+  copiedId,
+  freeUsed,
+  onClose,
+  onCopyText,
+  onFreeUsedChange
+}) {
   const t = copy[language];
   const repoDocsUrl = `${styleLibrary.repository || fallbackRepoUrl}/blob/main/${styleLibrary.templateDocument}`;
+  const [editablePrompt, setEditablePrompt] = useState('');
+  const [generationState, setGenerationState] = useState({
+    status: 'idle',
+    image: '',
+    message: ''
+  });
 
   useEffect(() => {
     if (!preview) return undefined;
@@ -619,6 +670,12 @@ function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onC
     };
   }, [preview, onClose]);
 
+  useEffect(() => {
+    if (preview?.type !== 'case') return;
+    setEditablePrompt(preview.item.prompt || '');
+    setGenerationState({ status: 'idle', image: '', message: '' });
+  }, [preview]);
+
   if (!preview) return null;
 
   const { type, item } = preview;
@@ -627,7 +684,7 @@ function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onC
   const description = isTemplate ? textFor(item.description, language) : compactText(item.promptPreview);
   const image = isTemplate ? item.cover : item.image;
   const imageAlt = isTemplate ? title : item.imageAlt;
-  const promptText = isTemplate ? formatTemplatePrompt(item, language, styleLibrary) : item.prompt;
+  const promptText = isTemplate ? formatTemplatePrompt(item, language, styleLibrary) : editablePrompt;
   const copyId = isTemplate ? `template-${item.id}` : `case-${item.id}`;
   const isCopied = copiedId === copyId;
   const primaryLink = isTemplate ? `${repoDocsUrl}#${item.anchor}` : item.githubUrl;
@@ -643,6 +700,51 @@ function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onC
     : [...new Set([...(item.styles || []), ...(item.scenes || [])])].slice(0, 8);
   const guidance = listFor(item.guidance, language);
   const pitfalls = listFor(item.pitfalls, language);
+  const isGenerating = generationState.status === 'generating';
+
+  async function handleGenerate() {
+    if (isTemplate || isGenerating) return;
+    const prompt = editablePrompt.trim();
+    if (!prompt || prompt.length > 6000) {
+      setGenerationState({ status: 'error', image: '', message: t.promptRequired });
+      return;
+    }
+    if (freeUsed) {
+      setGenerationState({ status: 'error', image: '', message: t.freeLimitReached });
+      return;
+    }
+
+    setGenerationState({ status: 'generating', image: '', message: '' });
+
+    try {
+      const response = await fetch('/api/generate-image', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          caseId: item.id,
+          prompt
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok || !payload.ok || !payload.image) {
+        if (payload.error === 'FREE_LIMIT_REACHED') onFreeUsedChange(true);
+        throw new Error(payload.error || 'GENERATION_FAILED');
+      }
+
+      onFreeUsedChange(true);
+      setGenerationState({ status: 'success', image: payload.image, message: '' });
+    } catch (error) {
+      setGenerationState({
+        status: 'error',
+        image: '',
+        message: generationErrorMessage(error.message, language)
+      });
+    }
+  }
 
   return (
     <div
@@ -687,6 +789,12 @@ function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onC
               {isCopied ? <Check size={17} /> : <Copy size={17} />}
               {isCopied ? t.copied : isTemplate ? t.copyTemplatePrompt : t.copyPrompt}
             </button>
+            {!isTemplate ? (
+              <button type="button" onClick={handleGenerate} disabled={isGenerating || freeUsed}>
+                {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
+                {isGenerating ? t.generating : t.generateTest}
+              </button>
+            ) : null}
             <a href={primaryLink} target="_blank" rel="noreferrer">
               {primaryLabel}
               <ArrowUpRight size={17} />
@@ -699,9 +807,45 @@ function PreviewDialog({ preview, language, styleLibrary, copiedId, onClose, onC
             ) : null}
           </div>
           <div className="previewSection">
-            <h3>{isTemplate ? t.templatePrompt : t.fullPrompt}</h3>
-            <pre className="promptBlock">{promptText}</pre>
+            <div className="sectionTitleRow">
+              <h3>{isTemplate ? t.templatePrompt : t.editablePrompt}</h3>
+              {!isTemplate ? (
+                <button type="button" onClick={() => setEditablePrompt(item.prompt || '')}>
+                  {t.resetPrompt}
+                </button>
+              ) : null}
+            </div>
+            {isTemplate ? (
+              <pre className="promptBlock">{promptText}</pre>
+            ) : (
+              <textarea
+                className="promptEditor"
+                value={editablePrompt}
+                onChange={(event) => setEditablePrompt(event.target.value)}
+                maxLength={6000}
+              />
+            )}
           </div>
+          {!isTemplate ? (
+            <div className="generationPanel">
+              <div className={cx('generationQuota', freeUsed && 'used')}>
+                {freeUsed ? t.freeLimitReached : t.oneFreeGeneration}
+              </div>
+              <button type="button" onClick={handleGenerate} disabled={isGenerating || freeUsed}>
+                {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
+                {isGenerating ? t.generating : t.generateImage}
+              </button>
+              {generationState.status === 'error' ? (
+                <p className="generationMessage">{generationState.message}</p>
+              ) : null}
+              {generationState.image ? (
+                <figure className="generatedResult">
+                  <img src={generationState.image} alt={t.generatedResult} />
+                  <figcaption>{t.generatedResult}</figcaption>
+                </figure>
+              ) : null}
+            </div>
+          ) : null}
           {isTemplate && (guidance.length || pitfalls.length || item.exampleCases?.length) ? (
             <div className="previewColumns">
               {guidance.length ? (
@@ -758,6 +902,7 @@ function App() {
   const [style, setStyle] = useState('All');
   const [scene, setScene] = useState('All');
   const [preview, setPreview] = useState(null);
+  const [freeUsed, setFreeUsed] = useState(false);
   const { copiedId, copyPrompt, copyText } = useCopy();
   const repoUrl = siteData?.repository || fallbackRepoUrl;
   const t = copy[language];
@@ -783,6 +928,21 @@ function App() {
     localStorage.setItem('language', language);
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
   }, [language]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/generate-image', { credentials: 'include' })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!cancelled && payload?.ok) {
+          setFreeUsed(Boolean(payload.freeUsed));
+        }
+      })
+      .catch(() => null);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!siteData || !styleLibrary || !window.location.hash) return;
@@ -953,6 +1113,7 @@ function App() {
               language={language}
               onCopy={copyPrompt}
               onOpen={(item) => setPreview({ type: 'case', item })}
+              onGenerate={(item) => setPreview({ type: 'case', item })}
               styleLibrary={styleLibrary}
               key={caseItem.id}
             />
@@ -970,8 +1131,10 @@ function App() {
         language={language}
         styleLibrary={styleLibrary}
         copiedId={copiedId}
+        freeUsed={freeUsed}
         onClose={() => setPreview(null)}
         onCopyText={copyText}
+        onFreeUsedChange={setFreeUsed}
       />
     </main>
   );
