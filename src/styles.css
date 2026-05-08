@@ -159,9 +159,8 @@ button {
   gap: 44px;
   align-items: center;
   width: min(1180px, calc(100% - 32px));
-  min-height: calc(100vh - 92px);
   margin: 0 auto;
-  padding: 56px 0 72px;
+  padding: 46px 0 26px;
   overflow: hidden;
 }
 
@@ -287,7 +286,7 @@ button {
 }
 
 .heroDeck {
-  min-height: 610px;
+  min-height: 560px;
 }
 
 .heroCard {
@@ -330,39 +329,39 @@ button {
 .heroCard1 {
   --tilt: -5deg;
   inset: 30px auto auto 42px;
-  width: 285px;
-  height: 360px;
+  width: 270px;
+  height: 340px;
 }
 
 .heroCard2 {
   --tilt: 4deg;
   inset: 0 8px auto auto;
-  width: 240px;
-  height: 310px;
+  width: 230px;
+  height: 292px;
   animation-delay: -1.2s;
 }
 
 .heroCard3 {
   --tilt: 5deg;
-  inset: 318px auto auto 5px;
-  width: 220px;
-  height: 250px;
+  inset: 286px auto auto 5px;
+  width: 210px;
+  height: 232px;
   animation-delay: -2.3s;
 }
 
 .heroCard4 {
   --tilt: -3deg;
-  inset: 300px 36px auto auto;
-  width: 300px;
-  height: 270px;
+  inset: 270px 30px auto auto;
+  width: 285px;
+  height: 246px;
   animation-delay: -3.4s;
 }
 
 .heroCard5 {
   --tilt: 2deg;
-  inset: 196px auto auto 190px;
-  width: 210px;
-  height: 260px;
+  inset: 186px auto auto 176px;
+  width: 205px;
+  height: 242px;
   animation-delay: -4.2s;
 }
 

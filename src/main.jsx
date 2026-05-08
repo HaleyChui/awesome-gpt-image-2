@@ -328,7 +328,7 @@ function formatTemplatePrompt(item, language, styleLibrary) {
   ].join('\n');
 }
 
-function Hero({ hotCases, language, repoUrl, totalCases, categoryCount }) {
+function Hero({ latestCases, language, repoUrl, totalCases, categoryCount }) {
   const t = copy[language];
 
   return (
@@ -359,8 +359,8 @@ function Hero({ hotCases, language, repoUrl, totalCases, categoryCount }) {
           <span><strong>20+</strong> {t.templates}</span>
         </div>
       </div>
-      <div className="heroDeck" aria-label="Featured GPT-Image2 cases">
-        {hotCases.slice(0, 5).map((caseItem, index) => (
+      <div className="heroDeck" aria-label="Latest GPT-Image2 cases">
+        {latestCases.slice(0, 5).map((caseItem, index) => (
           <a
             className={`heroCard heroCard${index + 1}`}
             href={caseItem.githubUrl}
@@ -793,11 +793,9 @@ function App() {
     });
   }, [siteData, styleLibrary]);
 
-  const hotCases = useMemo(() => {
+  const latestCases = useMemo(() => {
     if (!siteData) return [];
-    return [...siteData.cases]
-      .filter((item) => item.featured)
-      .sort((a, b) => b.id - a.id);
+    return [...siteData.cases].sort((a, b) => b.id - a.id);
   }, [siteData]);
 
   const filteredCases = useMemo(() => {
@@ -863,7 +861,7 @@ function App() {
       </header>
 
       <Hero
-        hotCases={hotCases}
+        latestCases={latestCases}
         language={language}
         repoUrl={repoUrl}
         totalCases={siteData.totalCases}
@@ -871,7 +869,7 @@ function App() {
       />
 
       <section className="hotStrip">
-        {hotCases.slice(0, 8).map((caseItem) => (
+        {latestCases.slice(0, 8).map((caseItem) => (
           <a href={caseItem.githubUrl} target="_blank" rel="noreferrer" key={caseItem.id}>
             <img src={caseItem.image} alt={caseItem.imageAlt} />
             <span>#{caseItem.id}</span>
