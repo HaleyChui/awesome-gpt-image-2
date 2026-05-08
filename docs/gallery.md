@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 403。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 405。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-403](./gallery-part-2.md)
+- [Part 2：例 166-405](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -71,22 +71,24 @@
 - [例 401：Lost in 国家旅行海报拼贴](./gallery-part-2.md#case-401)
 - [例 402：3D 小红书个人资料卡](./gallery-part-2.md#case-402)
 - [例 403：小红书数字破屏 3D 女孩](./gallery-part-2.md#case-403)
+- [例 404：豪华社媒破屏商业广告](./gallery-part-2.md#case-404)
+- [例 405：可爱纸艺风照片重绘](./gallery-part-2.md#case-405)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-403，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-405，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
-- UI与界面：62
+- UI与界面：63
 - 图表与信息可视化：44
 - 海报与排版：65
 - 商品与电商：27
 - 品牌与标志：20
 - 建筑与空间：9
 - 摄影与写实：43
-- 插画与艺术：35
+- 插画与艺术：36
 - 人物与角色：19
 - 场景与叙事：13
 - 历史与古风题材：15
@@ -97,7 +99,7 @@
 
 <a name="cat-ui"></a>
 
-### 🧩 UI与界面 · 62 cases
+### 🧩 UI与界面 · 63 cases
 
 - [例 2：社媒界面截图](./gallery-part-1.md#case-2)
 - [例 4：老干妈风味](./gallery-part-1.md#case-4)
@@ -161,6 +163,7 @@
 - [例 387：Netflix 首页主视觉 UI](./gallery-part-2.md#case-387)
 - [例 402：3D 小红书个人资料卡](./gallery-part-2.md#case-402)
 - [例 403：小红书数字破屏 3D 女孩](./gallery-part-2.md#case-403)
+- [例 404：豪华社媒破屏商业广告](./gallery-part-2.md#case-404)
 
 <a name="cat-infographic"></a>
 
@@ -402,7 +405,7 @@
 
 <a name="cat-illustration"></a>
 
-### 🎨 插画与艺术 · 35 cases
+### 🎨 插画与艺术 · 36 cases
 
 - [例 6：插画艺术创作图](./gallery-part-1.md#case-6)
 - [例 22：插画艺术风格创作](./gallery-part-1.md#case-22)
@@ -439,6 +442,7 @@
 - [例 346：立体刺绣小鸟花枝](./gallery-part-2.md#case-346)
 - [例 356：过度思考超现实街头 Campaign](./gallery-part-2.md#case-356)
 - [例 374：彩色潦草小狗线条风格重绘](./gallery-part-2.md#case-374)
+- [例 405：可爱纸艺风照片重绘](./gallery-part-2.md#case-405)
 
 <a name="cat-character"></a>
 
