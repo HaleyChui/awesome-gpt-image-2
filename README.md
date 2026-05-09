@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-414-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-417-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-414](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-417](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -59,7 +59,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 Posters & Typography</strong><br><sub>66 cases</sub></p>
+      <p><strong>📰 Posters & Typography</strong><br><sub>68 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="Posters and typography" width="220"></a><br>
       <sub>Event posters, covers, type-driven visuals, and strong layout compositions.</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>View Cases</strong></a>
@@ -99,7 +99,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-illustration"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🧍 Characters & People</strong><br><sub>19 cases</sub></p>
+      <p><strong>🧍 Characters & People</strong><br><sub>20 cases</sub></p>
       <a href="docs/gallery.md#cat-character"><img src="data/images/category-covers/character.jpg" alt="Characters and people" width="220"></a><br>
       <sub>Character design, pose references, cards, and 3D toys.</sub><br>
       <a href="docs/gallery.md#cat-character"><strong>View Cases</strong></a>
@@ -113,7 +113,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-scene"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🏮 History & Classical Chinese Themes</strong><br><sub>15 cases</sub></p>
+      <p><strong>🏮 History & Classical Chinese Themes</strong><br><sub>16 cases</sub></p>
       <a href="docs/gallery.md#cat-history"><img src="data/images/category-covers/history.jpg" alt="History and classical Chinese themes" width="220"></a><br>
       <sub>Classical scrolls, historical figures, traditional themes, and poetry visuals.</sub><br>
       <a href="docs/gallery.md#cat-history"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 414 cases by gallery part and category.</sub><br>
+      <sub>Browse all 417 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-414"><img src="data/images/case414.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-417"><img src="data/images/case417.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-414"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-417"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -392,30 +392,22 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 411: Minimal Architecture Landmark Poster</strong></p>
-      <a href="docs/gallery-part-2.md#case-411"><img src="data/images/case411.jpg" alt="Minimal architecture landmark poster" width="140"></a><br>
-      <sub>A luxury poster pattern that combines landmark illustration, oversized typography, and restrained structural graphics.</sub><br>
-      <a href="docs/gallery-part-2.md#case-411"><strong>View Case</strong></a>
+      <p><strong>Case 415: Eastern Myth Character Dossier</strong></p>
+      <a href="docs/gallery-part-2.md#case-415"><img src="data/images/case415.jpg" alt="Eastern myth character dossier" width="140"></a><br>
+      <sub>A vertical A4 mythology dossier layout with central character art, cultural source cards, symbols, and classical ornament.</sub><br>
+      <a href="docs/gallery-part-2.md#case-415"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 412: Color Button Fashion Campaign</strong></p>
-      <a href="docs/gallery-part-2.md#case-412"><img src="data/images/case412.jpg" alt="Color button fashion campaign" width="140"></a><br>
-      <sub>A split-frame fashion editorial built around glossy oversized buttons, studio lighting, and unified visual language.</sub><br>
-      <a href="docs/gallery-part-2.md#case-412"><strong>View Case</strong></a>
+      <p><strong>Case 416: Earth Signs Character Scrapbook</strong></p>
+      <a href="docs/gallery-part-2.md#case-416"><img src="data/images/case416.jpg" alt="Earth signs character scrapbook" width="140"></a><br>
+      <sub>A fashion-meets-illustration character sheet with realistic portrait, 3D chibis, handwritten notes, and earth-tone styling.</sub><br>
+      <a href="docs/gallery-part-2.md#case-416"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 413: Contemporary Dance Storyboard</strong></p>
-      <a href="docs/gallery-part-2.md#case-413"><img src="data/images/case413.jpg" alt="Contemporary dance storyboard" width="140"></a><br>
-      <sub>A 12-panel black-and-white choreography storyboard with motion arrows, camera notes, and dramatic stage energy.</sub><br>
-      <a href="docs/gallery-part-2.md#case-413"><strong>View Case</strong></a>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 414: Morning Bedroom Realism</strong></p>
-      <a href="docs/gallery-part-2.md#case-414"><img src="data/images/case414.jpg" alt="Morning bedroom realism" width="140"></a><br>
-      <sub>A realistic morning bedroom portrait prompt focused on natural posture, window light, skin texture, and film grain.</sub><br>
-      <a href="docs/gallery-part-2.md#case-414"><strong>View Case</strong></a>
+      <p><strong>Case 417: Vintage Indonesian Catnip Ad</strong></p>
+      <a href="docs/gallery-part-2.md#case-417"><img src="data/images/case417.jpg" alt="Vintage Indonesian catnip ad" width="140"></a><br>
+      <sub>A distressed 1970s-style product poster with bold retro typography, aged print texture, and playful local ad energy.</sub><br>
+      <a href="docs/gallery-part-2.md#case-417"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>
