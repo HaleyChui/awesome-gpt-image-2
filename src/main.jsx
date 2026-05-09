@@ -236,6 +236,8 @@ function compactText(value, maxLength = 180) {
 
 const GENERATED_TESTS_STORAGE_KEY = 'gpt-image-2-generated-tests:v1';
 const MAX_SAVED_GENERATIONS = 12;
+const HERO_CASE_COUNT = 5;
+const HOT_STRIP_CASE_COUNT = 8;
 
 function readSavedGenerations() {
   try {
@@ -271,6 +273,20 @@ function saveGeneratedTest(caseId, entry) {
       // visible for the current dialog state when persistence is unavailable.
     }
   }
+}
+
+function takeDistinctCases(cases, count, excludedIds = new Set()) {
+  const picked = [];
+  const seenIds = new Set(excludedIds);
+
+  for (const caseItem of cases) {
+    if (seenIds.has(caseItem.id)) continue;
+    picked.push(caseItem);
+    seenIds.add(caseItem.id);
+    if (picked.length === count) break;
+  }
+
+  return picked;
 }
 
 function localizeLabel(value, language, styleLibrary) {
@@ -1032,6 +1048,20 @@ function App() {
     return [...siteData.cases].sort((a, b) => b.id - a.id);
   }, [siteData]);
 
+  const heroCases = useMemo(
+    () => takeDistinctCases(latestCases, HERO_CASE_COUNT),
+    [latestCases]
+  );
+
+  const hotStripCases = useMemo(
+    () => takeDistinctCases(
+      latestCases,
+      HOT_STRIP_CASE_COUNT,
+      new Set(heroCases.map((caseItem) => caseItem.id))
+    ),
+    [heroCases, latestCases]
+  );
+
   const filteredCases = useMemo(() => {
     if (!siteData) return [];
     const q = query.trim().toLowerCase();
@@ -1095,7 +1125,7 @@ function App() {
       </header>
 
       <Hero
-        latestCases={latestCases}
+        latestCases={heroCases}
         language={language}
         repoUrl={repoUrl}
         totalCases={siteData.totalCases}
@@ -1103,7 +1133,7 @@ function App() {
       />
 
       <section className="hotStrip">
-        {latestCases.slice(0, 8).map((caseItem) => (
+        {hotStripCases.map((caseItem) => (
           <a href={caseItem.githubUrl} target="_blank" rel="noreferrer" key={caseItem.id}>
             <img src={caseItem.image} alt={caseItem.imageAlt} />
             <span>#{caseItem.id}</span>
