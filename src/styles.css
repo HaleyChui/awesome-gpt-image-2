@@ -1102,6 +1102,64 @@ button {
   box-shadow: 0 24px 90px rgba(0, 0, 0, 0.48);
 }
 
+.previewMedia.hasComparison {
+  align-items: center;
+  padding: 18px;
+}
+
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+.comparisonFigure {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(3, 7, 15, 0.62);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.generatedFigure {
+  border-color: rgba(120, 255, 185, 0.24);
+  background: rgba(120, 255, 185, 0.05);
+}
+
+.comparisonLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 42px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 12px;
+  color: #e8f7ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.comparisonLabel span {
+  color: #9cf7c5;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.comparisonFigure img {
+  width: 100%;
+  height: min(62vh, 620px);
+  max-height: none;
+  border-radius: 0;
+  object-fit: contain;
+  box-shadow: none;
+}
+
 .previewContent {
   overflow: auto;
   padding: 30px;
@@ -1471,6 +1529,14 @@ button {
     max-height: 58vh;
   }
 
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparisonFigure img {
+    height: min(48vh, 520px);
+  }
+
   .previewContent {
     overflow: visible;
   }
@@ -1589,6 +1655,14 @@ button {
   .previewMedia {
     min-height: 220px;
     padding: 12px;
+  }
+
+  .previewMedia.hasComparison {
+    padding: 12px;
+  }
+
+  .comparisonFigure img {
+    height: min(44vh, 420px);
   }
 
   .previewContent {

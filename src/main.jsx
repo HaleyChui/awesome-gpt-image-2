@@ -76,6 +76,8 @@ const copy = {
     generating: 'Generating...',
     editablePrompt: 'Editable Prompt',
     generatedResult: 'Generated Result',
+    originalImage: 'Original Image',
+    savedInBrowser: 'Saved in this browser',
     resetPrompt: 'Reset Prompt',
     oneFreeGeneration: '1 free test image',
     freeLimitReached: 'Free generation used. Credits are coming soon.',
@@ -147,6 +149,8 @@ const copy = {
     generating: '生成中...',
     editablePrompt: '可编辑 Prompt',
     generatedResult: '生成结果',
+    originalImage: '原图',
+    savedInBrowser: '已保存到本浏览器',
     resetPrompt: '重置 Prompt',
     oneFreeGeneration: '免费生成 1 张测试图',
     freeLimitReached: '免费额度已用完，积分购买即将开放。',
@@ -228,6 +232,45 @@ function listFor(value, language) {
 function compactText(value, maxLength = 180) {
   if (!value || value.length <= maxLength) return value || '';
   return `${value.slice(0, maxLength)}...`;
+}
+
+const GENERATED_TESTS_STORAGE_KEY = 'gpt-image-2-generated-tests:v1';
+const MAX_SAVED_GENERATIONS = 12;
+
+function readSavedGenerations() {
+  try {
+    return JSON.parse(localStorage.getItem(GENERATED_TESTS_STORAGE_KEY) || '{}');
+  } catch {
+    return {};
+  }
+}
+
+function getSavedGeneration(caseId) {
+  const saved = readSavedGenerations()[String(caseId)];
+  return saved?.image ? saved : null;
+}
+
+function saveGeneratedTest(caseId, entry) {
+  const key = String(caseId);
+  const saved = readSavedGenerations();
+  saved[key] = entry;
+
+  const latestEntries = Object.entries(saved)
+    .filter(([, value]) => value?.image)
+    .sort(([, a], [, b]) => new Date(b.savedAt || 0) - new Date(a.savedAt || 0))
+    .slice(0, MAX_SAVED_GENERATIONS);
+
+  try {
+    localStorage.setItem(GENERATED_TESTS_STORAGE_KEY, JSON.stringify(Object.fromEntries(latestEntries)));
+  } catch {
+    const compactEntries = latestEntries.slice(0, Math.max(1, Math.floor(MAX_SAVED_GENERATIONS / 2)));
+    try {
+      localStorage.setItem(GENERATED_TESTS_STORAGE_KEY, JSON.stringify(Object.fromEntries(compactEntries)));
+    } catch {
+      // Browser storage can be full or blocked. The generated image still stays
+      // visible for the current dialog state when persistence is unavailable.
+    }
+  }
 }
 
 function localizeLabel(value, language, styleLibrary) {
@@ -675,8 +718,19 @@ function PreviewDialog({
 
   useEffect(() => {
     if (preview?.type !== 'case') return;
+    const savedGeneration = getSavedGeneration(preview.item.id);
     setEditablePrompt(preview.item.prompt || '');
-    setGenerationState({ status: 'idle', image: '', message: '' });
+    setGenerationState(
+      savedGeneration
+        ? {
+            status: 'saved',
+            image: savedGeneration.image,
+            message: '',
+            prompt: savedGeneration.prompt || preview.item.prompt || '',
+            savedAt: savedGeneration.savedAt || ''
+          }
+        : { status: 'idle', image: '', message: '', prompt: '', savedAt: '' }
+    );
   }, [preview]);
 
   if (!preview) return null;
@@ -704,6 +758,7 @@ function PreviewDialog({
   const guidance = listFor(item.guidance, language);
   const pitfalls = listFor(item.pitfalls, language);
   const isGenerating = generationState.status === 'generating';
+  const generatedImage = !isTemplate ? generationState.image : '';
 
   async function handleGenerate() {
     if (isTemplate || isGenerating) return;
@@ -738,8 +793,14 @@ function PreviewDialog({
         throw new Error(payload.error || 'GENERATION_FAILED');
       }
 
+      const savedAt = new Date().toISOString();
+      saveGeneratedTest(item.id, {
+        image: payload.image,
+        prompt,
+        savedAt
+      });
       onFreeUsedChange(true);
-      setGenerationState({ status: 'success', image: payload.image, message: '' });
+      setGenerationState({ status: 'success', image: payload.image, message: '', prompt, savedAt });
     } catch (error) {
       setGenerationState({
         status: 'error',
@@ -761,8 +822,24 @@ function PreviewDialog({
         <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
           <X size={20} />
         </button>
-        <div className="previewMedia">
-          <img src={image} alt={imageAlt} />
+        <div className={cx('previewMedia', generatedImage && 'hasComparison')}>
+          {generatedImage ? (
+            <div className="comparisonGrid">
+              <figure className="comparisonFigure">
+                <div className="comparisonLabel">{t.originalImage}</div>
+                <img src={image} alt={imageAlt} />
+              </figure>
+              <figure className="comparisonFigure generatedFigure">
+                <div className="comparisonLabel">
+                  {t.generatedResult}
+                  {generationState.status === 'saved' ? <span>{t.savedInBrowser}</span> : null}
+                </div>
+                <img src={generatedImage} alt={t.generatedResult} />
+              </figure>
+            </div>
+          ) : (
+            <img src={image} alt={imageAlt} />
+          )}
         </div>
         <div className="previewContent">
           <div className="previewMeta">
@@ -840,12 +917,6 @@ function PreviewDialog({
               </button>
               {generationState.status === 'error' ? (
                 <p className="generationMessage">{generationState.message}</p>
-              ) : null}
-              {generationState.image ? (
-                <figure className="generatedResult">
-                  <img src={generationState.image} alt={t.generatedResult} />
-                  <figcaption>{t.generatedResult}</figcaption>
-                </figure>
               ) : null}
             </div>
           ) : null}
