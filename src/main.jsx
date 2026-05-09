@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowUpRight,
   Bot,
+  ChevronDown,
   Check,
   Coins,
   Copy,
@@ -572,23 +573,77 @@ function FilterPill({ active, children, onClick }) {
   );
 }
 
+function useDropdownDismiss(open, setOpen) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    function handlePointerDown(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open, setOpen]);
+
+  return ref;
+}
+
 function LanguageSwitch({ language, setLanguage }) {
+  const [open, setOpen] = useState(false);
+  const ref = useDropdownDismiss(open, setOpen);
+  const languageOptions = [
+    { value: 'en', label: 'English', short: 'EN' },
+    { value: 'zh', label: '中文', short: '中文' }
+  ];
+  const activeLanguage = languageOptions.find((option) => option.value === language) || languageOptions[0];
+
   return (
-    <div className="languageSwitch" aria-label="Language switcher">
+    <div className="dropdownControl languageSwitch" ref={ref}>
       <button
-        className={cx(language === 'en' && 'active')}
+        className={cx('dropdownTrigger', open && 'open')}
         type="button"
-        onClick={() => setLanguage('en')}
+        aria-label="Language"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
       >
-        EN
+        <span>{activeLanguage.short}</span>
+        <ChevronDown size={15} />
       </button>
-      <button
-        className={cx(language === 'zh' && 'active')}
-        type="button"
-        onClick={() => setLanguage('zh')}
-      >
-        中文
-      </button>
+      {open ? (
+        <div className="dropdownMenu languageMenu" role="menu">
+          {languageOptions.map((option) => (
+            <button
+              className={cx(option.value === language && 'active')}
+              type="button"
+              role="menuitemradio"
+              aria-checked={option.value === language}
+              onClick={() => {
+                setLanguage(option.value);
+                setOpen(false);
+              }}
+              key={option.value}
+            >
+              <span>{option.label}</span>
+              <strong>{option.short}</strong>
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -750,6 +805,8 @@ function AuthModal({ open, language, onClose }) {
 
 function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) {
   const t = copy[language];
+  const [open, setOpen] = useState(false);
+  const ref = useDropdownDismiss(open, setOpen);
 
   if (!session) {
     return (
@@ -761,29 +818,77 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) 
   }
 
   const email = profile?.email || session.user?.email || t.account;
+  const displayName = profile?.fullName || session.user?.user_metadata?.name || email;
 
   return (
-    <div className="userMenu">
-      <div className="accountChip">
-        <UserCircle size={17} />
-        <span>{email}</span>
-        {profile?.isSuperAdmin ? <strong>{t.superAdmin}</strong> : null}
-      </div>
-      <div className="creditChip">
-        <Coins size={16} />
-        <span>{profile?.creditBalance || 0} {t.credits}</span>
-        <span>{profile?.freeUsed ? t.freeUsedShort : t.freeReady}</span>
-      </div>
-      {profile?.isSuperAdmin ? (
-        <button className="iconTextButton" type="button" onClick={onAdmin}>
-          <ShieldCheck size={17} />
-          {t.adminPanel}
-        </button>
-      ) : null}
-      <button className="iconTextButton" type="button" onClick={onSignOut}>
-        <LogOut size={17} />
-        {t.signOut}
+    <div className="dropdownControl userMenu" ref={ref}>
+      <button
+        className={cx('userTrigger', open && 'open')}
+        type="button"
+        aria-label={t.account}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span className="avatarBadge">
+          <UserCircle size={18} />
+        </span>
+        <ChevronDown size={15} />
       </button>
+      {open ? (
+        <div className="dropdownMenu userDropdown" role="menu">
+          <div className="userSummary">
+            <UserCircle size={32} />
+            <div>
+              <strong>{displayName}</strong>
+              <span>{email}</span>
+            </div>
+          </div>
+          <div className="userStats">
+            {profile?.isSuperAdmin ? (
+              <span className="userStat admin">
+                <ShieldCheck size={15} />
+                {t.superAdmin}
+              </span>
+            ) : null}
+            <span className="userStat">
+              <Coins size={15} />
+              {profile?.creditBalance || 0} {t.credits}
+            </span>
+            <span className="userStat">
+              <PackageCheck size={15} />
+              {profile?.freeUsed ? t.freeUsedShort : t.freeReady}
+            </span>
+          </div>
+          <div className="dropdownDivider" />
+          {profile?.isSuperAdmin ? (
+            <button
+              className="dropdownAction"
+              type="button"
+              role="menuitem"
+              onClick={() => {
+                setOpen(false);
+                onAdmin();
+              }}
+            >
+              <ShieldCheck size={17} />
+              {t.adminPanel}
+            </button>
+          ) : null}
+          <button
+            className="dropdownAction danger"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              onSignOut();
+            }}
+          >
+            <LogOut size={17} />
+            {t.signOut}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

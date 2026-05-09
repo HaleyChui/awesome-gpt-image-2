@@ -129,28 +129,96 @@ button {
   color: #ffffff;
 }
 
-.languageSwitch {
+.dropdownControl {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  min-height: 42px;
-  padding: 4px;
-  border-radius: 8px;
 }
 
-.languageSwitch button {
-  min-width: 42px;
-  min-height: 32px;
+.languageSwitch,
+.userMenu {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dropdownTrigger,
+.userTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(9, 15, 32, 0.68);
+  color: #dfeaff;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+}
+
+.dropdownTrigger {
+  min-width: 82px;
+  padding: 0 12px;
+}
+
+.dropdownTrigger:hover,
+.dropdownTrigger.open,
+.userTrigger:hover,
+.userTrigger.open {
+  border-color: rgba(103, 232, 249, 0.62);
+  background: rgba(103, 232, 249, 0.13);
+  color: #ffffff;
+}
+
+.dropdownTrigger svg,
+.userTrigger svg {
+  color: #9eeeff;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  min-width: 172px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(7, 12, 26, 0.96);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.languageMenu button,
+.dropdownAction {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 38px;
   border: 0;
   border-radius: 7px;
+  padding: 0 10px;
   background: transparent;
-  color: #b7c7df;
-  font-weight: 800;
+  color: #c9d8ef;
+  font-weight: 850;
+  text-align: left;
 }
 
-.languageSwitch button:hover,
-.languageSwitch button.active {
-  background: linear-gradient(135deg, rgba(66, 230, 255, 0.22), rgba(120, 255, 185, 0.18));
+.languageMenu button {
+  justify-content: space-between;
+}
+
+.languageMenu button strong {
+  color: #8ef6ff;
+  font-size: 12px;
+}
+
+.languageMenu button:hover,
+.languageMenu button.active,
+.dropdownAction:hover {
+  background: rgba(103, 232, 249, 0.12);
   color: #ffffff;
 }
 
@@ -224,37 +292,106 @@ button {
   left: 106%;
 }
 
-.userMenu {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 42px;
-  border-radius: 8px;
-  padding: 4px;
+.userTrigger {
+  min-width: 58px;
+  padding: 0 9px 0 8px;
 }
 
-.accountChip,
-.creditChip {
+.avatarBadge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  min-height: 34px;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 7px;
-  padding: 0 9px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #c9d8ef;
-  font-size: 12px;
-  font-weight: 800;
+  background: rgba(103, 232, 249, 0.12);
+  color: #9eeeff;
 }
 
-.accountChip span {
-  max-width: 150px;
+.userDropdown {
+  min-width: 292px;
+}
+
+.userSummary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 8px 8px 10px;
+}
+
+.userSummary svg {
+  color: #9eeeff;
+}
+
+.userSummary strong,
+.userSummary span {
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.accountChip strong,
+.userSummary strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.userSummary span {
+  margin-top: 3px;
+  color: #9aaac0;
+  font-size: 12px;
+}
+
+.userStats {
+  display: grid;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+.userStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  border-radius: 7px;
+  padding: 0 9px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #d4e1f5;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.userStat svg {
+  color: #ffe1a8;
+}
+
+.userStat.admin {
+  border: 1px solid rgba(120, 255, 185, 0.3);
+  background: rgba(120, 255, 185, 0.1);
+  color: #c8ffb8;
+}
+
+.userStat.admin svg {
+  color: #c8ffb8;
+}
+
+.dropdownDivider {
+  height: 1px;
+  margin: 8px 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownAction {
+  gap: 9px;
+  justify-content: flex-start;
+}
+
+.dropdownAction.danger:hover {
+  background: rgba(255, 90, 120, 0.12);
+  color: #ffd0d8;
+}
+
 .roleBadge {
   display: inline-flex;
   align-items: center;
@@ -266,10 +403,6 @@ button {
   color: #c8ffb8;
   font-size: 11px;
   font-weight: 900;
-}
-
-.creditChip {
-  color: #ffe1a8;
 }
 
 .iconTextButton {
@@ -1825,14 +1958,6 @@ button {
     justify-content: flex-end;
   }
 
-  .accountChip span {
-    max-width: 120px;
-  }
-
-  .creditChip {
-    display: none;
-  }
-
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1937,23 +2062,32 @@ button {
     gap: 6px;
   }
 
-  .userMenu {
-    flex-wrap: wrap;
-  }
-
   .accountButton,
-  .userMenu,
-  .languageSwitch {
+  .dropdownTrigger,
+  .userTrigger {
     min-height: 38px;
   }
 
-  .accountButton {
+  .accountButton,
+  .userMenu {
     margin-left: auto;
   }
 
-  .languageSwitch button {
-    min-width: 36px;
-    padding: 0 7px;
+  .dropdownTrigger {
+    min-width: 70px;
+    padding: 0 10px;
+  }
+
+  .userTrigger {
+    padding-right: 9px;
+  }
+
+  .dropdownMenu {
+    max-width: calc(100vw - 24px);
+  }
+
+  .userDropdown {
+    min-width: min(292px, calc(100vw - 24px));
   }
 
   .hero {
