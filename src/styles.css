@@ -552,10 +552,13 @@ button {
   position: absolute;
   display: block;
   overflow: hidden;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   background: #111a2c;
+  color: inherit;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  text-align: left;
   transform: rotate(var(--tilt));
   transition: transform 220ms ease, border-color 220ms ease;
   animation: cardDrift 7s ease-in-out infinite;
@@ -632,13 +635,16 @@ button {
   margin: 0 auto 84px;
 }
 
-.hotStrip a {
+.hotStrip button {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  text-align: left;
 }
 
 .hotStrip img {
@@ -648,7 +654,7 @@ button {
   transition: transform 220ms ease;
 }
 
-.hotStrip a:hover img {
+.hotStrip button:hover img {
   transform: scale(1.06);
 }
 

@@ -516,7 +516,7 @@ function formatTemplatePrompt(item, language, styleLibrary) {
   ].join('\n');
 }
 
-function Hero({ latestCases, language, repoUrl, totalCases, categoryCount }) {
+function Hero({ latestCases, language, repoUrl, totalCases, categoryCount, onOpenCase }) {
   const t = copy[language];
 
   return (
@@ -549,16 +549,16 @@ function Hero({ latestCases, language, repoUrl, totalCases, categoryCount }) {
       </div>
       <div className="heroDeck" aria-label="Latest GPT-Image2 cases">
         {latestCases.slice(0, 5).map((caseItem, index) => (
-          <a
+          <button
             className={`heroCard heroCard${index + 1}`}
-            href={caseItem.githubUrl}
-            target="_blank"
-            rel="noreferrer"
+            type="button"
+            aria-label={`${language === 'zh' ? '打开案例' : 'Open case'} ${caseItem.id}: ${caseItem.title}`}
+            onClick={() => onOpenCase(caseItem)}
             key={caseItem.id}
           >
             <img src={caseItem.image} alt={caseItem.imageAlt} />
             <span>{language === 'zh' ? '案例' : 'Case'} {caseItem.id}</span>
-          </a>
+          </button>
         ))}
       </div>
     </section>
@@ -1685,9 +1685,9 @@ function App() {
         </a>
         <div className="topbarControls">
           <nav>
-            <a href="#agent-skill">{t.navSkill}</a>
-            <a href="#templates">{t.navTemplates}</a>
             <a href="#gallery">{t.navCases}</a>
+            <a href="#templates">{t.navTemplates}</a>
+            <a href="#agent-skill">{t.navSkill}</a>
             <a href={repoUrl} target="_blank" rel="noreferrer">
               GitHub
             </a>
@@ -1710,24 +1710,22 @@ function App() {
         repoUrl={repoUrl}
         totalCases={siteData.totalCases}
         categoryCount={siteData.categories.length}
+        onOpenCase={(item) => setPreview({ type: 'case', item })}
       />
 
       <section className="hotStrip">
         {hotStripCases.map((caseItem) => (
-          <a href={caseItem.githubUrl} target="_blank" rel="noreferrer" key={caseItem.id}>
+          <button
+            type="button"
+            aria-label={`${language === 'zh' ? '打开案例' : 'Open case'} ${caseItem.id}: ${caseItem.title}`}
+            onClick={() => setPreview({ type: 'case', item: caseItem })}
+            key={caseItem.id}
+          >
             <img src={caseItem.image} alt={caseItem.imageAlt} />
             <span>#{caseItem.id}</span>
-          </a>
+          </button>
         ))}
       </section>
-
-      <SkillSection language={language} repoUrl={repoUrl} />
-
-      <TemplateSection
-        language={language}
-        styleLibrary={styleLibrary}
-        onOpenTemplate={(item) => setPreview({ type: 'template', item })}
-      />
 
       <section className="gallerySection" id="gallery">
         <div className="sectionHead">
@@ -1813,6 +1811,14 @@ function App() {
           </p>
         )}
       </section>
+
+      <TemplateSection
+        language={language}
+        styleLibrary={styleLibrary}
+        onOpenTemplate={(item) => setPreview({ type: 'template', item })}
+      />
+
+      <SkillSection language={language} repoUrl={repoUrl} />
       <PreviewDialog
         preview={preview}
         language={language}
