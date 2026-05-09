@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 409。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 410。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-409](./gallery-part-2.md)
+- [Part 2：例 166-410](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -77,11 +77,12 @@
 - [例 407：Neuro-AI 混合系统信息图](./gallery-part-2.md#case-407)
 - [例 408：Cozy Academia 学习手记](./gallery-part-2.md#case-408)
 - [例 409：拙劣 MS Paint 风重绘](./gallery-part-2.md#case-409)
+- [例 410：夸张动漫风主体重绘](./gallery-part-2.md#case-410)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-409，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-410，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
@@ -92,7 +93,7 @@
 - 品牌与标志：20
 - 建筑与空间：9
 - 摄影与写实：44
-- 插画与艺术：37
+- 插画与艺术：38
 - 人物与角色：19
 - 场景与叙事：13
 - 历史与古风题材：15
@@ -412,7 +413,7 @@
 
 <a name="cat-illustration"></a>
 
-### 🎨 插画与艺术 · 37 cases
+### 🎨 插画与艺术 · 38 cases
 
 - [例 6：插画艺术创作图](./gallery-part-1.md#case-6)
 - [例 22：插画艺术风格创作](./gallery-part-1.md#case-22)
@@ -451,6 +452,7 @@
 - [例 374：彩色潦草小狗线条风格重绘](./gallery-part-2.md#case-374)
 - [例 405：可爱纸艺风照片重绘](./gallery-part-2.md#case-405)
 - [例 409：拙劣 MS Paint 风重绘](./gallery-part-2.md#case-409)
+- [例 410：夸张动漫风主体重绘](./gallery-part-2.md#case-410)
 
 <a name="cat-character"></a>
 

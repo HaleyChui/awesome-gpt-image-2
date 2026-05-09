@@ -7928,3 +7928,19 @@ Please redraw the attached image in the most clumsy, messy, and hopelessly pathe
 ```
 
 ***
+
+<a name="case-410"></a>
+
+### 例 410：夸张动漫风主体重绘
+
+![夸张动漫风主体重绘](../data/images/case410.jpg)
+
+**来源：** [@Zyrellix](https://x.com/Zyrellix/status/2052766810500649197)
+
+**提示词：**
+
+```text
+Create a trending anime art style image from the uploaded subject. Use confident line-work with slight variation and minimal cel shading using flat shadow shapes. Use bright, saturated colors and clean graphic lighting. The style is defined by exaggerated, cartoonish character proportions featuring highly expressive, simplistic facial features that allow for immense emotional range, with highly varied stretched anatomy.Transform the environment into a slightly warped space with playful perspective distortion and simplified objects. Composition and tone should be energetic, lively, and comedic in a fully stylized, non-realistic world
+```
+
+***
