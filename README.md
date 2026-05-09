@@ -271,6 +271,29 @@ npm run install:skill
 
 The skill source lives at [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md). Its generated reference comes from [`data/style-library.json`](data/style-library.json), so the website and Agent workflow share one style library.
 
+## 🔐 Website Auth & Generation
+
+The visual site includes login-gated case generation powered by Supabase Auth, Supabase Postgres, and a Vercel Function proxy for the GPT Image 2 API.
+
+Required Vercel environment variables:
+
+```bash
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPER_ADMIN_EMAILS=2689458656@qq.com
+CIYUAN_API_KEY=
+CIYUAN_BASE_URL=https://ciyuan.today
+```
+
+Setup checklist:
+
+- Apply [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) to the Supabase project.
+- Add `https://gpt-image2.canghe.ai` and local dev URLs such as `http://127.0.0.1:5173` to Supabase Auth redirect URLs.
+- Enable Email OTP or magic links in Supabase Auth.
+- Enable the Google Provider after adding Google OAuth credentials in the Supabase Dashboard.
+- Keep `SUPABASE_SERVICE_ROLE_KEY` only in server-side environments such as Vercel Environment Variables.
+
 <a name="section-gallery"></a>
 
 ## 🖼️ Featured Cases

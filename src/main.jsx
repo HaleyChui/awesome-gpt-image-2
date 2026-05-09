@@ -4,19 +4,28 @@ import {
   ArrowUpRight,
   Bot,
   Check,
+  Coins,
   Copy,
   Eye,
   Github,
   ImageIcon,
   LoaderCircle,
+  LogIn,
+  LogOut,
+  Mail,
   PackageCheck,
+  RefreshCw,
   Search,
+  ShieldCheck,
   Sparkles,
   Terminal,
+  UserCircle,
+  Users,
   WandSparkles,
   X
 } from 'lucide-react';
 import './styles.css';
+import { isSupabaseConfigured, supabase } from './supabaseClient';
 import skillExampleImage from '../agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png';
 
 const fallbackRepoUrl = 'https://github.com/freestylefly/awesome-gpt-image-2';
@@ -85,6 +94,36 @@ const copy = {
     generationFailed: 'Generation failed. Please try again later.',
     promptRequired: 'Prompt is required and must stay under 6000 characters.',
     serverUnavailable: 'Generation service is not configured yet.',
+    authRequired: 'Sign in to generate a test image.',
+    signIn: 'Sign in',
+    signInTitle: 'Sign in to generate test images',
+    signInSubtitle: 'Use email magic link or Google to unlock your free test image and future credits.',
+    emailAddress: 'Email address',
+    sendMagicLink: 'Send magic link',
+    magicLinkSent: 'Magic link sent. Check your inbox, then return here.',
+    continueWithGoogle: 'Continue with Google',
+    authNotConfigured: 'Login is not configured yet.',
+    authError: 'Login failed. Please try again.',
+    signOut: 'Sign out',
+    account: 'Account',
+    adminPanel: 'Admin',
+    superAdmin: 'Super admin',
+    credits: 'credits',
+    freeReady: 'Free test ready',
+    freeUsedShort: 'Free test used',
+    signInToGenerate: 'Sign in to generate',
+    creditsAvailable: (count) => `${count} credit${count === 1 ? '' : 's'} available`,
+    adminTitle: 'User admin',
+    adminSubtitle: 'Read-only user, role, credit, and free-generation overview.',
+    refresh: 'Refresh',
+    users: 'Users',
+    role: 'Role',
+    creditBalance: 'Credits',
+    freeGeneration: 'Free test',
+    createdAt: 'Created',
+    loadingUsers: 'Loading users...',
+    noUsers: 'No users yet.',
+    adminOnly: 'Only super admins can view this page.',
     fullPrompt: 'Full Prompt',
     templatePrompt: 'Template Prompt',
     useWhen: 'Use When',
@@ -158,6 +197,36 @@ const copy = {
     generationFailed: '生成失败，请稍后再试。',
     promptRequired: 'Prompt 不能为空，并且不能超过 6000 字符。',
     serverUnavailable: '生成服务还没有完成配置。',
+    authRequired: '登录后即可生成测试图。',
+    signIn: '登录',
+    signInTitle: '登录后生成测试图',
+    signInSubtitle: '使用邮箱魔法链接或 Google 登录，解锁 1 张免费测试图，并为后续积分体系做准备。',
+    emailAddress: '邮箱地址',
+    sendMagicLink: '发送魔法链接',
+    magicLinkSent: '魔法链接已发送，请查收邮箱后回到这里。',
+    continueWithGoogle: '使用 Google 继续',
+    authNotConfigured: '登录功能还没有完成配置。',
+    authError: '登录失败，请稍后再试。',
+    signOut: '退出登录',
+    account: '账号',
+    adminPanel: '管理后台',
+    superAdmin: '超级管理员',
+    credits: '积分',
+    freeReady: '免费测试可用',
+    freeUsedShort: '免费测试已用',
+    signInToGenerate: '登录后生成',
+    creditsAvailable: (count) => `可用积分 ${count}`,
+    adminTitle: '用户管理',
+    adminSubtitle: '只读查看用户、角色、积分余额和免费生成状态。',
+    refresh: '刷新',
+    users: '用户',
+    role: '角色',
+    creditBalance: '积分',
+    freeGeneration: '免费测试',
+    createdAt: '创建时间',
+    loadingUsers: '正在加载用户...',
+    noUsers: '暂无用户。',
+    adminOnly: '仅超级管理员可查看。',
     fullPrompt: '完整 Prompt',
     templatePrompt: '模板 Prompt',
     useWhen: '适用场景',
@@ -357,10 +426,25 @@ function useCopy() {
 function generationErrorMessage(error, language) {
   const t = copy[language];
   if (error === 'FREE_LIMIT_REACHED') return t.freeLimitReached;
+  if (error === 'CREDITS_REQUIRED') return t.freeLimitReached;
+  if (error === 'AUTH_REQUIRED') return t.authRequired;
+  if (error === 'FORBIDDEN') return t.adminOnly;
   if (error === 'UPSTREAM_BUSY') return t.generationBusy;
   if (error === 'SERVER_NOT_CONFIGURED') return t.serverUnavailable;
   if (error === 'INVALID_PROMPT') return t.promptRequired;
   return t.generationFailed;
+}
+
+function getAuthHeaders(session) {
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {};
+}
+
+function getGenerationQuotaText(profile, language) {
+  const t = copy[language];
+  if (!profile) return t.authRequired;
+  if (!profile.freeUsed) return t.oneFreeGeneration;
+  if (profile.creditBalance > 0) return t.creditsAvailable(profile.creditBalance);
+  return t.freeLimitReached;
 }
 
 function formatTemplatePrompt(item, language, styleLibrary) {
@@ -496,6 +580,280 @@ function LanguageSwitch({ language, setLanguage }) {
       >
         中文
       </button>
+    </div>
+  );
+}
+
+function AuthModal({ open, language, onClose }) {
+  const t = copy[language];
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (!open) return;
+    setStatus('idle');
+    setMessage('');
+  }, [open]);
+
+  if (!open) return null;
+
+  const redirectTo = `${window.location.origin}${window.location.pathname}`;
+
+  async function handleEmailSubmit(event) {
+    event.preventDefault();
+    if (!isSupabaseConfigured || !supabase) {
+      setStatus('error');
+      setMessage(t.authNotConfigured);
+      return;
+    }
+
+    const normalizedEmail = email.trim();
+    if (!normalizedEmail) {
+      setStatus('error');
+      setMessage(t.emailAddress);
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+    const { error } = await supabase.auth.signInWithOtp({
+      email: normalizedEmail,
+      options: {
+        emailRedirectTo: redirectTo
+      }
+    });
+
+    if (error) {
+      setStatus('error');
+      setMessage(error.message || t.authError);
+      return;
+    }
+
+    setStatus('sent');
+    setMessage(t.magicLinkSent);
+  }
+
+  async function handleGoogleSignIn() {
+    if (!isSupabaseConfigured || !supabase) {
+      setStatus('error');
+      setMessage(t.authNotConfigured);
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo
+      }
+    });
+
+    if (error) {
+      setStatus('error');
+      setMessage(error.message || t.authError);
+    }
+  }
+
+  return (
+    <div
+      className="previewOverlay authOverlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section className="authDialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
+          <X size={20} />
+        </button>
+        <div className="authIcon">
+          <UserCircle size={28} />
+        </div>
+        <h2 id="auth-title">{t.signInTitle}</h2>
+        <p>{t.signInSubtitle}</p>
+        <form className="authForm" onSubmit={handleEmailSubmit}>
+          <label>
+            <span>{t.emailAddress}</span>
+            <input
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@example.com"
+            />
+          </label>
+          <button type="submit" disabled={status === 'loading'}>
+            {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <Mail size={17} />}
+            {t.sendMagicLink}
+          </button>
+        </form>
+        <button className="googleButton" type="button" onClick={handleGoogleSignIn} disabled={status === 'loading'}>
+          <LogIn size={17} />
+          {t.continueWithGoogle}
+        </button>
+        {message ? (
+          <p className={cx('authMessage', status === 'error' && 'error', status === 'sent' && 'sent')}>
+            {message}
+          </p>
+        ) : null}
+      </section>
+    </div>
+  );
+}
+
+function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) {
+  const t = copy[language];
+
+  if (!session) {
+    return (
+      <button className="accountButton" type="button" onClick={onSignIn}>
+        <LogIn size={17} />
+        {t.signIn}
+      </button>
+    );
+  }
+
+  const email = profile?.email || session.user?.email || t.account;
+
+  return (
+    <div className="userMenu">
+      <div className="accountChip">
+        <UserCircle size={17} />
+        <span>{email}</span>
+        {profile?.isSuperAdmin ? <strong>{t.superAdmin}</strong> : null}
+      </div>
+      <div className="creditChip">
+        <Coins size={16} />
+        <span>{profile?.creditBalance || 0} {t.credits}</span>
+        <span>{profile?.freeUsed ? t.freeUsedShort : t.freeReady}</span>
+      </div>
+      {profile?.isSuperAdmin ? (
+        <button className="iconTextButton" type="button" onClick={onAdmin}>
+          <ShieldCheck size={17} />
+          {t.adminPanel}
+        </button>
+      ) : null}
+      <button className="iconTextButton" type="button" onClick={onSignOut}>
+        <LogOut size={17} />
+        {t.signOut}
+      </button>
+    </div>
+  );
+}
+
+function AdminPanel({ open, language, session, onClose }) {
+  const t = copy[language];
+  const [users, setUsers] = useState([]);
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+
+  async function loadUsers() {
+    if (!session?.access_token) {
+      setStatus('error');
+      setMessage(t.adminOnly);
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+    try {
+      const response = await fetch('/api/admin/users', {
+        headers: getAuthHeaders(session)
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error || 'SERVER_NOT_CONFIGURED');
+      }
+      setUsers(payload.users || []);
+      setStatus('ready');
+    } catch (error) {
+      setStatus('error');
+      setMessage(generationErrorMessage(error.message, language));
+    }
+  }
+
+  useEffect(() => {
+    if (open) loadUsers();
+  }, [open, session?.access_token]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="previewOverlay adminOverlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section className="adminDialog" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+        <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
+          <X size={20} />
+        </button>
+        <div className="adminHeader">
+          <div>
+            <span className="eyebrow">
+              <ShieldCheck size={16} />
+              {t.superAdmin}
+            </span>
+            <h2 id="admin-title">{t.adminTitle}</h2>
+            <p>{t.adminSubtitle}</p>
+          </div>
+          <button type="button" onClick={loadUsers} disabled={status === 'loading'}>
+            {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <RefreshCw size={17} />}
+            {t.refresh}
+          </button>
+        </div>
+        {status === 'loading' ? (
+          <div className="adminState">
+            <LoaderCircle className="spinIcon" size={20} />
+            {t.loadingUsers}
+          </div>
+        ) : null}
+        {status === 'error' ? <p className="authMessage error">{message || t.adminOnly}</p> : null}
+        {status !== 'loading' && !users.length && status !== 'error' ? (
+          <div className="adminState">
+            <Users size={20} />
+            {t.noUsers}
+          </div>
+        ) : null}
+        {users.length ? (
+          <div className="adminTableWrap">
+            <table className="adminTable">
+              <thead>
+                <tr>
+                  <th>{t.users}</th>
+                  <th>{t.role}</th>
+                  <th>{t.creditBalance}</th>
+                  <th>{t.freeGeneration}</th>
+                  <th>{t.createdAt}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td>
+                      <div className="adminUserCell">
+                        {user.avatarUrl ? <img src={user.avatarUrl} alt="" /> : <UserCircle size={28} />}
+                        <div>
+                          <strong>{user.email}</strong>
+                          {user.fullName ? <span>{user.fullName}</span> : null}
+                        </div>
+                      </div>
+                    </td>
+                    <td><span className="roleBadge">{user.role}</span></td>
+                    <td>{user.creditBalance}</td>
+                    <td>{user.freeUsed ? t.freeUsedShort : t.freeReady}</td>
+                    <td>{user.createdAt ? new Date(user.createdAt).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US') : '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
+      </section>
     </div>
   );
 }
@@ -701,10 +1059,12 @@ function PreviewDialog({
   language,
   styleLibrary,
   copiedId,
-  freeUsed,
+  session,
+  profile,
   onClose,
   onCopyText,
-  onFreeUsedChange
+  onAuthRequired,
+  onProfileChange
 }) {
   const t = copy[language];
   const repoDocsUrl = `${styleLibrary.repository || fallbackRepoUrl}/blob/main/${styleLibrary.templateDocument}`;
@@ -775,15 +1135,24 @@ function PreviewDialog({
   const pitfalls = listFor(item.pitfalls, language);
   const isGenerating = generationState.status === 'generating';
   const generatedImage = !isTemplate ? generationState.image : '';
+  const isSignedIn = Boolean(session?.access_token);
+  const isOutOfCredits = isSignedIn && Boolean(profile?.freeUsed) && Number(profile?.creditBalance || 0) <= 0;
+  const generationLocked = isGenerating || isOutOfCredits;
+  const quotaText = isSignedIn ? getGenerationQuotaText(profile, language) : t.authRequired;
 
   async function handleGenerate() {
     if (isTemplate || isGenerating) return;
+    if (!isSignedIn) {
+      onAuthRequired();
+      setGenerationState({ status: 'error', image: generatedImage, message: t.authRequired });
+      return;
+    }
     const prompt = editablePrompt.trim();
     if (!prompt || prompt.length > 6000) {
       setGenerationState({ status: 'error', image: '', message: t.promptRequired });
       return;
     }
-    if (freeUsed) {
+    if (isOutOfCredits) {
       setGenerationState({ status: 'error', image: '', message: t.freeLimitReached });
       return;
     }
@@ -793,9 +1162,9 @@ function PreviewDialog({
     try {
       const response = await fetch('/api/generate-image', {
         method: 'POST',
-        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(session)
         },
         body: JSON.stringify({
           caseId: item.id,
@@ -805,7 +1174,8 @@ function PreviewDialog({
       const payload = await response.json().catch(() => ({}));
 
       if (!response.ok || !payload.ok || !payload.image) {
-        if (payload.error === 'FREE_LIMIT_REACHED') onFreeUsedChange(true);
+        if (payload.user) onProfileChange(payload.user);
+        if (payload.error === 'AUTH_REQUIRED') onAuthRequired();
         throw new Error(payload.error || 'GENERATION_FAILED');
       }
 
@@ -815,7 +1185,7 @@ function PreviewDialog({
         prompt,
         savedAt
       });
-      onFreeUsedChange(true);
+      if (payload.user) onProfileChange(payload.user);
       setGenerationState({ status: 'success', image: payload.image, message: '', prompt, savedAt });
     } catch (error) {
       setGenerationState({
@@ -886,9 +1256,9 @@ function PreviewDialog({
               {isCopied ? t.copied : isTemplate ? t.copyTemplatePrompt : t.copyPrompt}
             </button>
             {!isTemplate ? (
-              <button type="button" onClick={handleGenerate} disabled={isGenerating || freeUsed}>
+              <button type="button" onClick={handleGenerate} disabled={generationLocked}>
                 {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
-                {isGenerating ? t.generating : t.generateTest}
+                {isGenerating ? t.generating : isSignedIn ? t.generateTest : t.signInToGenerate}
               </button>
             ) : null}
             <a href={primaryLink} target="_blank" rel="noreferrer">
@@ -924,12 +1294,12 @@ function PreviewDialog({
           </div>
           {!isTemplate ? (
             <div className="generationPanel">
-              <div className={cx('generationQuota', freeUsed && 'used')}>
-                {freeUsed ? t.freeLimitReached : t.oneFreeGeneration}
+              <div className={cx('generationQuota', (!isSignedIn || isOutOfCredits) && 'used')}>
+                {quotaText}
               </div>
-              <button type="button" onClick={handleGenerate} disabled={isGenerating || freeUsed}>
+              <button type="button" onClick={handleGenerate} disabled={generationLocked}>
                 {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
-                {isGenerating ? t.generating : t.generateImage}
+                {isGenerating ? t.generating : isSignedIn ? t.generateImage : t.signInToGenerate}
               </button>
               {generationState.status === 'error' ? (
                 <p className="generationMessage">{generationState.message}</p>
@@ -992,7 +1362,10 @@ function App() {
   const [style, setStyle] = useState('All');
   const [scene, setScene] = useState('All');
   const [preview, setPreview] = useState(null);
-  const [freeUsed, setFreeUsed] = useState(false);
+  const [session, setSession] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
   const { copiedId, copyPrompt, copyText } = useCopy();
   const repoUrl = siteData?.repository || fallbackRepoUrl;
   const t = copy[language];
@@ -1020,19 +1393,50 @@ function App() {
   }, [language]);
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return undefined;
+
+    let active = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setSession(data.session || null);
+    });
+
+    const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession || null);
+    });
+
+    return () => {
+      active = false;
+      data.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
     let cancelled = false;
-    fetch('/api/generate-image', { credentials: 'include' })
+
+    if (!session?.access_token) {
+      setProfile(null);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    fetch('/api/me', {
+      headers: getAuthHeaders(session)
+    })
       .then((response) => response.json())
       .then((payload) => {
         if (!cancelled && payload?.ok) {
-          setFreeUsed(Boolean(payload.freeUsed));
+          setProfile(payload.user);
         }
       })
-      .catch(() => null);
+      .catch(() => {
+        if (!cancelled) setProfile(null);
+      });
+
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [session?.access_token]);
 
   useEffect(() => {
     if (!siteData || !styleLibrary || !window.location.hash) return;
@@ -1093,6 +1497,17 @@ function App() {
 
   const visibleCases = filteredCases.slice(0, 72);
 
+  async function handleSignOut() {
+    if (supabase) await supabase.auth.signOut();
+    setSession(null);
+    setProfile(null);
+    setAdminOpen(false);
+  }
+
+  function handleProfileChange(nextProfile) {
+    if (nextProfile) setProfile(nextProfile);
+  }
+
   if (!siteData || !styleLibrary) {
     return (
       <main>
@@ -1120,6 +1535,14 @@ function App() {
               GitHub
             </a>
           </nav>
+          <UserMenu
+            language={language}
+            session={session}
+            profile={profile}
+            onSignIn={() => setAuthOpen(true)}
+            onSignOut={handleSignOut}
+            onAdmin={() => setAdminOpen(true)}
+          />
           <LanguageSwitch language={language} setLanguage={setLanguage} />
         </div>
       </header>
@@ -1235,10 +1658,23 @@ function App() {
         language={language}
         styleLibrary={styleLibrary}
         copiedId={copiedId}
-        freeUsed={freeUsed}
+        session={session}
+        profile={profile}
         onClose={() => setPreview(null)}
         onCopyText={copyText}
-        onFreeUsedChange={setFreeUsed}
+        onAuthRequired={() => setAuthOpen(true)}
+        onProfileChange={handleProfileChange}
+      />
+      <AuthModal
+        open={authOpen}
+        language={language}
+        onClose={() => setAuthOpen(false)}
+      />
+      <AdminPanel
+        open={adminOpen}
+        language={language}
+        session={session}
+        onClose={() => setAdminOpen(false)}
       />
     </main>
   );

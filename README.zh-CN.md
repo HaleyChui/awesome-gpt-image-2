@@ -269,6 +269,29 @@ npm run install:skill
 
 skill 源码位于 [`agents/skills/gpt-image-2-style-library`](agents/skills/gpt-image-2-style-library/SKILL.md)。生成索引来自 [`data/style-library.json`](data/style-library.json)，网站和 Agent 工作流共用这一份风格库。
 
+## 🔐 网站登录与生成测试
+
+可视化网站已经接入登录后生成测试图能力，底层使用 Supabase Auth、Supabase Postgres，以及 Vercel Function 代理 GPT Image 2 API。
+
+Vercel 需要配置这些环境变量：
+
+```bash
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPER_ADMIN_EMAILS=2689458656@qq.com
+CIYUAN_API_KEY=
+CIYUAN_BASE_URL=https://ciyuan.today
+```
+
+配置清单：
+
+- 将 [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) 应用到 Supabase 项目。
+- 在 Supabase Auth Redirect URLs 里加入 `https://gpt-image2.canghe.ai`，以及 `http://127.0.0.1:5173` 等本地开发地址。
+- 在 Supabase Auth 里开启邮箱 OTP 或魔法链接。
+- Google Provider 的代码入口已接好，后续在 Supabase Dashboard 填入 Google OAuth 凭据后即可使用。
+- `SUPABASE_SERVICE_ROLE_KEY` 只放在 Vercel Environment Variables 这类服务端环境里。
+
 <a name="section-gallery"></a>
 
 ## 🖼️ 首页精选
