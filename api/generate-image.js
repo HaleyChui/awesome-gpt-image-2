@@ -170,7 +170,12 @@ async function generateImage(prompt) {
   const b64 = payload?.data?.[0]?.b64_json;
 
   if (!response.ok || !b64) {
-    throw new Error(payload?.error?.message || `Image generation failed with status ${response.status}`);
+    const message = payload?.error?.message || payload?.message || `Image generation failed with status ${response.status}`;
+    const error = new Error(message);
+    error.status = response.status;
+    error.code = payload?.error?.code || payload?.code;
+    error.type = payload?.error?.type || payload?.type;
+    throw error;
   }
 
   return `data:image/jpeg;base64,${b64}`;
@@ -222,8 +227,17 @@ export default async function handler(req, res) {
       const image = await generateImage(prompt);
       await markFreeGenerationUsed(keys);
       return json(res, 200, { ok: true, image }, cookieHeaders);
-    } catch {
+    } catch (error) {
+      console.warn('Image generation failed', {
+        status: error?.status || null,
+        code: error?.code || null,
+        type: error?.type || null,
+        message: String(error?.message || 'unknown').slice(0, 240)
+      });
       await releaseGeneration(keys);
+      if (error?.status === 429) {
+        return json(res, 503, { ok: false, error: 'UPSTREAM_BUSY' }, cookieHeaders);
+      }
       return json(res, 502, { ok: false, error: 'GENERATION_FAILED' }, cookieHeaders);
     }
   } catch {

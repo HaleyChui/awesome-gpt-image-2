@@ -79,6 +79,7 @@ const copy = {
     resetPrompt: 'Reset Prompt',
     oneFreeGeneration: '1 free test image',
     freeLimitReached: 'Free generation used. Credits are coming soon.',
+    generationBusy: 'The image service is busy. Please try again in a moment.',
     generationFailed: 'Generation failed. Please try again later.',
     promptRequired: 'Prompt is required and must stay under 6000 characters.',
     serverUnavailable: 'Generation service is not configured yet.',
@@ -149,6 +150,7 @@ const copy = {
     resetPrompt: '重置 Prompt',
     oneFreeGeneration: '免费生成 1 张测试图',
     freeLimitReached: '免费额度已用完，积分购买即将开放。',
+    generationBusy: '生图服务繁忙，请稍后再试。',
     generationFailed: '生成失败，请稍后再试。',
     promptRequired: 'Prompt 不能为空，并且不能超过 6000 字符。',
     serverUnavailable: '生成服务还没有完成配置。',
@@ -296,6 +298,7 @@ function useCopy() {
 function generationErrorMessage(error, language) {
   const t = copy[language];
   if (error === 'FREE_LIMIT_REACHED') return t.freeLimitReached;
+  if (error === 'UPSTREAM_BUSY') return t.generationBusy;
   if (error === 'SERVER_NOT_CONFIGURED') return t.serverUnavailable;
   if (error === 'INVALID_PROMPT') return t.promptRequired;
   return t.generationFailed;
