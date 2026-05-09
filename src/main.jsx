@@ -89,6 +89,7 @@ const copy = {
     savedInBrowser: 'Saved in this browser',
     resetPrompt: 'Reset Prompt',
     oneFreeGeneration: '1 free test image',
+    superAdminGeneration: 'Super admin test mode: credits are not consumed.',
     freeLimitReached: 'Free generation used. Credits are coming soon.',
     generationBusy: 'The image service is busy. Please try again in a moment.',
     generationFailed: 'Generation failed. Please try again later.',
@@ -195,6 +196,7 @@ const copy = {
     savedInBrowser: '已保存到本浏览器',
     resetPrompt: '重置 Prompt',
     oneFreeGeneration: '免费生成 1 张测试图',
+    superAdminGeneration: '超级管理员测试模式：本次生图不消耗积分。',
     freeLimitReached: '免费额度已用完，积分购买即将开放。',
     generationBusy: '生图服务繁忙，请稍后再试。',
     generationFailed: '生成失败，请稍后再试。',
@@ -448,6 +450,7 @@ function getAuthHeaders(session) {
 function getGenerationQuotaText(profile, language) {
   const t = copy[language];
   if (!profile) return t.authRequired;
+  if (profile.isSuperAdmin) return t.superAdminGeneration;
   if (!profile.freeUsed) return t.oneFreeGeneration;
   if (profile.creditBalance > 0) return t.creditsAvailable(profile.creditBalance);
   return t.freeLimitReached;
@@ -1178,7 +1181,10 @@ function PreviewDialog({
   const isGenerating = generationState.status === 'generating';
   const generatedImage = !isTemplate ? generationState.image : '';
   const isSignedIn = Boolean(session?.access_token);
-  const isOutOfCredits = isSignedIn && Boolean(profile?.freeUsed) && Number(profile?.creditBalance || 0) <= 0;
+  const isOutOfCredits = isSignedIn
+    && !profile?.isSuperAdmin
+    && Boolean(profile?.freeUsed)
+    && Number(profile?.creditBalance || 0) <= 0;
   const generationLocked = isGenerating || isOutOfCredits;
   const quotaText = isSignedIn ? getGenerationQuotaText(profile, language) : t.authRequired;
 
