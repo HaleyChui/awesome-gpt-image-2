@@ -7944,3 +7944,97 @@ Create a trending anime art style image from the uploaded subject. Use confident
 ```
 
 ***
+
+<a name="case-411"></a>
+
+### 例 411：极简建筑地标海报
+
+![极简建筑地标海报](../data/images/case411.jpg)
+
+**来源：** [@iamaiistudio](https://x.com/iamaiistudio/status/2053084576520573269)
+
+**提示词：**
+
+```text
+Design a luxury minimalist poster centered on a famous architectural landmark of your choice ([building name]). The focal element is an illustrated rendering of the building. Behind it, place one giant bold English word in a design-forward typeface whose character matches the building's identity, with smaller body copy nearby describing its design philosophy. The composition should read as an ultra high-end art poster. Use a restrained, low-key color palette where graphic elements interlock with the architecture, appearing as if they form part of its structural components or extend outward from its silhouette.
+```
+
+***
+
+<a name="case-412"></a>
+
+### 例 412：彩色按钮时尚 Campaign
+
+![彩色按钮时尚 Campaign](../data/images/case412.jpg)
+
+**来源：** [@Mind_Boticni](https://x.com/Mind_Boticni/status/2053082199436759258)
+
+**提示词：**
+
+```text
+Use reference image as style guide.
+Surreal minimalist fashion editorial photography with vibrant oversized colorful buttons as main visual theme (cyan, orange, yellow, red palette), glossy 3D surface design, clean studio lighting, ultra-smooth gradients, and high-end commercial fashion look.
+Split-frame composition:
+
+Left side: full-body female model standing from top to bottom, wearing bold minimalist fashion outfit inspired by reference style, confident pose, clean studio background filled with oversized colorful buttons, cinematic lighting, soft shadows, ultra-clean composition.
+
+Right side (vertically split into two parts):
+Top-right: half-body female model, different face, different pose, different outfit variation inspired by same button aesthetic, different background color mood.
+Bottom-right: another half-body female model, completely different expression and pose, different styling, different background tone, maintaining same surreal button universe aesthetic.
+
+Each section visually distinct but unified by the colorful button-inspired design language, glossy surfaces, soft studio reflections, and fashion magazine editorial feel.
+Hyper-realistic, cinematic lighting, ultra-clean composition, high-end luxury campaign style, depth, contrast, 8k, 1:1 aspect ratio --style raw --v 6 --ar 1:1
+```
+
+***
+
+<a name="case-413"></a>
+
+### 例 413：当代舞现场 Storyboard
+
+![当代舞现场 Storyboard](../data/images/case413.jpg)
+
+**来源：** [@ogbenniasamuel2](https://x.com/ogbenniasamuel2/status/2053088572031250799)
+
+**提示词：**
+
+```text
+Create a raw contemporary dance performance storyboard focused on intense physical movement and live singing. Use reference image for the character. 16:9 storyboard sheet, 12 cinematic panels.
+
+The actual storyboard drawings must be black and white only: rough pencil lines, minimal detail, fast gesture drawing energy, simple anatomy construction and strong silhouette readability. Keep the artwork lightweight, dynamic and unfinished like early choreography previs.
+
+A solitary female performer sings continuously while executing an emotionally charged contemporary dance routine inside a massive empty brutalist hall.
+
+The choreography is aggressive, fluid and constantly evolving: rapid turns, floor slides, crawling transitions, sharp body isolations, trembling hands, extreme balance shifts, hair whips, lunges, jumps, collapsing movements and distorted sculptural poses.
+
+Every panel must contain visible motion and strong body momentum. Avoid static standing poses. The performer should feel trapped between ritual, exhaustion and emotional release.
+
+Use cinematic arthouse camerawork with handheld energy, whip pans, orbit movement, overhead shots, side silhouettes, aggressive close-ups, long lens compression and extreme negative space.
+
+the environment minimal: empty space, smoke, fabric motion, harsh light beams and wet floor reflections only.
+
+Annotation color system: red arrows = body movement blue arrows = camera movement green marks = framing / composition notes orange marks = lighting direction purple marks = vocal / emotional emphasis black text = short lens notes and panel labels No timestamps.
+
+End with one overwhelming final movement pose beneath a harsh isolated spotlight.
+```
+
+***
+
+<a name="case-414"></a>
+
+### 例 414：室内晨间写实摄影
+
+![室内晨间写实摄影](../data/images/case414.jpg)
+
+**来源：** [@ToroJushiAi](https://x.com/ToroJushiAi/status/2053078195482632421)
+
+**提示词：**
+
+```text
+A close-medium shot of a young Japanese woman in her bedroom on an ordinary morning, captured in authentic daily life photography as a natural candid moment. She is seated sideways on the edge of the bed, not fully awake yet, photographed from a slightly elevated three-quarter angle with cool-to-warm morning window light entering from the left.
+East Asian young woman in her early 20s. Almond-shaped eyes with soft natural single eyelids, slightly elongated eye corners, still carrying the heaviness of just waking. Straight refined nose with a delicate bridge. Skin tone fair to light beige — skin subsurface scattering visible under the soft directional morning window light, specular micro-highlights catching gently on her cheekbone and nose ridge, fine skin texture perceptible, no makeup. Naturally straight fine black hair loosely gathered, slightly disheveled from sleep.
+She wears a loose oversized cotton sleep shirt and soft shorts, nothing styled. Her gaze drifts toward the window, posture relaxed and unhurried, one hand resting on her knee, the other barely holding a phone face-down. The bedroom background suggests real life — slightly unmade linen, a potted plant near the window partially in shadow, small cluttered bedside items. Two or three stray hairs fall across her cheek in natural asymmetric displacement, not geometrically placed.
+Soft directional morning light from a side window, cool-to-warm transition across her face and shoulder, long gentle shadows on the bedding behind her. The mood is quietly adrift — not sad, not performing, just suspended in the unhurried first minutes of the day. Subtle ISO 400 film grain in shadow areas, photographic noise texture not CG render smoothness. Aspect ratio 2:3. No watermark, no text overlay, not cartoon, not digitally painted, not illustration, not anime.
+```
+
+***

@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-410-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-414-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-410](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-414](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -79,7 +79,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-brand"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🏛️ Architecture & Spaces</strong><br><sub>9 cases</sub></p>
+      <p><strong>🏛️ Architecture & Spaces</strong><br><sub>10 cases</sub></p>
       <a href="docs/gallery.md#cat-architecture"><img src="data/images/category-covers/architecture.jpg" alt="Architecture and spaces" width="220"></a><br>
       <sub>Architecture renders, interiors, city maps, and spatial concepts.</sub><br>
       <a href="docs/gallery.md#cat-architecture"><strong>View Cases</strong></a>
@@ -87,7 +87,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>44 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>46 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -107,7 +107,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>13 cases</sub></p>
+      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>14 cases</sub></p>
       <a href="docs/gallery.md#cat-scene"><img src="data/images/category-covers/scene.jpg" alt="Scenes and storytelling" width="220"></a><br>
       <sub>Storyboards, narrative scenes, livestream frames, and worldbuilding.</sub><br>
       <a href="docs/gallery.md#cat-scene"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 410 cases by gallery part and category.</sub><br>
+      <sub>Browse all 414 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-410"><img src="data/images/case410.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-414"><img src="data/images/case414.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-410"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-414"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -392,36 +392,30 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 406: Giant Controller Streetwear Campaign</strong></p>
-      <a href="docs/gallery-part-2.md#case-406"><img src="data/images/case406.jpg" alt="Giant controller streetwear campaign" width="140"></a><br>
-      <sub>A futuristic tech-fashion poster built around oversized product scale, glossy reflections, and bold background type.</sub><br>
-      <a href="docs/gallery-part-2.md#case-406"><strong>View Case</strong></a>
+      <p><strong>Case 411: Minimal Architecture Landmark Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-411"><img src="data/images/case411.jpg" alt="Minimal architecture landmark poster" width="140"></a><br>
+      <sub>A luxury poster pattern that combines landmark illustration, oversized typography, and restrained structural graphics.</sub><br>
+      <a href="docs/gallery-part-2.md#case-411"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 407: Neuro-AI Hybrid Infographic</strong></p>
-      <a href="docs/gallery-part-2.md#case-407"><img src="data/images/case407.jpg" alt="Neuro-AI hybrid infographic" width="140"></a><br>
-      <sub>A square scientific handbook-style diagram with brain/circuit fusion, modules, callouts, and system metrics.</sub><br>
-      <a href="docs/gallery-part-2.md#case-407"><strong>View Case</strong></a>
+      <p><strong>Case 412: Color Button Fashion Campaign</strong></p>
+      <a href="docs/gallery-part-2.md#case-412"><img src="data/images/case412.jpg" alt="Color button fashion campaign" width="140"></a><br>
+      <sub>A split-frame fashion editorial built around glossy oversized buttons, studio lighting, and unified visual language.</sub><br>
+      <a href="docs/gallery-part-2.md#case-412"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 408: Cozy Academia Study Journal</strong></p>
-      <a href="docs/gallery-part-2.md#case-408"><img src="data/images/case408.jpg" alt="Cozy academia study journal" width="140"></a><br>
-      <sub>A warm campus study photo with scrapbook doodles, handwritten notes, and soft golden-hour atmosphere.</sub><br>
-      <a href="docs/gallery-part-2.md#case-408"><strong>View Case</strong></a>
+      <p><strong>Case 413: Contemporary Dance Storyboard</strong></p>
+      <a href="docs/gallery-part-2.md#case-413"><img src="data/images/case413.jpg" alt="Contemporary dance storyboard" width="140"></a><br>
+      <sub>A 12-panel black-and-white choreography storyboard with motion arrows, camera notes, and dramatic stage energy.</sub><br>
+      <a href="docs/gallery-part-2.md#case-413"><strong>View Case</strong></a>
     </td>
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 409: Clumsy MS Paint Redraw</strong></p>
-      <a href="docs/gallery-part-2.md#case-409"><img src="data/images/case409.jpg" alt="Clumsy MS Paint redraw" width="140"></a><br>
-      <sub>A deliberately messy redraw prompt for low-quality mouse-drawn parody transformations.</sub><br>
-      <a href="docs/gallery-part-2.md#case-409"><strong>View Case</strong></a>
-    </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 410: Exaggerated Anime Subject Redraw</strong></p>
-      <a href="docs/gallery-part-2.md#case-410"><img src="data/images/case410.jpg" alt="Exaggerated anime subject redraw" width="140"></a><br>
-      <sub>An energetic anime-style subject transformation with warped perspective, bright colors, and expressive cartoon proportions.</sub><br>
-      <a href="docs/gallery-part-2.md#case-410"><strong>View Case</strong></a>
+      <p><strong>Case 414: Morning Bedroom Realism</strong></p>
+      <a href="docs/gallery-part-2.md#case-414"><img src="data/images/case414.jpg" alt="Morning bedroom realism" width="140"></a><br>
+      <sub>A realistic morning bedroom portrait prompt focused on natural posture, window light, skin texture, and film grain.</sub><br>
+      <a href="docs/gallery-part-2.md#case-414"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>

@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 410。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 414。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-410](./gallery-part-2.md)
+- [Part 2：例 166-414](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -78,11 +78,15 @@
 - [例 408：Cozy Academia 学习手记](./gallery-part-2.md#case-408)
 - [例 409：拙劣 MS Paint 风重绘](./gallery-part-2.md#case-409)
 - [例 410：夸张动漫风主体重绘](./gallery-part-2.md#case-410)
+- [例 411：极简建筑地标海报](./gallery-part-2.md#case-411)
+- [例 412：彩色按钮时尚 Campaign](./gallery-part-2.md#case-412)
+- [例 413：当代舞现场 Storyboard](./gallery-part-2.md#case-413)
+- [例 414：室内晨间写实摄影](./gallery-part-2.md#case-414)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-410，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-414，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
@@ -91,11 +95,11 @@
 - 海报与排版：66
 - 商品与电商：27
 - 品牌与标志：20
-- 建筑与空间：9
-- 摄影与写实：44
+- 建筑与空间：10
+- 摄影与写实：46
 - 插画与艺术：38
 - 人物与角色：19
-- 场景与叙事：13
+- 场景与叙事：14
 - 历史与古风题材：15
 - 文档与出版物：9
 - 其他应用场景：29
@@ -350,7 +354,7 @@
 
 <a name="cat-architecture"></a>
 
-### 🏛️ 建筑与空间 · 9 cases
+### 🏛️ 建筑与空间 · 10 cases
 
 - [例 11：一张手绘风格的城市美食地图，以台州为主题](./gallery-part-1.md#case-11)
 - [例 18：信息图可视化设计](./gallery-part-1.md#case-18)
@@ -361,10 +365,11 @@
 - [例 331：西安手绘水彩城市地图](./gallery-part-2.md#case-331)
 - [例 369：明洞旅游区域地图](./gallery-part-2.md#case-369)
 - [例 381：90 年代公寓场景参考板](./gallery-part-2.md#case-381)
+- [例 411：极简建筑地标海报](./gallery-part-2.md#case-411)
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 44 cases
+### 📷 摄影与写实 · 46 cases
 
 - [例 24：漫画分镜叙事设计](./gallery-part-1.md#case-24)
 - [例 26：建筑空间场景图](./gallery-part-1.md#case-26)
@@ -410,6 +415,8 @@
 - [例 393：Y2K 金色时刻人像](./gallery-part-2.md#case-393)
 - [例 399：](./gallery-part-2.md#case-399)
 - [例 408：Cozy Academia 学习手记](./gallery-part-2.md#case-408)
+- [例 412：彩色按钮时尚 Campaign](./gallery-part-2.md#case-412)
+- [例 414：室内晨间写实摄影](./gallery-part-2.md#case-414)
 
 <a name="cat-illustration"></a>
 
@@ -480,7 +487,7 @@
 
 <a name="cat-scene"></a>
 
-### 🎬 场景与叙事 · 13 cases
+### 🎬 场景与叙事 · 14 cases
 
 - [例 182：千禧年日系校园喜剧场景](./gallery-part-2.md#case-182)
 - [例 208：樱花树下害羞双马尾少女](./gallery-part-2.md#case-208)
@@ -495,6 +502,7 @@
 - [例 392：头发里的微型城市](./gallery-part-2.md#case-392)
 - [例 394：中世纪村庄双精灵冒险者](./gallery-part-2.md#case-394)
 - [例 395：骑士法师大战石像魔像](./gallery-part-2.md#case-395)
+- [例 413：当代舞现场 Storyboard](./gallery-part-2.md#case-413)
 
 <a name="cat-history"></a>
 
