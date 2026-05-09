@@ -284,15 +284,22 @@ SUPABASE_SERVICE_ROLE_KEY=
 SUPER_ADMIN_EMAILS=2689458656@qq.com,canghe0818@gmail.com
 CIYUAN_API_KEY=
 CIYUAN_BASE_URL=https://ciyuan.today
+APP_URL=https://gpt-image2.canghe.ai
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
 ```
 
 Setup checklist:
 
 - Apply [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) to the Supabase project.
+- Apply [`supabase/migrations/20260509090000_membership_billing.sql`](supabase/migrations/20260509090000_membership_billing.sql) to add membership plans, credit packs, Stripe order records, and credit adjustment RPCs.
 - Add `https://gpt-image2.canghe.ai` and local dev URLs such as `http://127.0.0.1:5173` to Supabase Auth redirect URLs.
 - Enable Email OTP or magic links in Supabase Auth.
 - Enable the Google Provider after adding Google OAuth credentials in the Supabase Dashboard.
 - Keep `SUPABASE_SERVICE_ROLE_KEY` only in server-side environments such as Vercel Environment Variables.
+- Configure Stripe Checkout with the webhook URL `https://gpt-image2.canghe.ai/api/billing/webhook`.
+- Subscribe the Stripe webhook to `checkout.session.completed`, `invoice.payment_succeeded`, `customer.subscription.updated`, and `customer.subscription.deleted`.
+- Keep `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` only in server-side Vercel Environment Variables.
 
 <a name="section-gallery"></a>
 

@@ -7,6 +7,8 @@ import {
   Check,
   Coins,
   Copy,
+  CreditCard,
+  Crown,
   Eye,
   Github,
   ImageIcon,
@@ -16,6 +18,7 @@ import {
   Mail,
   PackageCheck,
   RefreshCw,
+  ReceiptText,
   Search,
   ShieldCheck,
   Sparkles,
@@ -91,11 +94,17 @@ const copy = {
     resetPrompt: 'Reset Prompt',
     oneFreeGeneration: '1 free test image',
     superAdminGeneration: 'Super admin test mode: credits are not consumed.',
-    freeLimitReached: 'Free generation used. Credits are coming soon.',
+    generationCost: 'Costs 1 credit',
+    freeLimitReached: 'Free generation used. Buy credits or start a membership to keep generating.',
+    creditsRequired: 'Credits required. Buy credits or start a membership to keep generating.',
     generationBusy: 'The image service is busy. Please try again in a moment.',
     generationFailed: 'Generation failed. Please try again later.',
     promptRequired: 'Prompt is required and must stay under 6000 characters.',
     serverUnavailable: 'Generation service is not configured yet.',
+    checkoutUnavailable: 'Checkout is not configured yet.',
+    checkoutFailed: 'Checkout failed. Please try again later.',
+    billingSuccess: 'Payment is processing. Credits will appear after Stripe confirms it.',
+    billingCancelled: 'Checkout cancelled. You can choose another pack anytime.',
     authRequired: 'Sign in to generate a test image.',
     signIn: 'Sign in',
     signInTitle: 'Sign in to generate test images',
@@ -112,8 +121,32 @@ const copy = {
     signOut: 'Sign out',
     account: 'Account',
     adminPanel: 'Admin',
+    membershipCenter: 'Membership & Credits',
     superAdmin: 'Super admin',
     credits: 'credits',
+    buyCredits: 'Buy credits',
+    subscribe: 'Subscribe',
+    manageSubscription: 'Manage subscription',
+    currentPlan: 'Current plan',
+    noPlan: 'Free plan',
+    activeUntil: 'Active until',
+    membershipPlans: 'Membership',
+    creditPacks: 'Credit packs',
+    monthlyCredits: (count) => `${count} credits / month`,
+    packCredits: (count) => `${count} credits`,
+    billingTitle: 'Membership & credits',
+    billingSubtitle: 'Members get monthly credits. Credit packs can be added anytime for more GPT-Image2 tests.',
+    balanceTitle: 'Current balance',
+    transactionHistory: 'Credit history',
+    noTransactions: 'No credit history yet.',
+    loadBilling: 'Loading billing...',
+    openBilling: 'Open membership center',
+    paymentReady: 'Secure checkout via Stripe.',
+    billingNotReady: 'Stripe checkout is not configured yet.',
+    adminAdjust: 'Adjust credits',
+    creditAmount: 'Amount',
+    reason: 'Reason',
+    applyAdjustment: 'Apply adjustment',
     freeReady: 'Free test ready',
     freeUsedShort: 'Free test used',
     signInToGenerate: 'Sign in to generate',
@@ -198,11 +231,17 @@ const copy = {
     resetPrompt: '重置 Prompt',
     oneFreeGeneration: '免费生成 1 张测试图',
     superAdminGeneration: '超级管理员测试模式：本次生图不消耗积分。',
-    freeLimitReached: '免费额度已用完，积分购买即将开放。',
+    generationCost: '本次消耗 1 积分',
+    freeLimitReached: '免费额度已用完，可购买积分包或开通会员继续生成。',
+    creditsRequired: '积分不足，可购买积分包或开通会员继续生成。',
     generationBusy: '生图服务繁忙，请稍后再试。',
     generationFailed: '生成失败，请稍后再试。',
     promptRequired: 'Prompt 不能为空，并且不能超过 6000 字符。',
     serverUnavailable: '生成服务还没有完成配置。',
+    checkoutUnavailable: '支付功能还没有完成配置。',
+    checkoutFailed: '创建支付失败，请稍后再试。',
+    billingSuccess: '支付正在处理中，Stripe 确认后积分会自动到账。',
+    billingCancelled: '已取消支付，你可以随时换一个积分包或会员方案。',
     authRequired: '登录后即可生成测试图。',
     signIn: '登录',
     signInTitle: '登录后生成测试图',
@@ -219,8 +258,32 @@ const copy = {
     signOut: '退出登录',
     account: '账号',
     adminPanel: '管理后台',
+    membershipCenter: '会员与积分',
     superAdmin: '超级管理员',
     credits: '积分',
+    buyCredits: '购买积分',
+    subscribe: '开通会员',
+    manageSubscription: '管理订阅',
+    currentPlan: '当前会员',
+    noPlan: '免费用户',
+    activeUntil: '有效期至',
+    membershipPlans: '会员套餐',
+    creditPacks: '积分包',
+    monthlyCredits: (count) => `每月 ${count} 积分`,
+    packCredits: (count) => `${count} 积分`,
+    billingTitle: '会员与积分',
+    billingSubtitle: '会员每月自动获得积分，也可以随时购买积分包，用来测试更多 GPT-Image2 案例。',
+    balanceTitle: '当前余额',
+    transactionHistory: '积分流水',
+    noTransactions: '暂无积分流水。',
+    loadBilling: '正在加载会员与积分...',
+    openBilling: '打开会员中心',
+    paymentReady: '使用 Stripe 安全支付。',
+    billingNotReady: 'Stripe 支付还没有完成配置。',
+    adminAdjust: '调整积分',
+    creditAmount: '数量',
+    reason: '原因',
+    applyAdjustment: '确认调整',
     freeReady: '免费测试可用',
     freeUsedShort: '免费测试已用',
     signInToGenerate: '登录后生成',
@@ -435,11 +498,13 @@ function useCopy() {
 function generationErrorMessage(error, language) {
   const t = copy[language];
   if (error === 'FREE_LIMIT_REACHED') return t.freeLimitReached;
-  if (error === 'CREDITS_REQUIRED') return t.freeLimitReached;
+  if (error === 'CREDITS_REQUIRED') return t.creditsRequired;
   if (error === 'AUTH_REQUIRED') return t.authRequired;
   if (error === 'FORBIDDEN') return t.adminOnly;
   if (error === 'UPSTREAM_BUSY') return t.generationBusy;
   if (error === 'SERVER_NOT_CONFIGURED') return t.serverUnavailable;
+  if (error === 'BILLING_NOT_CONFIGURED') return t.checkoutUnavailable;
+  if (error === 'CHECKOUT_FAILED' || error === 'BILLING_PORTAL_FAILED') return t.checkoutFailed;
   if (error === 'INVALID_PROMPT') return t.promptRequired;
   return t.generationFailed;
 }
@@ -454,7 +519,33 @@ function getGenerationQuotaText(profile, language) {
   if (profile.isSuperAdmin) return t.superAdminGeneration;
   if (!profile.freeUsed) return t.oneFreeGeneration;
   if (profile.creditBalance > 0) return t.creditsAvailable(profile.creditBalance);
-  return t.freeLimitReached;
+  return t.creditsRequired;
+}
+
+function productText(value, language) {
+  if (!value) return '';
+  return value[language] || value.en || value.zh || '';
+}
+
+function formatMembershipStatus(membership, language) {
+  const t = copy[language];
+  if (!membership?.isActive) return t.noPlan;
+  const status = membership.status === 'trialing' ? 'trialing' : 'active';
+  if (!membership.currentPeriodEnd) return status;
+  const date = new Date(membership.currentPeriodEnd).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US');
+  return `${status} · ${t.activeUntil} ${date}`;
+}
+
+function transactionLabel(transaction, language) {
+  const typeMap = {
+    grant: language === 'zh' ? '赠送' : 'Grant',
+    purchase: language === 'zh' ? '购买' : 'Purchase',
+    membership_grant: language === 'zh' ? '会员发放' : 'Membership grant',
+    generation: language === 'zh' ? '生图消耗' : 'Generation',
+    refund: language === 'zh' ? '失败返还' : 'Refund',
+    adjustment: language === 'zh' ? '管理员调整' : 'Admin adjustment'
+  };
+  return typeMap[transaction.type] || transaction.type || '-';
 }
 
 function formatTemplatePrompt(item, language, styleLibrary) {
@@ -803,7 +894,7 @@ function AuthModal({ open, language, onClose }) {
   );
 }
 
-function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) {
+function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, onBilling }) {
   const t = copy[language];
   const [open, setOpen] = useState(false);
   const ref = useDropdownDismiss(open, setOpen);
@@ -856,11 +947,27 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) 
               {profile?.creditBalance || 0} {t.credits}
             </span>
             <span className="userStat">
+              <Crown size={15} />
+              {formatMembershipStatus(profile?.membership, language)}
+            </span>
+            <span className="userStat">
               <PackageCheck size={15} />
               {profile?.freeUsed ? t.freeUsedShort : t.freeReady}
             </span>
           </div>
           <div className="dropdownDivider" />
+          <button
+            className="dropdownAction"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              onBilling();
+            }}
+          >
+            <CreditCard size={17} />
+            {t.membershipCenter}
+          </button>
           {profile?.isSuperAdmin ? (
             <button
               className="dropdownAction"
@@ -898,6 +1005,8 @@ function AdminPanel({ open, language, session, onClose }) {
   const [users, setUsers] = useState([]);
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
+  const [adjustment, setAdjustment] = useState(null);
+  const [adjustStatus, setAdjustStatus] = useState('idle');
 
   async function loadUsers() {
     if (!session?.access_token) {
@@ -920,6 +1029,40 @@ function AdminPanel({ open, language, session, onClose }) {
       setStatus('ready');
     } catch (error) {
       setStatus('error');
+      setMessage(error.message === 'SERVER_NOT_CONFIGURED' ? t.checkoutUnavailable : generationErrorMessage(error.message, language));
+    }
+  }
+
+  async function handleAdjustCredits(event) {
+    event.preventDefault();
+    if (!adjustment?.userId) return;
+    setAdjustStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/admin/credits/adjust', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(session)
+        },
+        body: JSON.stringify({
+          userId: adjustment.userId,
+          amount: Number(adjustment.amount),
+          reason: adjustment.reason
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error || 'CREDIT_ADJUSTMENT_FAILED');
+      }
+      setUsers((current) => current.map((user) => (
+        user.id === payload.user.id ? { ...user, ...payload.user } : user
+      )));
+      setAdjustment(null);
+      setAdjustStatus('idle');
+    } catch (error) {
+      setAdjustStatus('error');
       setMessage(generationErrorMessage(error.message, language));
     }
   }
@@ -963,6 +1106,32 @@ function AdminPanel({ open, language, session, onClose }) {
           </div>
         ) : null}
         {status === 'error' ? <p className="authMessage error">{message || t.adminOnly}</p> : null}
+        {adjustment ? (
+          <form className="adminAdjustForm" onSubmit={handleAdjustCredits}>
+            <strong>{adjustment.email}</strong>
+            <label>
+              {t.creditAmount}
+              <input
+                type="number"
+                step="1"
+                value={adjustment.amount}
+                onChange={(event) => setAdjustment((current) => ({ ...current, amount: event.target.value }))}
+              />
+            </label>
+            <label>
+              {t.reason}
+              <input
+                value={adjustment.reason}
+                onChange={(event) => setAdjustment((current) => ({ ...current, reason: event.target.value }))}
+              />
+            </label>
+            <button type="submit" disabled={adjustStatus === 'loading'}>
+              {adjustStatus === 'loading' ? <LoaderCircle className="spinIcon" size={16} /> : <Coins size={16} />}
+              {t.applyAdjustment}
+            </button>
+          </form>
+        ) : null}
+        {adjustStatus === 'error' ? <p className="authMessage error">{message}</p> : null}
         {status !== 'loading' && !users.length && status !== 'error' ? (
           <div className="adminState">
             <Users size={20} />
@@ -977,8 +1146,10 @@ function AdminPanel({ open, language, session, onClose }) {
                   <th>{t.users}</th>
                   <th>{t.role}</th>
                   <th>{t.creditBalance}</th>
+                  <th>{t.currentPlan}</th>
                   <th>{t.freeGeneration}</th>
                   <th>{t.createdAt}</th>
+                  <th>{t.adminAdjust}</th>
                 </tr>
               </thead>
               <tbody>
@@ -995,14 +1166,305 @@ function AdminPanel({ open, language, session, onClose }) {
                     </td>
                     <td><span className="roleBadge">{user.role}</span></td>
                     <td>{user.creditBalance}</td>
+                    <td>{formatMembershipStatus(user.membership, language)}</td>
                     <td>{user.freeUsed ? t.freeUsedShort : t.freeReady}</td>
                     <td>{user.createdAt ? new Date(user.createdAt).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US') : '-'}</td>
+                    <td>
+                      <button
+                        className="tableAction"
+                        type="button"
+                        onClick={() => setAdjustment({
+                          userId: user.id,
+                          email: user.email,
+                          amount: 10,
+                          reason: ''
+                        })}
+                      >
+                        <Coins size={15} />
+                        {t.adminAdjust}
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         ) : null}
+      </section>
+    </div>
+  );
+}
+
+function BillingPanel({
+  open,
+  language,
+  session,
+  profile,
+  notice,
+  onClose,
+  onAuthRequired,
+  onProfileChange
+}) {
+  const t = copy[language];
+  const [plans, setPlans] = useState([]);
+  const [packs, setPacks] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  const [checkoutAvailable, setCheckoutAvailable] = useState(false);
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+  const [busyProduct, setBusyProduct] = useState('');
+
+  async function loadBilling() {
+    setStatus('loading');
+    setMessage(notice || '');
+
+    try {
+      const headers = getAuthHeaders(session);
+      const [plansResponse, historyResponse] = await Promise.all([
+        fetch('/api/billing/plans', { headers }),
+        session?.access_token
+          ? fetch('/api/billing/history', { headers })
+          : Promise.resolve(null)
+      ]);
+      const plansPayload = await plansResponse.json().catch(() => ({}));
+      if (!plansResponse.ok || !plansPayload.ok) {
+        throw new Error(plansPayload.error || 'SERVER_NOT_CONFIGURED');
+      }
+
+      setPlans(plansPayload.plans || []);
+      setPacks(plansPayload.packs || []);
+      setCheckoutAvailable(Boolean(plansPayload.checkoutAvailable));
+      if (plansPayload.user) onProfileChange(plansPayload.user);
+
+      if (historyResponse) {
+        const historyPayload = await historyResponse.json().catch(() => ({}));
+        if (historyResponse.ok && historyPayload.ok) {
+          setTransactions(historyPayload.transactions || []);
+        }
+      } else {
+        setTransactions([]);
+      }
+
+      setStatus('ready');
+    } catch (error) {
+      setStatus('error');
+      setMessage(generationErrorMessage(error.message, language));
+    }
+  }
+
+  useEffect(() => {
+    if (open) loadBilling();
+  }, [open, session?.access_token]);
+
+  async function handleCheckout(product) {
+    if (!session?.access_token) {
+      onAuthRequired();
+      return;
+    }
+    if (!checkoutAvailable) {
+      setMessage(t.checkoutUnavailable);
+      return;
+    }
+
+    setBusyProduct(`${product.type}:${product.id}`);
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/billing/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(session)
+        },
+        body: JSON.stringify({
+          productType: product.type,
+          productId: product.id
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok || !payload.url) {
+        throw new Error(payload.error || 'CHECKOUT_FAILED');
+      }
+      if (payload.user) onProfileChange(payload.user);
+      window.location.href = payload.url;
+    } catch (error) {
+      setBusyProduct('');
+      setMessage(generationErrorMessage(error.message, language));
+    }
+  }
+
+  async function handlePortal() {
+    if (!session?.access_token) {
+      onAuthRequired();
+      return;
+    }
+    setBusyProduct('portal');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/billing/portal', {
+        method: 'POST',
+        headers: getAuthHeaders(session)
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok || !payload.url) {
+        throw new Error(payload.error || 'BILLING_PORTAL_FAILED');
+      }
+      window.location.href = payload.url;
+    } catch (error) {
+      setBusyProduct('');
+      setMessage(generationErrorMessage(error.message, language));
+    }
+  }
+
+  if (!open) return null;
+
+  const activePlanId = profile?.membership?.isActive ? profile.membership.planId : '';
+  const activePlan = plans.find((plan) => plan.id === activePlanId);
+  const activePlanName = activePlan ? productText(activePlan.name, language) : activePlanId || t.noPlan;
+
+  return (
+    <div
+      className="previewOverlay billingOverlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section className="billingDialog" role="dialog" aria-modal="true" aria-labelledby="billing-title">
+        <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
+          <X size={20} />
+        </button>
+        <div className="billingHero">
+          <span className="eyebrow">
+            <CreditCard size={16} />
+            {t.membershipCenter}
+          </span>
+          <h2 id="billing-title">{t.billingTitle}</h2>
+          <p>{t.billingSubtitle}</p>
+        </div>
+
+        <div className="billingSummary">
+          <div>
+            <span>{t.balanceTitle}</span>
+            <strong>{profile?.creditBalance || 0}</strong>
+            <em>{t.credits}</em>
+          </div>
+          <div>
+            <span>{t.currentPlan}</span>
+            <strong>{activePlanName}</strong>
+            <em>{formatMembershipStatus(profile?.membership, language)}</em>
+          </div>
+          <div>
+            <span>{t.freeGeneration}</span>
+            <strong>{profile?.freeUsed ? t.freeUsedShort : t.freeReady}</strong>
+            <em>{checkoutAvailable ? t.paymentReady : t.billingNotReady}</em>
+          </div>
+        </div>
+
+        {!session?.access_token ? (
+          <div className="billingState">
+            <p>{t.authRequired}</p>
+            <button type="button" onClick={onAuthRequired}>
+              <LogIn size={17} />
+              {t.signIn}
+            </button>
+          </div>
+        ) : null}
+
+        {status === 'loading' ? (
+          <div className="billingState">
+            <LoaderCircle className="spinIcon" size={20} />
+            {t.loadBilling}
+          </div>
+        ) : null}
+
+        {message ? (
+          <p className={cx('authMessage', status === 'error' && 'error')}>{message}</p>
+        ) : null}
+
+        <div className="billingSections">
+          <section>
+            <h3>
+              <Crown size={18} />
+              {t.membershipPlans}
+            </h3>
+            <div className="billingCards">
+              {plans.map((plan) => {
+                const isCurrent = activePlanId === plan.id;
+                const busy = busyProduct === `${plan.type}:${plan.id}`;
+                return (
+                  <article className={cx('billingCard', isCurrent && 'current')} key={plan.id}>
+                    <span>{productText(plan.name, language)}</span>
+                    <strong>{plan.priceLabel}<small>/{plan.interval}</small></strong>
+                    <p>{productText(plan.description, language)}</p>
+                    <div className="billingCredits">{t.monthlyCredits(plan.monthlyCredits)}</div>
+                    <button type="button" disabled={busy || isCurrent} onClick={() => handleCheckout(plan)}>
+                      {busy ? <LoaderCircle className="spinIcon" size={16} /> : <Crown size={16} />}
+                      {isCurrent ? t.currentPlan : t.subscribe}
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+            {profile?.membership?.isActive ? (
+              <button className="portalButton" type="button" onClick={handlePortal} disabled={busyProduct === 'portal'}>
+                {busyProduct === 'portal' ? <LoaderCircle className="spinIcon" size={16} /> : <CreditCard size={16} />}
+                {t.manageSubscription}
+              </button>
+            ) : null}
+          </section>
+
+          <section>
+            <h3>
+              <Coins size={18} />
+              {t.creditPacks}
+            </h3>
+            <div className="billingCards">
+              {packs.map((pack) => {
+                const busy = busyProduct === `${pack.type}:${pack.id}`;
+                return (
+                  <article className="billingCard" key={pack.id}>
+                    <span>{productText(pack.name, language)}</span>
+                    <strong>{pack.priceLabel}</strong>
+                    <p>{productText(pack.description, language)}</p>
+                    <div className="billingCredits">{t.packCredits(pack.credits)}</div>
+                    <button type="button" disabled={busy} onClick={() => handleCheckout(pack)}>
+                      {busy ? <LoaderCircle className="spinIcon" size={16} /> : <Coins size={16} />}
+                      {t.buyCredits}
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        </div>
+
+        <section className="transactionSection">
+          <h3>
+            <ReceiptText size={18} />
+            {t.transactionHistory}
+          </h3>
+          {transactions.length ? (
+            <div className="transactionList">
+              {transactions.map((transaction) => (
+                <div className="transactionItem" key={transaction.id}>
+                  <span>{transactionLabel(transaction, language)}</span>
+                  <strong className={transaction.amount >= 0 ? 'positive' : 'negative'}>
+                    {transaction.amount >= 0 ? '+' : ''}{transaction.amount}
+                  </strong>
+                  <em>
+                    {transaction.createdAt
+                      ? new Date(transaction.createdAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')
+                      : '-'}
+                  </em>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="emptyTransactions">{t.noTransactions}</p>
+          )}
+        </section>
       </section>
     </div>
   );
@@ -1214,6 +1676,7 @@ function PreviewDialog({
   onClose,
   onCopyText,
   onAuthRequired,
+  onBillingRequired,
   onProfileChange
 }) {
   const t = copy[language];
@@ -1290,7 +1753,7 @@ function PreviewDialog({
     && !profile?.isSuperAdmin
     && Boolean(profile?.freeUsed)
     && Number(profile?.creditBalance || 0) <= 0;
-  const generationLocked = isGenerating || isOutOfCredits;
+  const generationLocked = isGenerating;
   const quotaText = isSignedIn ? getGenerationQuotaText(profile, language) : t.authRequired;
 
   async function handleGenerate() {
@@ -1306,7 +1769,8 @@ function PreviewDialog({
       return;
     }
     if (isOutOfCredits) {
-      setGenerationState({ status: 'error', image: '', message: t.freeLimitReached });
+      onBillingRequired();
+      setGenerationState({ status: 'idle', image: generatedImage, message: t.creditsRequired });
       return;
     }
 
@@ -1415,7 +1879,7 @@ function PreviewDialog({
             {!isTemplate ? (
               <button type="button" onClick={handleGenerate} disabled={generationLocked}>
                 {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
-                {isGenerating ? t.generating : isSignedIn ? t.generateTest : t.signInToGenerate}
+                {isGenerating ? t.generating : isOutOfCredits ? t.buyCredits : isSignedIn ? t.generateTest : t.signInToGenerate}
               </button>
             ) : null}
             <a href={primaryLink} target="_blank" rel="noreferrer">
@@ -1456,7 +1920,7 @@ function PreviewDialog({
               </div>
               <button type="button" onClick={handleGenerate} disabled={generationLocked}>
                 {isGenerating ? <LoaderCircle className="spinIcon" size={17} /> : <ImageIcon size={17} />}
-                {isGenerating ? t.generating : isSignedIn ? t.generateImage : t.signInToGenerate}
+                {isGenerating ? t.generating : isOutOfCredits ? t.buyCredits : isSignedIn ? t.generateImage : t.signInToGenerate}
               </button>
               {generationState.status === 'error' ? (
                 <p className="generationMessage">{generationState.message}</p>
@@ -1523,6 +1987,8 @@ function App() {
   const [profile, setProfile] = useState(null);
   const [authOpen, setAuthOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
+  const [billingOpen, setBillingOpen] = useState(false);
+  const [billingNotice, setBillingNotice] = useState('');
   const { copiedId, copyPrompt, copyText } = useCopy();
   const repoUrl = siteData?.repository || fallbackRepoUrl;
   const t = copy[language];
@@ -1604,6 +2070,20 @@ function App() {
     });
   }, [siteData, styleLibrary]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const billing = params.get('billing');
+    if (!billing) return;
+    if (billing === 'success') setBillingNotice(t.billingSuccess);
+    if (billing === 'cancelled') setBillingNotice(t.billingCancelled);
+    setBillingOpen(true);
+    params.delete('billing');
+    params.delete('session_id');
+    const nextSearch = params.toString();
+    const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`;
+    window.history.replaceState({}, '', nextUrl);
+  }, [t.billingCancelled, t.billingSuccess]);
+
   const latestCases = useMemo(() => {
     if (!siteData) return [];
     return [...siteData.cases].sort((a, b) => b.id - a.id);
@@ -1659,6 +2139,7 @@ function App() {
     setSession(null);
     setProfile(null);
     setAdminOpen(false);
+    setBillingOpen(false);
   }
 
   function handleProfileChange(nextProfile) {
@@ -1700,6 +2181,10 @@ function App() {
             onSignIn={() => setAuthOpen(true)}
             onSignOut={handleSignOut}
             onAdmin={() => setAdminOpen(true)}
+            onBilling={() => {
+              setBillingNotice('');
+              setBillingOpen(true);
+            }}
           />
         </div>
       </header>
@@ -1829,6 +2314,10 @@ function App() {
         onClose={() => setPreview(null)}
         onCopyText={copyText}
         onAuthRequired={() => setAuthOpen(true)}
+        onBillingRequired={() => {
+          setBillingNotice(t.creditsRequired);
+          setBillingOpen(true);
+        }}
         onProfileChange={handleProfileChange}
       />
       <AuthModal
@@ -1841,6 +2330,16 @@ function App() {
         language={language}
         session={session}
         onClose={() => setAdminOpen(false)}
+      />
+      <BillingPanel
+        open={billingOpen}
+        language={language}
+        session={session}
+        profile={profile}
+        notice={billingNotice}
+        onClose={() => setBillingOpen(false)}
+        onAuthRequired={() => setAuthOpen(true)}
+        onProfileChange={handleProfileChange}
       />
     </main>
   );

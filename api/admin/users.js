@@ -14,6 +14,7 @@ function formatAdminUser(row) {
     creditBalance: Number(row.credit_balance || 0),
     freeGenerationsUsed: Number(row.free_generations_used || 0),
     freeUsed: Number(row.free_generations_used || 0) >= 1,
+    membership: row.membership || null,
     createdAt: row.created_at || ''
   };
 }
@@ -46,8 +47,31 @@ export default async function handler(req, res) {
     return json(res, 500, { ok: false, error: 'SERVER_NOT_CONFIGURED' });
   }
 
+  const userIds = (data || []).map((user) => user.id);
+  const membershipsByUserId = new Map();
+  if (userIds.length) {
+    const { data: memberships, error: membershipError } = await auth.client
+      .from('user_memberships')
+      .select('user_id,plan_id,status,current_period_end,cancel_at_period_end')
+      .in('user_id', userIds);
+
+    if (!membershipError) {
+      for (const membership of memberships || []) {
+        membershipsByUserId.set(membership.user_id, {
+          planId: membership.plan_id || '',
+          status: membership.status || 'inactive',
+          currentPeriodEnd: membership.current_period_end || '',
+          cancelAtPeriodEnd: Boolean(membership.cancel_at_period_end)
+        });
+      }
+    }
+  }
+
   return json(res, 200, {
     ok: true,
-    users: (data || []).map(formatAdminUser)
+    users: (data || []).map((user) => formatAdminUser({
+      ...user,
+      membership: membershipsByUserId.get(user.id) || null
+    }))
   });
 }

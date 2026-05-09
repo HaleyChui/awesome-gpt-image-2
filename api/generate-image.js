@@ -80,7 +80,8 @@ async function createSuperAdminReservation(client, profile, caseId, prompt) {
       case_id: caseId,
       prompt,
       used_free_generation: false,
-      credit_amount: 0
+      credit_amount: 0,
+      usage_source: 'super_admin'
     })
     .select('id')
     .single();
