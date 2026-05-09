@@ -710,7 +710,7 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin }) 
     return (
       <button className="accountButton" type="button" onClick={onSignIn}>
         <LogIn size={17} />
-        {t.signIn}
+        <span>{t.signIn}</span>
       </button>
     );
   }
@@ -1535,6 +1535,7 @@ function App() {
               GitHub
             </a>
           </nav>
+          <LanguageSwitch language={language} setLanguage={setLanguage} />
           <UserMenu
             language={language}
             session={session}
@@ -1543,7 +1544,6 @@ function App() {
             onSignOut={handleSignOut}
             onAdmin={() => setAdminOpen(true)}
           />
-          <LanguageSwitch language={language} setLanguage={setLanguage} />
         </div>
       </header>
 

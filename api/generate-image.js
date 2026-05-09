@@ -178,7 +178,7 @@ export default async function handler(req, res) {
       userId: auth.user.id,
       message: String(error?.message || 'unknown').slice(0, 240)
     });
-    return json(res, 500, { ok: false, error: 'SERVER_NOT_CONFIGURED' });
+    return json(res, 500, { ok: false, error: 'GENERATION_FAILED' });
   }
 
   try {
