@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-405-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-409-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-405](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-409](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -53,13 +53,13 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-ui"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📊 Charts & Infographics</strong><br><sub>44 cases</sub></p>
+      <p><strong>📊 Charts & Infographics</strong><br><sub>45 cases</sub></p>
       <a href="docs/gallery.md#cat-infographic"><img src="data/images/category-covers/infographic.jpg" alt="Charts and infographics" width="220"></a><br>
       <sub>Infographics, knowledge maps, technical explainers, and structured diagrams.</sub><br>
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 Posters & Typography</strong><br><sub>65 cases</sub></p>
+      <p><strong>📰 Posters & Typography</strong><br><sub>66 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="Posters and typography" width="220"></a><br>
       <sub>Event posters, covers, type-driven visuals, and strong layout compositions.</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>View Cases</strong></a>
@@ -87,13 +87,13 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>43 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>44 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>🎨 Illustration & Art</strong><br><sub>36 cases</sub></p>
+      <p><strong>🎨 Illustration & Art</strong><br><sub>37 cases</sub></p>
       <a href="docs/gallery.md#cat-illustration"><img src="data/images/category-covers/illustration.jpg" alt="Illustration and art" width="220"></a><br>
       <sub>Illustration, art styles, material experiments, and decorative images.</sub><br>
       <a href="docs/gallery.md#cat-illustration"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 405 cases by gallery part and category.</sub><br>
+      <sub>Browse all 409 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-405"><img src="data/images/case405.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-409"><img src="data/images/case409.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-405"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-409"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -369,16 +369,30 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 404: Luxury Social Screen Breakthrough Ad</strong></p>
-      <a href="docs/gallery-part-2.md#case-404"><img src="data/images/case404.jpg" alt="Luxury social screen breakthrough ad" width="140"></a><br>
-      <sub>A premium social media ad poster with forced perspective, glossy 3D icons, and orange-gold campaign styling.</sub><br>
-      <a href="docs/gallery-part-2.md#case-404"><strong>View Case</strong></a>
+      <p><strong>Case 406: Giant Controller Streetwear Campaign</strong></p>
+      <a href="docs/gallery-part-2.md#case-406"><img src="data/images/case406.jpg" alt="Giant controller streetwear campaign" width="140"></a><br>
+      <sub>A futuristic tech-fashion poster built around oversized product scale, glossy reflections, and bold background type.</sub><br>
+      <a href="docs/gallery-part-2.md#case-406"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 405: Cute Paper Craft Photo Redraw</strong></p>
-      <a href="docs/gallery-part-2.md#case-405"><img src="data/images/case405.jpg" alt="Cute paper craft photo redraw" width="140"></a><br>
-      <sub>A soft paper-craft transformation prompt for turning reference photos into handmade-looking scenes.</sub><br>
-      <a href="docs/gallery-part-2.md#case-405"><strong>View Case</strong></a>
+      <p><strong>Case 407: Neuro-AI Hybrid Infographic</strong></p>
+      <a href="docs/gallery-part-2.md#case-407"><img src="data/images/case407.jpg" alt="Neuro-AI hybrid infographic" width="140"></a><br>
+      <sub>A square scientific handbook-style diagram with brain/circuit fusion, modules, callouts, and system metrics.</sub><br>
+      <a href="docs/gallery-part-2.md#case-407"><strong>View Case</strong></a>
+    </td>
+    <td width="33%" valign="top" align="center">
+      <p><strong>Case 408: Cozy Academia Study Journal</strong></p>
+      <a href="docs/gallery-part-2.md#case-408"><img src="data/images/case408.jpg" alt="Cozy academia study journal" width="140"></a><br>
+      <sub>A warm campus study photo with scrapbook doodles, handwritten notes, and soft golden-hour atmosphere.</sub><br>
+      <a href="docs/gallery-part-2.md#case-408"><strong>View Case</strong></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top" align="center">
+      <p><strong>Case 409: Clumsy MS Paint Redraw</strong></p>
+      <a href="docs/gallery-part-2.md#case-409"><img src="data/images/case409.jpg" alt="Clumsy MS Paint redraw" width="140"></a><br>
+      <sub>A deliberately messy redraw prompt for low-quality mouse-drawn parody transformations.</sub><br>
+      <a href="docs/gallery-part-2.md#case-409"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>
