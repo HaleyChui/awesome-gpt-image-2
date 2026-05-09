@@ -101,6 +101,9 @@ const copy = {
     emailAddress: 'Email address',
     sendMagicLink: 'Send magic link',
     magicLinkSent: 'Magic link sent. Check your inbox, then return here.',
+    authRateLimited: 'Too many login emails were sent. Please wait a bit, or use Google sign-in once it is enabled.',
+    googleNotConfigured: 'Google sign-in is not enabled yet.',
+    tryAgainIn: (seconds) => `Try again in ${seconds}s`,
     continueWithGoogle: 'Continue with Google',
     authNotConfigured: 'Login is not configured yet.',
     authError: 'Login failed. Please try again.',
@@ -204,6 +207,9 @@ const copy = {
     emailAddress: '邮箱地址',
     sendMagicLink: '发送魔法链接',
     magicLinkSent: '魔法链接已发送，请查收邮箱后回到这里。',
+    authRateLimited: '登录邮件发送太频繁，请稍后再试；Google 登录接通后也可以直接使用 Google 登录。',
+    googleNotConfigured: 'Google 登录还没有启用。',
+    tryAgainIn: (seconds) => `${seconds} 秒后重试`,
     continueWithGoogle: '使用 Google 继续',
     authNotConfigured: '登录功能还没有完成配置。',
     authError: '登录失败，请稍后再试。',
@@ -584,17 +590,43 @@ function LanguageSwitch({ language, setLanguage }) {
   );
 }
 
+function authErrorMessage(error, language) {
+  const t = copy[language];
+  const message = String(error?.message || error || '').trim();
+  const normalized = message.toLowerCase();
+
+  if (error?.status === 429 || normalized.includes('rate limit') || normalized.includes('too many')) {
+    return t.authRateLimited;
+  }
+
+  if (normalized.includes('provider') || normalized.includes('oauth')) {
+    return t.googleNotConfigured;
+  }
+
+  return message || t.authError;
+}
+
 function AuthModal({ open, language, onClose }) {
   const t = copy[language];
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
+  const [cooldownSeconds, setCooldownSeconds] = useState(0);
 
   useEffect(() => {
     if (!open) return;
     setStatus('idle');
     setMessage('');
+    setCooldownSeconds(0);
   }, [open]);
+
+  useEffect(() => {
+    if (!cooldownSeconds) return undefined;
+    const timer = window.setInterval(() => {
+      setCooldownSeconds((current) => Math.max(current - 1, 0));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [cooldownSeconds]);
 
   if (!open) return null;
 
@@ -615,6 +647,12 @@ function AuthModal({ open, language, onClose }) {
       return;
     }
 
+    if (cooldownSeconds > 0) {
+      setStatus('error');
+      setMessage(t.authRateLimited);
+      return;
+    }
+
     setStatus('loading');
     setMessage('');
     const { error } = await supabase.auth.signInWithOtp({
@@ -626,10 +664,14 @@ function AuthModal({ open, language, onClose }) {
 
     if (error) {
       setStatus('error');
-      setMessage(error.message || t.authError);
+      if (error.status === 429 || String(error.message || '').toLowerCase().includes('rate limit')) {
+        setCooldownSeconds(60);
+      }
+      setMessage(authErrorMessage(error, language));
       return;
     }
 
+    setCooldownSeconds(60);
     setStatus('sent');
     setMessage(t.magicLinkSent);
   }
@@ -652,7 +694,7 @@ function AuthModal({ open, language, onClose }) {
 
     if (error) {
       setStatus('error');
-      setMessage(error.message || t.authError);
+      setMessage(authErrorMessage(error, language));
     }
   }
 
@@ -684,9 +726,9 @@ function AuthModal({ open, language, onClose }) {
               placeholder="you@example.com"
             />
           </label>
-          <button type="submit" disabled={status === 'loading'}>
+          <button type="submit" disabled={status === 'loading' || cooldownSeconds > 0}>
             {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <Mail size={17} />}
-            {t.sendMagicLink}
+            {cooldownSeconds > 0 ? t.tryAgainIn(cooldownSeconds) : t.sendMagicLink}
           </button>
         </form>
         <button className="googleButton" type="button" onClick={handleGoogleSignIn} disabled={status === 'loading'}>
