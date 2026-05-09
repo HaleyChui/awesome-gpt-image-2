@@ -162,7 +162,11 @@ export default async function handler(req, res) {
 
   const auth = await getAuthContext(req, { allowAnonymous: req.method === 'GET' });
   if (auth.error) {
-    return json(res, auth.status || 401, { ok: false, error: auth.error });
+    return json(res, auth.status || 401, {
+      ok: false,
+      error: auth.error,
+      loginRequired: auth.error === 'AUTH_REQUIRED'
+    });
   }
 
   if (req.method === 'GET') {
@@ -175,7 +179,7 @@ export default async function handler(req, res) {
   }
 
   if (!auth.user || !auth.profile) {
-    return json(res, 401, { ok: false, error: 'AUTH_REQUIRED' });
+    return json(res, 401, { ok: false, error: 'AUTH_REQUIRED', loginRequired: true });
   }
 
   let body;

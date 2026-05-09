@@ -1192,7 +1192,7 @@ function PreviewDialog({
     if (isTemplate || isGenerating) return;
     if (!isSignedIn) {
       onAuthRequired();
-      setGenerationState({ status: 'error', image: generatedImage, message: t.authRequired });
+      setGenerationState({ status: 'idle', image: generatedImage, message: '' });
       return;
     }
     const prompt = editablePrompt.trim();
@@ -1223,7 +1223,11 @@ function PreviewDialog({
 
       if (!response.ok || !payload.ok || !payload.image) {
         if (payload.user) onProfileChange(payload.user);
-        if (payload.error === 'AUTH_REQUIRED') onAuthRequired();
+        if (payload.error === 'AUTH_REQUIRED' || payload.loginRequired) {
+          onAuthRequired();
+          setGenerationState({ status: 'idle', image: generatedImage, message: '' });
+          return;
+        }
         throw new Error(payload.error || 'GENERATION_FAILED');
       }
 
@@ -1688,7 +1692,10 @@ function App() {
               language={language}
               onCopy={copyPrompt}
               onOpen={(item) => setPreview({ type: 'case', item })}
-              onGenerate={(item) => setPreview({ type: 'case', item })}
+              onGenerate={(item) => {
+                setPreview({ type: 'case', item });
+                if (!session?.access_token) setAuthOpen(true);
+              }}
               styleLibrary={styleLibrary}
               key={caseItem.id}
             />
