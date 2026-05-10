@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/freestylefly/awesome-gpt-image-2",
-  "totalCases": 414,
+  "totalCases": 417,
   "categories": [
     "Architecture & Spaces",
     "Brand & Logos",
@@ -50,6 +50,73 @@
     "Travel"
   ],
   "cases": [
+    {
+      "id": 420,
+      "title": "红跑道低角度夏日人像",
+      "image": "/images/case420.jpg",
+      "imageAlt": "红跑道低角度夏日人像",
+      "sourceLabel": "@Shinning1010",
+      "sourceUrl": "https://x.com/Shinning1010/status/2053521749967352285",
+      "prompt": "Use the uploaded portrait photo as the appearance reference for the person. Create a bright photorealistic outdoor portrait of a young woman lying on a red running track on a modern white arch pedestrian bridge. Ultra-wide low-angle selfie perspective, her arm reaching toward the camera in the foreground, relaxed pose, wired headphones around her neck, white sleeveless top, loose gray pants, black hair spread on the ground. Clean blue sky with soft white clouds, strong midday sunlight, crisp shadows, high clarity, fresh youthful mood, architectural symmetry, realistic skin texture, cinematic composition, 3:4 vertical image\n\nNegative Prompt:\n\nwatermark, logo, text, caption, signature, AI label, extra fingers, deformed hands, distorted face, wrong identity, duplicate person, blurry face, low resolution, over-smoothed skin, plastic skin, unnatural anatomy, bad perspective, messy background, harsh artifacts, overexposure, underexposure",
+      "promptPreview": "Use the uploaded portrait photo as the appearance reference for the person. Create a bright photorealistic outdoor portrait of a young woman lying on a red running track on a modern white arch pedestrian bridge. Ultra-wi",
+      "category": "Photography & Realism",
+      "styles": [
+        "Realistic",
+        "Brand",
+        "Character"
+      ],
+      "scenes": [
+        "Tech",
+        "Commerce",
+        "Fashion"
+      ],
+      "featured": false,
+      "githubUrl": "https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-420"
+    },
+    {
+      "id": 419,
+      "title": "可颂烘焙流程 Storyboard",
+      "image": "/images/case419.jpg",
+      "imageAlt": "可颂烘焙流程 Storyboard",
+      "sourceLabel": "@TechieBySA",
+      "sourceUrl": "https://x.com/TechieBySA/status/2053523784481554759",
+      "prompt": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER. Wide 16:9 layout, white background, black borders, bold black typography, premium Pixar 3D stylized rendering, bright vivid colors — warm golden yellows, rich buttery creams, flaky browns, soft pastry whites, warm French bakery morning light.\nTop header:\n\nTHE CROISSANT BAKER\nTOTAL VIDEO TIME: 12 SECONDS\n8 SHOTS · WARM · FLAKY · IRRESISTIBLE\nLegend icons: ACTION, HEAT, TIME HINT, INGREDIENT\nThin warm golden accent line running full width beneath header\n\nSame Pixar-style young French male baker throughout: white baker's jacket, flour-dusted hands, warm authentic French boulangerie setting, marble countertop, warm morning light streaming through windows, bread racks in background. Bright, warm, delicious. Every panel a completely different composition and color.\n8 panels:\n\nTHE OPENER — Wide shot of baker arriving at the boulangerie before dawn, tying apron, switching on the warm kitchen lights, marble counter visible, bread racks behind, flour dusting the air, full world established, bright and cinematic\nTHE BUTTER BLOCK — Baker slams a massive cold block of European butter onto the marble counter with both hands, dramatic impact, flour cloud puffing up, close-up on hands, this is the bones moment — the start of everything\nTHE LAMINATION — Baker folding the dough over the butter block precisely, rolling pin pressing down hard, layers building, side angle shot showing the beautiful layering beginning, confident and skilled\nTHE ROLL — Dough rolled out into a large thin sheet, baker leaning into the rolling pin with full body weight, marble counter, flour dusting everywhere, wide shot showing the scale of the dough\nTHE SHAPE — Triangles cut from the dough, baker rolling each one from the wide end into a tight crescent, hands moving fast and confident, close-up on the shaping, beautiful and precise\nTHE EGG WASH — Baker brushing golden egg wash over each shaped croissant with a pastry brush, each one glistening beautifully, close-up overhead angle, warm golden color, stunning composition\nTHE OVEN — Croissants slid into the blazing hot oven on a tray, oven door closed, through the oven glass croissants visibly puffing and turning deep golden, layers separating dramatically, warm orange glow\nTHE TEAR — Baker pulls a perfect golden croissant from the rack, holds it up, tears it open slowly revealing hundreds of impossibly flaky buttery layers inside, steam escaping, butter glistening — this is the cheese pull moment, the hero shot of the entire video\n\nFooter:\n\nVIDEO FLOW: 8 shots × 1.5s = 12 seconds. Butter block to the tear.\nCAMERA TIPS: wide on opener, close-up on butter slam and shaping, side angle on lamination, overhead on egg wash, oven glass for panel 7, extreme close-up on the tear reveal\nLIGHT & STYLE: warm golden French bakery morning light, buttery cream tones, flour dust in the air, bright vivid Pixar colors, shallow depth of field on close-ups\nBAKER NOTES: one baker, one perfect croissant, one irresistible tear. The lamination layers and the final tear are everything — make them stunning.",
+      "promptPreview": "Create a crisp, clean infographic storyboard poster for THE CROISSANT BAKER. Wide 16:9 layout, white background, black borders, bold black typography, premium Pixar 3D stylized rendering, bright vivid colors — warm golde",
+      "category": "Scenes & Storytelling",
+      "styles": [
+        "UI",
+        "Infographic",
+        "Poster"
+      ],
+      "scenes": [
+        "Tech",
+        "Commerce",
+        "Food"
+      ],
+      "featured": false,
+      "githubUrl": "https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-419"
+    },
+    {
+      "id": 418,
+      "title": "中世纪城市旅行海报",
+      "image": "/images/case418.jpg",
+      "imageAlt": "中世纪城市旅行海报",
+      "sourceLabel": "@Goodmanprotocol",
+      "sourceUrl": "https://x.com/Goodmanprotocol/status/2053523890744545437",
+      "prompt": "Create a vertical mid-century travel poster for [CITY NAME] featuring [LANDMARK]. Use a strict 3-color palette: cream paper, black technical linework, and [COLOR].\nStyle: Minimalist isometric bird's-eye view with ultra-fine hatching and screen-print texture.\nColor usage: Solid flat [COLOR] for the entire sky and small accents on roofs or streets. No gradients.\nText: Bold sans-serif \"[CITY NAME]\" at top in cream, with the local language name in smaller cream text below.",
+      "promptPreview": "Create a vertical mid-century travel poster for [CITY NAME] featuring [LANDMARK]. Use a strict 3-color palette: cream paper, black technical linework, and [COLOR]. Style: Minimalist isometric bird's-eye view with ultra-f",
+      "category": "Posters & Typography",
+      "styles": [
+        "Poster"
+      ],
+      "scenes": [
+        "Tech",
+        "Commerce",
+        "Travel"
+      ],
+      "featured": false,
+      "githubUrl": "https://github.com/freestylefly/awesome-gpt-image-2/blob/main/docs/gallery-part-2.md#case-418"
+    },
     {
       "id": 417,
       "title": "复古印尼猫薄荷广告",

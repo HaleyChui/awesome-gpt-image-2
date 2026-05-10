@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 417。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 420。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-417](./gallery-part-2.md)
+- [Part 2：例 166-420](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -85,24 +85,27 @@
 - [例 415：东方神话人物志百科海报](./gallery-part-2.md#case-415)
 - [例 416：Earth Signs 角色 Scrapbook](./gallery-part-2.md#case-416)
 - [例 417：复古印尼猫薄荷广告](./gallery-part-2.md#case-417)
+- [例 418：中世纪城市旅行海报](./gallery-part-2.md#case-418)
+- [例 419：可颂烘焙流程 Storyboard](./gallery-part-2.md#case-419)
+- [例 420：红跑道低角度夏日人像](./gallery-part-2.md#case-420)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-417，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-420，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
 - UI与界面：63
 - 图表与信息可视化：45
-- 海报与排版：68
+- 海报与排版：69
 - 商品与电商：27
 - 品牌与标志：20
 - 建筑与空间：10
-- 摄影与写实：46
+- 摄影与写实：47
 - 插画与艺术：38
 - 人物与角色：20
-- 场景与叙事：14
+- 场景与叙事：15
 - 历史与古风题材：16
 - 文档与出版物：9
 - 其他应用场景：29
@@ -229,7 +232,7 @@
 
 <a name="cat-poster"></a>
 
-### 📰 海报与排版 · 68 cases
+### 📰 海报与排版 · 69 cases
 
 - [例 3：足球主题电影海报](./gallery-part-1.md#case-3)
 - [例 5：主题海报版式设计](./gallery-part-1.md#case-5)
@@ -298,6 +301,7 @@
 - [例 401：Lost in 国家旅行海报拼贴](./gallery-part-2.md#case-401)
 - [例 406：巨型游戏手柄街头 Campaign](./gallery-part-2.md#case-406)
 - [例 417：复古印尼猫薄荷广告](./gallery-part-2.md#case-417)
+- [例 418：中世纪城市旅行海报](./gallery-part-2.md#case-418)
 
 <a name="cat-product"></a>
 
@@ -373,7 +377,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 46 cases
+### 📷 摄影与写实 · 47 cases
 
 - [例 24：漫画分镜叙事设计](./gallery-part-1.md#case-24)
 - [例 26：建筑空间场景图](./gallery-part-1.md#case-26)
@@ -421,6 +425,7 @@
 - [例 408：Cozy Academia 学习手记](./gallery-part-2.md#case-408)
 - [例 412：彩色按钮时尚 Campaign](./gallery-part-2.md#case-412)
 - [例 414：室内晨间写实摄影](./gallery-part-2.md#case-414)
+- [例 420：红跑道低角度夏日人像](./gallery-part-2.md#case-420)
 
 <a name="cat-illustration"></a>
 
@@ -492,7 +497,7 @@
 
 <a name="cat-scene"></a>
 
-### 🎬 场景与叙事 · 14 cases
+### 🎬 场景与叙事 · 15 cases
 
 - [例 182：千禧年日系校园喜剧场景](./gallery-part-2.md#case-182)
 - [例 208：樱花树下害羞双马尾少女](./gallery-part-2.md#case-208)
@@ -508,6 +513,7 @@
 - [例 394：中世纪村庄双精灵冒险者](./gallery-part-2.md#case-394)
 - [例 395：骑士法师大战石像魔像](./gallery-part-2.md#case-395)
 - [例 413：当代舞现场 Storyboard](./gallery-part-2.md#case-413)
+- [例 419：可颂烘焙流程 Storyboard](./gallery-part-2.md#case-419)
 
 <a name="cat-history"></a>
 

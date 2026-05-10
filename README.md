@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-417-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-420-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-417](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-420](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -59,7 +59,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 Posters & Typography</strong><br><sub>68 cases</sub></p>
+      <p><strong>📰 Posters & Typography</strong><br><sub>69 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="Posters and typography" width="220"></a><br>
       <sub>Event posters, covers, type-driven visuals, and strong layout compositions.</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>View Cases</strong></a>
@@ -87,7 +87,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>46 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>47 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -107,7 +107,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>14 cases</sub></p>
+      <p><strong>🎬 Scenes & Storytelling</strong><br><sub>15 cases</sub></p>
       <a href="docs/gallery.md#cat-scene"><img src="data/images/category-covers/scene.jpg" alt="Scenes and storytelling" width="220"></a><br>
       <sub>Storyboards, narrative scenes, livestream frames, and worldbuilding.</sub><br>
       <a href="docs/gallery.md#cat-scene"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 417 cases by gallery part and category.</sub><br>
+      <sub>Browse all 420 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-417"><img src="data/images/case417.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-420"><img src="data/images/case420.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-417"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-420"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -399,22 +399,22 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 415: Eastern Myth Character Dossier</strong></p>
-      <a href="docs/gallery-part-2.md#case-415"><img src="data/images/case415.jpg" alt="Eastern myth character dossier" width="140"></a><br>
-      <sub>A vertical A4 mythology dossier layout with central character art, cultural source cards, symbols, and classical ornament.</sub><br>
-      <a href="docs/gallery-part-2.md#case-415"><strong>View Case</strong></a>
+      <p><strong>Case 418: Mid-Century City Travel Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-418"><img src="data/images/case418.jpg" alt="Mid-century city travel poster" width="140"></a><br>
+      <sub>A strict three-color travel poster system with isometric city views, hatching, and screen-print texture.</sub><br>
+      <a href="docs/gallery-part-2.md#case-418"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 416: Earth Signs Character Scrapbook</strong></p>
-      <a href="docs/gallery-part-2.md#case-416"><img src="data/images/case416.jpg" alt="Earth signs character scrapbook" width="140"></a><br>
-      <sub>A fashion-meets-illustration character sheet with realistic portrait, 3D chibis, handwritten notes, and earth-tone styling.</sub><br>
-      <a href="docs/gallery-part-2.md#case-416"><strong>View Case</strong></a>
+      <p><strong>Case 419: Croissant Baker Storyboard</strong></p>
+      <a href="docs/gallery-part-2.md#case-419"><img src="data/images/case419.jpg" alt="Croissant baker storyboard" width="140"></a><br>
+      <sub>An 8-shot food video storyboard with timing, icon legend, warm bakery lighting, and step-by-step production panels.</sub><br>
+      <a href="docs/gallery-part-2.md#case-419"><strong>View Case</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>Case 417: Vintage Indonesian Catnip Ad</strong></p>
-      <a href="docs/gallery-part-2.md#case-417"><img src="data/images/case417.jpg" alt="Vintage Indonesian catnip ad" width="140"></a><br>
-      <sub>A distressed 1970s-style product poster with bold retro typography, aged print texture, and playful local ad energy.</sub><br>
-      <a href="docs/gallery-part-2.md#case-417"><strong>View Case</strong></a>
+      <p><strong>Case 420: Red Track Summer Portrait</strong></p>
+      <a href="docs/gallery-part-2.md#case-420"><img src="data/images/case420.jpg" alt="Red track summer portrait" width="140"></a><br>
+      <sub>A bright low-angle bridge portrait with red track texture, clean blue sky, and photorealistic summer lighting.</sub><br>
+      <a href="docs/gallery-part-2.md#case-420"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>
