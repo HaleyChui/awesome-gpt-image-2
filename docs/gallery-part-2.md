@@ -8271,3 +8271,219 @@ watermark, logo, text, caption, signature, AI label, extra fingers, deformed han
 ```
 
 ***
+
+<a name="case-421"></a>
+
+### 例 421：iPhone 屏幕遮脸创意人像
+
+![iPhone 屏幕遮脸创意人像](../data/images/case421.jpg)
+
+**来源：** [@Ciri_ai](https://x.com/Ciri_ai/status/2053535379618423118)
+
+**提示词：**
+
+```text
+Ultra-realistic creative portrait taken with an iPhone, identity accurately preserved from the reference image. A woman stands inside a store, facing a glass display window or a reflective wall, photographed from a slightly elevated frontal angle. She holds a smartphone horizontally in front of her face, covering her eyes and the upper part of her face. The phone's screen points at the camera and clearly displays a real-time image of her face.
+```
+
+***
+
+<a name="case-422"></a>
+
+### 例 422：冬季生存惊悚 Storyboard
+
+![冬季生存惊悚 Storyboard](../data/images/case422.jpg)
+
+**来源：** [@zulkarnaimx](https://x.com/zulkarnaimx/status/2053723774680535538)
+
+**提示词：**
+
+```text
+Cinematic Survival Thriller Storyboard Prompt
+
+Create a premium cinematic storyboard presentation sheet for a prestige winter survival thriller.
+Ultra-detailed professional film pre-production layout, clean editorial design, grayscale blueprint background with labeled sections and technical annotations.
+Aspect ratio 16:9 horizontal master board.
+
+SHARED CHOICES HEADER
+
+* Cut Count: 10
+* Color Palette: icy blue + steel gray + pine green + ember amber
+* Environment Fingerprint: snow-covered pine clearing, overturned horse carcass, torn campsite debris, looming conifer forest, drifting winter fog
+
+---
+
+1. CHARACTER REFERENCE
+
+A realistic South Asian man in his early 30s wearing a dark charcoal business suit, white dress shirt, black tie, polished black shoes.
+Snow dusted across shoulders and hair.
+Calm but haunted expression.
+Show:
+
+* front view
+* side profile
+* back view
+* facial close-up
+* side close-up
+* costume fabric detail
+* damaged sleeve detail
+* shoes in snow
+
+Character notes:
+“An intelligent city professional trapped in a brutal wilderness.
+Outer composure slowly cracks under primal fear.
+Suit = identity, burden, and last thread of control.”
+
+Palette swatches:
+
+* icy blue
+* steel gray
+* pine green
+* ember amber
+
+---
+
+2. ENVIRONMENT / SET DESIGN
+
+Top-down aerial map of a snowy forest clearing at dusk.
+Dead horses partially buried in snow.
+Destroyed campsite tents.
+Blood trails across frozen ground.
+Dense dark pine trees forming a claustrophobic wall around the clearing.
+Heavy winter fog drifting through the forest.
+
+Add cinematic camera movement markers:
+
+1. Crane-down
+2. Track
+3. Push-in
+4. Handheld
+5. Steadicam
+6. Pan-right
+7. Dolly-in
+8. Rack-focus
+9. Arc shot
+10. Pull-out
+
+Include arrows and overhead cinematic blocking diagram.
+
+Side elevation panel:
+
+* descending crane shot
+* fog layers
+* silhouette scale reference
+* conifer enclosure composition
+
+Location elements legend:
+
+* tree line
+* torn campsite
+* horse carcass debris
+* blood-stained snow
+* main character
+* wolf approach zones
+
+---
+
+3. STORYBOARD (10 CUTS)
+
+CUT 1
+
+Wide aerial crane-down shot over frozen clearing.
+Tiny suited man surrounded by devastation.
+Moody blue dusk lighting.
+
+CUT 2
+
+Tracking medium shot beside the man walking cautiously through snow and ripped tents.
+Wind moving fabric debris.
+
+CUT 3
+
+75mm close-up push-in on face.
+Cold breath visible.
+Fear slowly emerging in his eyes.
+
+CUT 4
+
+Extreme close-up handheld shot of trembling hand gripping torn frozen fabric near blood-covered snow.
+
+CUT 5
+
+Steadicam medium shot revealing wolves emerging between trees behind him.
+
+CUT 6
+
+Pan-right wide shot sweeping across forest edge.
+Multiple wolf silhouettes visible in fog.
+
+CUT 7
+
+Over-the-shoulder dolly-in toward alpha wolf approaching slowly through snow.
+
+CUT 8
+
+Rack-focus insert shot shifting focus from frozen hand to wolf tracks in snow.
+
+CUT 9
+
+Arc shot circling around the man as wolves tighten formation.
+Snow and pine branches moving in icy wind.
+
+CUT 10
+
+Close-up pull-out shot from his exhausted face revealing the full massacre behind him in fading ember dusk light.
+
+---
+
+4. LIGHTING / MOOD / STYLE NOTES
+
+* icy dusk ambience
+* cold blue backlight
+* ember sunset glow fading through fog
+* wet fabric specular highlights
+* cinematic volumetric fog
+* snow particles drifting through frame
+* high-contrast prestige thriller realism
+
+Mood keywords:
+
+* isolation
+* winter dread
+* survival instinct
+* prestige thriller realism
+* primal tension
+* psychological fear
+
+Cinematography notes:
+
+* anamorphic lenses (40mm / 50mm / 75mm / 100mm)
+* shallow depth of field
+* compressed forest layers
+* natural handheld movement
+* realistic snow atmosphere
+* cinematic Hollywood survival thriller aesthetic
+* ultra detailed
+* photorealistic
+* film grain
+* 8k production design board
+* premium movie pitch deck style
+```
+
+***
+
+<a name="case-423"></a>
+
+### 例 423：日系手绘涂鸦半身插画
+
+![日系手绘涂鸦半身插画](../data/images/case423.jpg)
+
+**来源：** [@heyfatema](https://x.com/heyfatema/status/2053703602246668607)
+
+**提示词：**
+
+```text
+Generate an illustration of "me" as you imagine it. Features include a Japanese illustration style, distinct character features, natural emotional expressions, a half-body composition, dynamic poses, exquisite clothing details, a hand-drawn graffiti style, ink splatter strokes, free-flowing lines, a blend of pastels and ink, a comic sketch texture, a minimalist white background, surrounding symbolic elements, a strong atmosphere, high detail, and high quality.
+```
+
+***
