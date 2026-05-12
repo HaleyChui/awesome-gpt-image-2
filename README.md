@@ -287,6 +287,11 @@ CIYUAN_BASE_URL=https://ciyuan.today
 APP_URL=https://gpt-image2.canghe.ai
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
+VITE_GA_MEASUREMENT_ID=
+GA4_PROPERTY_ID=
+GOOGLE_ANALYTICS_CLIENT_ID=
+GOOGLE_ANALYTICS_CLIENT_SECRET=
+GOOGLE_ANALYTICS_REFRESH_TOKEN=
 ```
 
 Setup checklist:
@@ -294,6 +299,7 @@ Setup checklist:
 - Apply [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) to the Supabase project.
 - Apply [`supabase/migrations/20260509090000_membership_billing.sql`](supabase/migrations/20260509090000_membership_billing.sql) to add membership plans, credit packs, Stripe order records, and credit adjustment RPCs.
 - Apply [`supabase/migrations/20260512090000_google_account_center.sql`](supabase/migrations/20260512090000_google_account_center.sql) to add account usage summaries and forced credit charging for super admins.
+- Apply [`supabase/migrations/20260512143000_pricing_admin_metrics.sql`](supabase/migrations/20260512143000_pricing_admin_metrics.sql) to update the `$5 / 300 credits` catalog and add admin dashboard metrics.
 - Add `https://gpt-image2.canghe.ai` and local dev URLs such as `http://127.0.0.1:5173` to Supabase Auth redirect URLs.
 - Enable the Google Provider after adding Google OAuth credentials in the Supabase Dashboard.
 - To force Google-only sign-in, disable the Email Provider in Supabase Auth settings.
@@ -301,6 +307,9 @@ Setup checklist:
 - Configure Stripe Checkout with the webhook URL `https://gpt-image2.canghe.ai/api/billing/webhook`.
 - Subscribe the Stripe webhook to `checkout.session.completed`, `invoice.payment_succeeded`, `customer.subscription.updated`, and `customer.subscription.deleted`.
 - Keep `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` only in server-side Vercel Environment Variables.
+- Create a GA4 property for `gpt-image2.canghe.ai`, add the measurement ID to `VITE_GA_MEASUREMENT_ID`, and copy the numeric property ID to `GA4_PROPERTY_ID`.
+- Create a Google OAuth Web Client with `http://localhost:8080/oauth2callback` as an authorized redirect URI, then add `GOOGLE_ANALYTICS_CLIENT_ID` and `GOOGLE_ANALYTICS_CLIENT_SECRET` to local `.env.local`.
+- Run `npm run ga4:oauth`, open the generated URL, approve the `analytics.readonly` permission, paste the callback URL into the terminal, then add the returned `GOOGLE_ANALYTICS_REFRESH_TOKEN` to Vercel as a Sensitive environment variable.
 
 <a name="section-gallery"></a>
 

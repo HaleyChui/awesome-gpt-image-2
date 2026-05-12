@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowUpRight,
+  BarChart3,
   Bot,
   ChevronDown,
   Check,
@@ -23,7 +24,9 @@ import {
   ShieldCheck,
   Sparkles,
   Terminal,
+  TrendingUp,
   UserCircle,
+  UserPlus,
   Users,
   WandSparkles,
   X
@@ -33,6 +36,7 @@ import { isSupabaseConfigured, supabase } from './supabaseClient';
 import skillExampleImage from '../agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png';
 
 const fallbackRepoUrl = 'https://github.com/freestylefly/awesome-gpt-image-2';
+const gaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 const copy = {
   en: {
@@ -163,12 +167,44 @@ const copy = {
     signInToGenerate: 'Sign in to generate',
     creditsAvailable: (count) => `${count} credit${count === 1 ? '' : 's'} available`,
     adminTitle: 'User admin',
-    adminSubtitle: 'Read-only user, role, credit, and free-generation overview.',
+    adminSubtitle: 'Traffic, users, memberships, credits, and generation activity in one dashboard.',
+    adminMetrics: 'Dashboard',
+    trafficMetrics: 'Traffic',
+    businessMetrics: 'Business',
+    analyticsNotConfigured: 'GA4 is not configured yet. Business metrics are still available.',
+    analyticsLoadFailed: 'GA4 data could not be loaded. Business metrics are still available.',
+    range7d: '7 days',
+    range30d: '30 days',
+    pv: 'PV',
+    uv: 'UV',
+    sessions: 'Sessions',
+    newUsers: 'New users',
+    registeredUsers: 'Registered users',
+    newRegistrations: 'New registrations',
+    activeMemberships: 'Active members',
+    totalGenerationsMetric: 'Total generations',
+    rangeGenerations: 'Range generations',
+    succeeded: 'Succeeded',
+    failed: 'Failed',
+    pending: 'Pending',
+    creditsConsumed: 'Credits consumed',
+    creditsInCirculation: 'Credits in balances',
+    purchasedCredits: 'Purchased credits',
+    membershipCredits: 'Membership credits',
+    dailyTraffic: 'Daily traffic',
+    topPages: 'Top pages',
+    channels: 'Channels',
+    countries: 'Countries',
+    pageViews: 'Views',
+    noAnalyticsRows: 'No analytics rows yet.',
     refresh: 'Refresh',
     users: 'Users',
     role: 'Role',
     creditBalance: 'Credits',
     freeGeneration: 'Free test',
+    spentCredits: 'Spent',
+    purchased: 'Purchased',
+    lastGeneration: 'Last generation',
     createdAt: 'Created',
     loadingUsers: 'Loading users...',
     noUsers: 'No users yet.',
@@ -311,12 +347,44 @@ const copy = {
     signInToGenerate: '登录后生成',
     creditsAvailable: (count) => `可用积分 ${count}`,
     adminTitle: '用户管理',
-    adminSubtitle: '只读查看用户、角色、积分余额和免费生成状态。',
+    adminSubtitle: '统一查看流量、用户、会员、积分和生图活跃情况。',
+    adminMetrics: '数据看板',
+    trafficMetrics: '流量数据',
+    businessMetrics: '业务数据',
+    analyticsNotConfigured: 'GA4 还没有配置，当前先展示业务数据。',
+    analyticsLoadFailed: 'GA4 数据暂时读取失败，当前先展示业务数据。',
+    range7d: '近 7 天',
+    range30d: '近 30 天',
+    pv: 'PV',
+    uv: 'UV',
+    sessions: 'Sessions',
+    newUsers: '新访客',
+    registeredUsers: '注册用户',
+    newRegistrations: '新增注册',
+    activeMemberships: '活跃会员',
+    totalGenerationsMetric: '总生图量',
+    rangeGenerations: '区间生图量',
+    succeeded: '成功',
+    failed: '失败',
+    pending: '进行中',
+    creditsConsumed: '已消耗积分',
+    creditsInCirculation: '账户积分余额',
+    purchasedCredits: '购买积分',
+    membershipCredits: '会员发放积分',
+    dailyTraffic: '每日流量',
+    topPages: '热门页面',
+    channels: '来源渠道',
+    countries: '国家/地区',
+    pageViews: '浏览量',
+    noAnalyticsRows: '暂无统计数据。',
     refresh: '刷新',
     users: '用户',
     role: '角色',
     creditBalance: '积分',
     freeGeneration: '免费测试',
+    spentCredits: '消耗',
+    purchased: '购买',
+    lastGeneration: '最近生图',
     createdAt: '创建时间',
     loadingUsers: '正在加载用户...',
     noUsers: '暂无用户。',
@@ -401,6 +469,69 @@ const GENERATED_TESTS_STORAGE_KEY = 'gpt-image-2-generated-tests:v1';
 const MAX_SAVED_GENERATIONS = 12;
 const HERO_CASE_COUNT = 5;
 const HOT_STRIP_CASE_COUNT = 8;
+
+function pagePathWithHash() {
+  return `${window.location.pathname}${window.location.search}${window.location.hash}`;
+}
+
+function sendGaPageView() {
+  if (!gaMeasurementId || typeof window.gtag !== 'function') return;
+  window.gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: pagePathWithHash()
+  });
+}
+
+function useGaPageViews() {
+  useEffect(() => {
+    if (!gaMeasurementId) return undefined;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag('js', new Date());
+    window.gtag('config', gaMeasurementId, { send_page_view: false });
+
+    const existingScript = document.querySelector(`script[data-ga4="${gaMeasurementId}"]`);
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaMeasurementId)}`;
+      script.dataset.ga4 = gaMeasurementId;
+      document.head.appendChild(script);
+    }
+
+    sendGaPageView();
+    window.addEventListener('hashchange', sendGaPageView);
+    window.addEventListener('popstate', sendGaPageView);
+    return () => {
+      window.removeEventListener('hashchange', sendGaPageView);
+      window.removeEventListener('popstate', sendGaPageView);
+    };
+  }, []);
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(Number(value || 0));
+}
+
+function formatShortDate(value, language) {
+  if (!value) return '-';
+  const normalized = /^\d{8}$/.test(String(value))
+    ? `${String(value).slice(0, 4)}-${String(value).slice(4, 6)}-${String(value).slice(6, 8)}T00:00:00Z`
+    : value;
+  return new Date(normalized).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', {
+    month: 'short',
+    day: 'numeric'
+  });
+}
+
+function percentOf(value, max) {
+  if (!max) return 0;
+  return Math.max(4, Math.round((Number(value || 0) / max) * 100));
+}
 
 function readSavedGenerations() {
   try {
@@ -1189,15 +1320,75 @@ function AccountPanel({
   );
 }
 
-function AdminPanel({ open, language, session, onClose }) {
+function AdminMetricCard({ icon, label, value, hint }) {
+  return (
+    <div className="adminMetricCard">
+      <span className="adminMetricIcon">{icon}</span>
+      <div>
+        <span>{label}</span>
+        <strong>{formatNumber(value)}</strong>
+        {hint ? <em>{hint}</em> : null}
+      </div>
+    </div>
+  );
+}
+
+function AdminMiniBars({ rows, language }) {
+  const maxViews = Math.max(...rows.map((row) => Number(row.pageViews || 0)), 0);
+  const maxUsers = Math.max(...rows.map((row) => Number(row.activeUsers || 0)), 0);
+
+  return (
+    <div className="adminMiniBars">
+      {rows.map((row) => (
+        <div className="adminMiniBar" key={row.date}>
+          <span>{formatShortDate(row.date, language)}</span>
+          <div>
+            <i style={{ width: `${percentOf(row.pageViews, maxViews)}%` }} />
+            <b style={{ width: `${percentOf(row.activeUsers, maxUsers)}%` }} />
+          </div>
+          <strong>{formatNumber(row.pageViews)}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AdminRankList({ rows, type, language }) {
+  const t = copy[language];
+  if (!rows?.length) return <p className="emptyTransactions">{t.noAnalyticsRows}</p>;
+
+  return (
+    <div className="adminRankList">
+      {rows.map((row, index) => {
+        const title = row.page || row.channel || row.country || '-';
+        const mainValue = row.pageViews ?? row.sessions ?? row.activeUsers ?? 0;
+        const subValue = row.activeUsers ?? row.pageViews ?? 0;
+        return (
+          <div className="adminRankItem" key={`${type}-${title}-${index}`}>
+            <span>{index + 1}</span>
+            <div>
+              <strong title={title}>{title}</strong>
+              <em>{type === 'channels' ? t.sessions : t.uv}: {formatNumber(subValue)}</em>
+            </div>
+            <b>{formatNumber(mainValue)}</b>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function AdminPanel({ open, language, session, casesById, onClose, onOpenCase }) {
   const t = copy[language];
   const [users, setUsers] = useState([]);
+  const [metrics, setMetrics] = useState(null);
+  const [range, setRange] = useState('7d');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const [adjustment, setAdjustment] = useState(null);
   const [adjustStatus, setAdjustStatus] = useState('idle');
 
-  async function loadUsers() {
+  async function loadAdminData(nextRange = range) {
     if (!session?.access_token) {
       setStatus('error');
       setMessage(t.adminOnly);
@@ -1207,14 +1398,21 @@ function AdminPanel({ open, language, session, onClose }) {
     setStatus('loading');
     setMessage('');
     try {
-      const response = await fetch('/api/admin/users', {
-        headers: getAuthHeaders(session)
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) {
-        throw new Error(payload.error || 'SERVER_NOT_CONFIGURED');
+      const headers = getAuthHeaders(session);
+      const [usersResponse, metricsResponse] = await Promise.all([
+        fetch('/api/admin/users', { headers }),
+        fetch(`/api/admin/metrics?range=${encodeURIComponent(nextRange)}`, { headers })
+      ]);
+      const usersPayload = await usersResponse.json().catch(() => ({}));
+      const metricsPayload = await metricsResponse.json().catch(() => ({}));
+      if (!usersResponse.ok || !usersPayload.ok) {
+        throw new Error(usersPayload.error || 'SERVER_NOT_CONFIGURED');
       }
-      setUsers(payload.users || []);
+      if (!metricsResponse.ok || !metricsPayload.ok) {
+        throw new Error(metricsPayload.error || 'SERVER_NOT_CONFIGURED');
+      }
+      setUsers(usersPayload.users || []);
+      setMetrics(metricsPayload);
       setStatus('ready');
     } catch (error) {
       setStatus('error');
@@ -1245,11 +1443,9 @@ function AdminPanel({ open, language, session, onClose }) {
       if (!response.ok || !payload.ok) {
         throw new Error(payload.error || 'CREDIT_ADJUSTMENT_FAILED');
       }
-      setUsers((current) => current.map((user) => (
-        user.id === payload.user.id ? { ...user, ...payload.user } : user
-      )));
       setAdjustment(null);
       setAdjustStatus('idle');
+      await loadAdminData();
     } catch (error) {
       setAdjustStatus('error');
       setMessage(generationErrorMessage(error.message, language));
@@ -1257,10 +1453,18 @@ function AdminPanel({ open, language, session, onClose }) {
   }
 
   useEffect(() => {
-    if (open) loadUsers();
-  }, [open, session?.access_token]);
+    if (open) loadAdminData(range);
+  }, [open, session?.access_token, range]);
 
   if (!open) return null;
+  const traffic = metrics?.traffic || {};
+  const business = metrics?.business || {};
+  const trafficTotals = traffic.totals || {};
+  const analyticsMessage = !traffic.configured
+    ? t.analyticsNotConfigured
+    : traffic.error
+      ? t.analyticsLoadFailed
+      : '';
 
   return (
     <div
@@ -1283,7 +1487,93 @@ function AdminPanel({ open, language, session, onClose }) {
             <h2 id="admin-title">{t.adminTitle}</h2>
             <p>{t.adminSubtitle}</p>
           </div>
-          <button type="button" onClick={loadUsers} disabled={status === 'loading'}>
+          <div className="adminHeaderActions">
+            <div className="adminRangeToggle" role="group" aria-label={t.adminMetrics}>
+              {[
+                ['7d', t.range7d],
+                ['30d', t.range30d]
+              ].map(([value, label]) => (
+                <button
+                  className={cx(range === value && 'active')}
+                  type="button"
+                  onClick={() => setRange(value)}
+                  key={value}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <button type="button" onClick={() => loadAdminData()} disabled={status === 'loading'}>
+              {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <RefreshCw size={17} />}
+              {t.refresh}
+            </button>
+          </div>
+        </div>
+
+        {metrics ? (
+          <div className="adminDashboard">
+            <section className="adminBlock">
+              <h3>
+                <TrendingUp size={18} />
+                {t.trafficMetrics}
+              </h3>
+              {analyticsMessage ? <p className="adminNotice">{analyticsMessage}</p> : null}
+              <div className="adminMetricGrid">
+                <AdminMetricCard icon={<BarChart3 size={18} />} label={t.pv} value={trafficTotals.pageViews} />
+                <AdminMetricCard icon={<Users size={18} />} label={t.uv} value={trafficTotals.activeUsers} />
+                <AdminMetricCard icon={<ReceiptText size={18} />} label={t.sessions} value={trafficTotals.sessions} />
+                <AdminMetricCard icon={<UserPlus size={18} />} label={t.newUsers} value={trafficTotals.newUsers} />
+              </div>
+              <div className="adminTrafficGrid">
+                <div className="adminPanelCard wide">
+                  <h4>{t.dailyTraffic}</h4>
+                  {traffic.daily?.length ? (
+                    <AdminMiniBars rows={traffic.daily} language={language} />
+                  ) : (
+                    <p className="emptyTransactions">{t.noAnalyticsRows}</p>
+                  )}
+                </div>
+                <div className="adminPanelCard">
+                  <h4>{t.topPages}</h4>
+                  <AdminRankList rows={traffic.topPages || []} type="pages" language={language} />
+                </div>
+                <div className="adminPanelCard">
+                  <h4>{t.channels}</h4>
+                  <AdminRankList rows={traffic.channels || []} type="channels" language={language} />
+                </div>
+                <div className="adminPanelCard">
+                  <h4>{t.countries}</h4>
+                  <AdminRankList rows={traffic.countries || []} type="countries" language={language} />
+                </div>
+              </div>
+            </section>
+
+            <section className="adminBlock">
+              <h3>
+                <ShieldCheck size={18} />
+                {t.businessMetrics}
+              </h3>
+              <div className="adminMetricGrid">
+                <AdminMetricCard icon={<Users size={18} />} label={t.registeredUsers} value={business.totalUsers} hint={`${t.newRegistrations}: ${formatNumber(business.rangeUsers)}`} />
+                <AdminMetricCard icon={<Crown size={18} />} label={t.activeMemberships} value={business.activeMemberships} />
+                <AdminMetricCard icon={<ImageIcon size={18} />} label={t.totalGenerationsMetric} value={business.totalGenerations} hint={`${t.rangeGenerations}: ${formatNumber(business.rangeGenerations)}`} />
+                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsConsumed} value={business.totalGenerationCredits} hint={`${t.rangeGenerations}: ${formatNumber(business.rangeGenerationCredits)}`} />
+                <AdminMetricCard icon={<PackageCheck size={18} />} label={t.succeeded} value={business.succeededGenerations} />
+                <AdminMetricCard icon={<X size={18} />} label={t.failed} value={business.failedGenerations} />
+                <AdminMetricCard icon={<LoaderCircle size={18} />} label={t.pending} value={business.pendingGenerations} />
+                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsInCirculation} value={business.totalCreditBalance} />
+                <AdminMetricCard icon={<CreditCard size={18} />} label={t.purchasedCredits} value={business.purchasedCredits} />
+                <AdminMetricCard icon={<Crown size={18} />} label={t.membershipCredits} value={business.membershipCredits} />
+              </div>
+            </section>
+          </div>
+        ) : null}
+
+        <div className="adminHeader compact">
+          <div>
+            <h3>{t.users}</h3>
+          </div>
+          <button type="button" onClick={() => loadAdminData()} disabled={status === 'loading'}>
             {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <RefreshCw size={17} />}
             {t.refresh}
           </button>
@@ -1337,6 +1627,10 @@ function AdminPanel({ open, language, session, onClose }) {
                   <th>{t.creditBalance}</th>
                   <th>{t.currentPlan}</th>
                   <th>{t.freeGeneration}</th>
+                  <th>{t.totalGenerations}</th>
+                  <th>{t.spentCredits}</th>
+                  <th>{t.purchased}</th>
+                  <th>{t.lastGeneration}</th>
                   <th>{t.createdAt}</th>
                   <th>{t.adminAdjust}</th>
                 </tr>
@@ -1357,6 +1651,25 @@ function AdminPanel({ open, language, session, onClose }) {
                     <td>{user.creditBalance}</td>
                     <td>{formatMembershipStatus(user.membership, language)}</td>
                     <td>{user.freeUsed ? t.freeUsedShort : t.freeReady}</td>
+                    <td>{formatNumber(user.usage?.totalGenerations)}</td>
+                    <td>{formatNumber(user.usage?.totalGenerationCredits)}</td>
+                    <td>{formatNumber(user.usage?.purchasedCredits)}</td>
+                    <td>
+                      {user.usage?.lastGenerationCaseId ? (
+                        <button
+                          className="tableAction compactAction"
+                          type="button"
+                          onClick={() => {
+                            const caseItem = casesById?.get(user.usage.lastGenerationCaseId);
+                            if (caseItem) onOpenCase?.(caseItem);
+                          }}
+                          disabled={!casesById?.has(user.usage.lastGenerationCaseId)}
+                        >
+                          <ImageIcon size={14} />
+                          #{user.usage.lastGenerationCaseId}
+                        </button>
+                      ) : '-'}
+                    </td>
                     <td>{user.createdAt ? new Date(user.createdAt).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US') : '-'}</td>
                     <td>
                       <button
@@ -2162,6 +2475,7 @@ function PreviewDialog({
 }
 
 function App() {
+  useGaPageViews();
   const [siteData, setSiteData] = useState(null);
   const [styleLibrary, setStyleLibrary] = useState(null);
   const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'en');
@@ -2339,6 +2653,11 @@ function App() {
   function handleOpenCaseFromAccount(caseItem) {
     setAccountOpen(false);
     setBillingOpen(false);
+    setPreview({ type: 'case', item: caseItem });
+  }
+
+  function handleOpenCaseFromAdmin(caseItem) {
+    setAdminOpen(false);
     setPreview({ type: 'case', item: caseItem });
   }
 
@@ -2541,7 +2860,9 @@ function App() {
         open={adminOpen}
         language={language}
         session={session}
+        casesById={casesById}
         onClose={() => setAdminOpen(false)}
+        onOpenCase={handleOpenCaseFromAdmin}
       />
       <BillingPanel
         open={billingOpen}

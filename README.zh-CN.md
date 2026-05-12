@@ -279,18 +279,35 @@ Vercel 需要配置这些环境变量：
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
-SUPER_ADMIN_EMAILS=2689458656@qq.com
+SUPER_ADMIN_EMAILS=2689458656@qq.com,canghe0818@gmail.com
 CIYUAN_API_KEY=
 CIYUAN_BASE_URL=https://ciyuan.today
+APP_URL=https://gpt-image2.canghe.ai
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+VITE_GA_MEASUREMENT_ID=
+GA4_PROPERTY_ID=
+GOOGLE_ANALYTICS_CLIENT_ID=
+GOOGLE_ANALYTICS_CLIENT_SECRET=
+GOOGLE_ANALYTICS_REFRESH_TOKEN=
 ```
 
 配置清单：
 
 - 将 [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) 应用到 Supabase 项目。
+- 将 [`supabase/migrations/20260509090000_membership_billing.sql`](supabase/migrations/20260509090000_membership_billing.sql) 应用到 Supabase 项目，添加会员套餐、积分包、Stripe 订单记录和积分调整 RPC。
+- 将 [`supabase/migrations/20260512090000_google_account_center.sql`](supabase/migrations/20260512090000_google_account_center.sql) 应用到 Supabase 项目，添加账户用量统计和超级管理员强制扣积分逻辑。
+- 将 [`supabase/migrations/20260512143000_pricing_admin_metrics.sql`](supabase/migrations/20260512143000_pricing_admin_metrics.sql) 应用到 Supabase 项目，更新 `$5 / 300 credits` 价格体系，并添加管理员数据看板指标。
 - 在 Supabase Auth Redirect URLs 里加入 `https://gpt-image2.canghe.ai`，以及 `http://127.0.0.1:5173` 等本地开发地址。
-- 在 Supabase Auth 里开启邮箱 OTP 或魔法链接。
-- Google Provider 的代码入口已接好，后续在 Supabase Dashboard 填入 Google OAuth 凭据后即可使用。
+- 在 Supabase Dashboard 填入 Google OAuth 凭据并启用 Google Provider。
+- 如需强制只允许 Google 登录，可以在 Supabase Auth settings 里关闭 Email Provider。
 - `SUPABASE_SERVICE_ROLE_KEY` 只放在 Vercel Environment Variables 这类服务端环境里。
+- 配置 Stripe Checkout Webhook：`https://gpt-image2.canghe.ai/api/billing/webhook`。
+- Stripe Webhook 订阅 `checkout.session.completed`、`invoice.payment_succeeded`、`customer.subscription.updated`、`customer.subscription.deleted`。
+- `STRIPE_SECRET_KEY` 和 `STRIPE_WEBHOOK_SECRET` 只放在 Vercel Environment Variables 这类服务端环境里。
+- 为 `gpt-image2.canghe.ai` 创建 GA4 property，把 measurement ID 填到 `VITE_GA_MEASUREMENT_ID`，把数字版 property ID 填到 `GA4_PROPERTY_ID`。
+- 创建 Google OAuth Web Client，Authorized redirect URI 填 `http://localhost:8080/oauth2callback`，然后把 `GOOGLE_ANALYTICS_CLIENT_ID` 和 `GOOGLE_ANALYTICS_CLIENT_SECRET` 写入本地 `.env.local`。
+- 运行 `npm run ga4:oauth`，打开脚本生成的授权链接，同意 `analytics.readonly` 权限，把回跳 URL 粘贴回终端，再把得到的 `GOOGLE_ANALYTICS_REFRESH_TOKEN` 作为 Sensitive 环境变量加到 Vercel。
 
 <a name="section-gallery"></a>
 
