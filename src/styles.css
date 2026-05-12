@@ -306,6 +306,15 @@ button {
   border-radius: 7px;
   background: rgba(103, 232, 249, 0.12);
   color: #9eeeff;
+  overflow: hidden;
+}
+
+.avatarBadge img,
+.userSummaryAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }
 
 .userDropdown {
@@ -322,6 +331,13 @@ button {
 
 .userSummary svg {
   color: #9eeeff;
+}
+
+.userSummaryAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(103, 232, 249, 0.24);
 }
 
 .userSummary strong,
@@ -1725,7 +1741,8 @@ button {
 }
 
 .authDialog h2,
-.adminDialog h2 {
+.adminDialog h2,
+.accountDialog h2 {
   margin: 18px 48px 10px 0;
   color: #ffffff;
   font-size: 30px;
@@ -1734,43 +1751,13 @@ button {
 }
 
 .authDialog p,
-.adminDialog p {
+.adminDialog p,
+.accountDialog p {
   margin: 0;
   color: #aebcd0;
   line-height: 1.68;
 }
 
-.authForm {
-  display: grid;
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.authForm label {
-  display: grid;
-  gap: 8px;
-  color: #eaf3ff;
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.authForm input {
-  width: 100%;
-  min-height: 46px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  outline: 0;
-  padding: 0 12px;
-  background: rgba(3, 7, 15, 0.72);
-  color: #ffffff;
-}
-
-.authForm input:focus {
-  border-color: rgba(103, 232, 249, 0.72);
-  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1);
-}
-
-.authForm button,
 .googleButton,
 .adminHeader button {
   display: inline-flex;
@@ -1788,12 +1775,30 @@ button {
 
 .googleButton {
   width: 100%;
-  margin-top: 12px;
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
+  margin-top: 24px;
+  min-height: 44px;
+  border-color: #dadce0;
+  background: #ffffff;
+  color: #1f1f1f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  box-shadow: 0 1px 2px rgba(3, 7, 15, 0.16);
 }
 
-.authForm button:disabled,
+.googleButton:hover {
+  background: #f8fafd;
+  border-color: #d2e3fc;
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.18);
+}
+
+.googleIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
 .googleButton:disabled,
 .adminHeader button:disabled {
   cursor: not-allowed;
@@ -1831,6 +1836,37 @@ button {
 .billingDialog {
   width: min(1080px, 100%);
   padding: 24px;
+}
+
+.accountDialog {
+  width: min(920px, 100%);
+  padding: 24px;
+}
+
+.accountHeader {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.accountAvatar {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.24);
+  border-radius: 8px;
+  background: rgba(103, 232, 249, 0.1);
+  color: #9eeeff;
+  place-items: center;
+}
+
+.accountAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .adminHeader {
@@ -1962,6 +1998,7 @@ button {
 }
 
 .adminAdjustForm button,
+.accountForm button,
 .tableAction,
 .billingState button,
 .billingCard button,
@@ -2008,6 +2045,8 @@ button {
 }
 
 .billingSummary div,
+.accountForm,
+.accountOverview,
 .billingCard,
 .transactionSection,
 .billingState {
@@ -2024,6 +2063,7 @@ button {
 }
 
 .billingSummary span,
+.accountMetrics span,
 .billingCard span,
 .transactionItem span {
   color: #8eeeff;
@@ -2032,17 +2072,101 @@ button {
   text-transform: uppercase;
 }
 
-.billingSummary strong {
+.billingSummary strong,
+.accountMetrics strong {
   color: #ffffff;
   font-size: 26px;
   line-height: 1.1;
 }
 
 .billingSummary em,
+.accountEmail em,
 .transactionItem em {
   color: #93a4bc;
   font-size: 12px;
   font-style: normal;
+}
+
+.accountGrid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+  gap: 16px;
+}
+
+.accountForm,
+.accountOverview {
+  padding: 14px;
+}
+
+.accountForm {
+  display: grid;
+  gap: 12px;
+}
+
+.accountForm label,
+.accountEmail {
+  display: grid;
+  gap: 7px;
+}
+
+.accountForm label span,
+.accountEmail span {
+  color: #8eeeff;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.accountForm input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  outline: 0;
+  padding: 0 12px;
+  background: rgba(3, 7, 15, 0.72);
+  color: #ffffff;
+  font-weight: 850;
+}
+
+.accountForm input:focus {
+  border-color: rgba(103, 232, 249, 0.72);
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1);
+}
+
+.accountEmail strong {
+  color: #eaf3ff;
+  overflow-wrap: anywhere;
+}
+
+.accountOverview h3 {
+  margin: 0 0 12px;
+  color: #eaf3ff;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.accountMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.accountMetrics div {
+  display: grid;
+  gap: 5px;
+  min-height: 88px;
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(3, 7, 15, 0.45);
+}
+
+.accountBillingButton {
+  margin-top: 14px;
+}
+
+.accountTransactions {
+  margin-top: 16px;
 }
 
 .billingState {
@@ -2132,6 +2256,7 @@ button {
 
 .billingCard button:disabled,
 .portalButton:disabled,
+.accountForm button:disabled,
 .adminAdjustForm button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
@@ -2294,6 +2419,10 @@ button {
   }
 
   .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .accountGrid {
     grid-template-columns: 1fr;
   }
 
@@ -2475,12 +2604,14 @@ button {
 
   .authDialog,
   .adminDialog,
+  .accountDialog,
   .billingDialog {
     max-height: calc(100vh - 20px);
   }
 
   .authDialog,
   .adminDialog,
+  .accountDialog,
   .billingDialog {
     padding: 20px 16px;
   }
@@ -2489,11 +2620,16 @@ button {
     flex-direction: column;
   }
 
+  .accountHeader {
+    grid-template-columns: 1fr;
+  }
+
   .adminHeader button {
     width: 100%;
   }
 
   .adminAdjustForm,
+  .accountMetrics,
   .billingSummary,
   .billingSections,
   .transactionItem {

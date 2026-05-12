@@ -15,11 +15,11 @@ import {
   LoaderCircle,
   LogIn,
   LogOut,
-  Mail,
   PackageCheck,
   RefreshCw,
   ReceiptText,
   Search,
+  Settings,
   ShieldCheck,
   Sparkles,
   Terminal,
@@ -93,7 +93,7 @@ const copy = {
     savedInBrowser: 'Saved in this browser',
     resetPrompt: 'Reset Prompt',
     oneFreeGeneration: '1 free test image',
-    superAdminGeneration: 'Super admin test mode: credits are not consumed.',
+    superAdminGeneration: 'Super admin mode: every generation costs 1 credit.',
     generationCost: 'Costs 1 credit',
     freeLimitReached: 'Free generation used. Buy credits or start a membership to keep generating.',
     creditsRequired: 'Credits required. Buy credits or start a membership to keep generating.',
@@ -108,18 +108,26 @@ const copy = {
     authRequired: 'Sign in to generate a test image.',
     signIn: 'Sign in',
     signInTitle: 'Sign in to generate test images',
-    signInSubtitle: 'Use email magic link or Google to unlock your free test image and future credits.',
-    emailAddress: 'Email address',
-    sendMagicLink: 'Send magic link',
-    magicLinkSent: 'Magic link sent. Check your inbox, then return here.',
-    authRateLimited: 'Too many login emails were sent. Please wait a bit, or use Google sign-in once it is enabled.',
+    signInSubtitle: 'Use your Google account to unlock image generation, credits, and membership features.',
+    authRateLimited: 'Too many login attempts. Please wait a bit, then try Google sign-in again.',
     googleNotConfigured: 'Google sign-in is not enabled yet.',
-    tryAgainIn: (seconds) => `Try again in ${seconds}s`,
     continueWithGoogle: 'Continue with Google',
     authNotConfigured: 'Login is not configured yet.',
     authError: 'Login failed. Please try again.',
     signOut: 'Sign out',
     account: 'Account',
+    accountSettings: 'Account settings',
+    accountTitle: 'Account settings',
+    accountSubtitle: 'Manage your public display name, membership status, and GPT-Image2 credit usage.',
+    displayName: 'Display name',
+    saveProfile: 'Save profile',
+    profileSaved: 'Profile saved.',
+    profileUpdateFailed: 'Profile update failed. Please try again.',
+    googleAvatarSource: 'Avatar is synced from your Google account.',
+    accountOverview: 'Account overview',
+    totalGenerations: 'Generated tests',
+    totalGenerationCredits: 'Credits spent',
+    recentUsage: 'Recent credit activity',
     adminPanel: 'Admin',
     membershipCenter: 'Membership & Credits',
     superAdmin: 'Super admin',
@@ -230,7 +238,7 @@ const copy = {
     savedInBrowser: '已保存到本浏览器',
     resetPrompt: '重置 Prompt',
     oneFreeGeneration: '免费生成 1 张测试图',
-    superAdminGeneration: '超级管理员测试模式：本次生图不消耗积分。',
+    superAdminGeneration: '超级管理员模式：每次生图消耗 1 积分。',
     generationCost: '本次消耗 1 积分',
     freeLimitReached: '免费额度已用完，可购买积分包或开通会员继续生成。',
     creditsRequired: '积分不足，可购买积分包或开通会员继续生成。',
@@ -245,18 +253,26 @@ const copy = {
     authRequired: '登录后即可生成测试图。',
     signIn: '登录',
     signInTitle: '登录后生成测试图',
-    signInSubtitle: '使用邮箱魔法链接或 Google 登录，解锁 1 张免费测试图，并为后续积分体系做准备。',
-    emailAddress: '邮箱地址',
-    sendMagicLink: '发送魔法链接',
-    magicLinkSent: '魔法链接已发送，请查收邮箱后回到这里。',
-    authRateLimited: '登录邮件发送太频繁，请稍后再试；Google 登录接通后也可以直接使用 Google 登录。',
+    signInSubtitle: '使用你的 Google 账号登录，解锁生图测试、积分和会员能力。',
+    authRateLimited: '登录尝试过于频繁，请稍后再使用 Google 登录。',
     googleNotConfigured: 'Google 登录还没有启用。',
-    tryAgainIn: (seconds) => `${seconds} 秒后重试`,
-    continueWithGoogle: '使用 Google 继续',
+    continueWithGoogle: '使用 Google 登录',
     authNotConfigured: '登录功能还没有完成配置。',
     authError: '登录失败，请稍后再试。',
     signOut: '退出登录',
     account: '账号',
+    accountSettings: '账户设置',
+    accountTitle: '账户设置',
+    accountSubtitle: '管理你的显示名称、会员状态和 GPT-Image2 积分消耗。',
+    displayName: '显示名称',
+    saveProfile: '保存资料',
+    profileSaved: '资料已保存。',
+    profileUpdateFailed: '资料保存失败，请稍后再试。',
+    googleAvatarSource: '头像会同步你的 Google 账号头像。',
+    accountOverview: '账户概览',
+    totalGenerations: '生成测试数',
+    totalGenerationCredits: '已消耗积分',
+    recentUsage: '最近积分动态',
     adminPanel: '管理后台',
     membershipCenter: '会员与积分',
     superAdmin: '超级管理员',
@@ -516,7 +532,9 @@ function getAuthHeaders(session) {
 function getGenerationQuotaText(profile, language) {
   const t = copy[language];
   if (!profile) return t.authRequired;
-  if (profile.isSuperAdmin) return t.superAdminGeneration;
+  if (profile.isSuperAdmin) {
+    return profile.creditBalance > 0 ? `${t.superAdminGeneration} ${t.creditsAvailable(profile.creditBalance)}` : t.creditsRequired;
+  }
   if (!profile.freeUsed) return t.oneFreeGeneration;
   if (profile.creditBalance > 0) return t.creditsAvailable(profile.creditBalance);
   return t.creditsRequired;
@@ -755,75 +773,31 @@ function authErrorMessage(error, language) {
   return message || t.authError;
 }
 
+function GoogleIcon() {
+  return (
+    <svg className="googleIcon" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+      <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.71v2.25h2.91c1.7-1.57 2.69-3.89 2.69-6.6z" />
+      <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.91-2.25c-.8.54-1.83.86-3.05.86-2.35 0-4.34-1.58-5.05-3.71H.94v2.33A9 9 0 0 0 9 18z" />
+      <path fill="#FBBC05" d="M3.95 10.72A5.41 5.41 0 0 1 3.67 9c0-.6.1-1.18.28-1.72V4.95H.94A9 9 0 0 0 0 9c0 1.45.34 2.82.94 4.05l3.01-2.33z" />
+      <path fill="#EA4335" d="M9 3.57c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .94 4.95l3.01 2.33C4.66 5.15 6.65 3.57 9 3.57z" />
+    </svg>
+  );
+}
+
 function AuthModal({ open, language, onClose }) {
   const t = copy[language];
-  const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
-  const [cooldownSeconds, setCooldownSeconds] = useState(0);
 
   useEffect(() => {
     if (!open) return;
     setStatus('idle');
     setMessage('');
-    setCooldownSeconds(0);
   }, [open]);
-
-  useEffect(() => {
-    if (!cooldownSeconds) return undefined;
-    const timer = window.setInterval(() => {
-      setCooldownSeconds((current) => Math.max(current - 1, 0));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, [cooldownSeconds]);
 
   if (!open) return null;
 
   const redirectTo = `${window.location.origin}${window.location.pathname}`;
-
-  async function handleEmailSubmit(event) {
-    event.preventDefault();
-    if (!isSupabaseConfigured || !supabase) {
-      setStatus('error');
-      setMessage(t.authNotConfigured);
-      return;
-    }
-
-    const normalizedEmail = email.trim();
-    if (!normalizedEmail) {
-      setStatus('error');
-      setMessage(t.emailAddress);
-      return;
-    }
-
-    if (cooldownSeconds > 0) {
-      setStatus('error');
-      setMessage(t.authRateLimited);
-      return;
-    }
-
-    setStatus('loading');
-    setMessage('');
-    const { error } = await supabase.auth.signInWithOtp({
-      email: normalizedEmail,
-      options: {
-        emailRedirectTo: redirectTo
-      }
-    });
-
-    if (error) {
-      setStatus('error');
-      if (error.status === 429 || String(error.message || '').toLowerCase().includes('rate limit')) {
-        setCooldownSeconds(60);
-      }
-      setMessage(authErrorMessage(error, language));
-      return;
-    }
-
-    setCooldownSeconds(60);
-    setStatus('sent');
-    setMessage(t.magicLinkSent);
-  }
 
   async function handleGoogleSignIn() {
     if (!isSupabaseConfigured || !supabase) {
@@ -864,24 +838,8 @@ function AuthModal({ open, language, onClose }) {
         </div>
         <h2 id="auth-title">{t.signInTitle}</h2>
         <p>{t.signInSubtitle}</p>
-        <form className="authForm" onSubmit={handleEmailSubmit}>
-          <label>
-            <span>{t.emailAddress}</span>
-            <input
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@example.com"
-            />
-          </label>
-          <button type="submit" disabled={status === 'loading' || cooldownSeconds > 0}>
-            {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <Mail size={17} />}
-            {cooldownSeconds > 0 ? t.tryAgainIn(cooldownSeconds) : t.sendMagicLink}
-          </button>
-        </form>
         <button className="googleButton" type="button" onClick={handleGoogleSignIn} disabled={status === 'loading'}>
-          <LogIn size={17} />
+          {status === 'loading' ? <LoaderCircle className="spinIcon" size={18} /> : <GoogleIcon />}
           {t.continueWithGoogle}
         </button>
         {message ? (
@@ -894,7 +852,7 @@ function AuthModal({ open, language, onClose }) {
   );
 }
 
-function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, onBilling }) {
+function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, onBilling, onAccount }) {
   const t = copy[language];
   const [open, setOpen] = useState(false);
   const ref = useDropdownDismiss(open, setOpen);
@@ -910,6 +868,8 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
 
   const email = profile?.email || session.user?.email || t.account;
   const displayName = profile?.fullName || session.user?.user_metadata?.name || email;
+  const avatarUrl = profile?.avatarUrl || session.user?.user_metadata?.avatar_url || session.user?.user_metadata?.picture || '';
+  const totalSpent = Number(profile?.usage?.totalGenerationCredits || 0);
 
   return (
     <div className="dropdownControl userMenu" ref={ref}>
@@ -922,14 +882,14 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
         onClick={() => setOpen((current) => !current)}
       >
         <span className="avatarBadge">
-          <UserCircle size={18} />
+          {avatarUrl ? <img src={avatarUrl} alt="" /> : <UserCircle size={18} />}
         </span>
         <ChevronDown size={15} />
       </button>
       {open ? (
         <div className="dropdownMenu userDropdown" role="menu">
           <div className="userSummary">
-            <UserCircle size={32} />
+            {avatarUrl ? <img className="userSummaryAvatar" src={avatarUrl} alt="" /> : <UserCircle size={32} />}
             <div>
               <strong>{displayName}</strong>
               <span>{email}</span>
@@ -951,11 +911,23 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
               {formatMembershipStatus(profile?.membership, language)}
             </span>
             <span className="userStat">
-              <PackageCheck size={15} />
-              {profile?.freeUsed ? t.freeUsedShort : t.freeReady}
+              <ReceiptText size={15} />
+              {t.totalGenerationCredits}: {totalSpent}
             </span>
           </div>
           <div className="dropdownDivider" />
+          <button
+            className="dropdownAction"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              onAccount();
+            }}
+          >
+            <Settings size={17} />
+            {t.accountSettings}
+          </button>
           <button
             className="dropdownAction"
             type="button"
@@ -996,6 +968,168 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
           </button>
         </div>
       ) : null}
+    </div>
+  );
+}
+
+function AccountPanel({ open, language, session, profile, onClose, onBilling, onProfileChange }) {
+  const t = copy[language];
+  const [fullName, setFullName] = useState('');
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (!open) return;
+    setFullName(profile?.fullName || session?.user?.user_metadata?.name || '');
+    setStatus('idle');
+    setMessage('');
+  }, [open, profile?.fullName, session?.user?.user_metadata?.name]);
+
+  if (!open) return null;
+
+  const email = profile?.email || session?.user?.email || '';
+  const avatarUrl = profile?.avatarUrl || session?.user?.user_metadata?.avatar_url || session?.user?.user_metadata?.picture || '';
+  const usage = profile?.usage || {};
+  const recentTransactions = profile?.recentTransactions || [];
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const nextName = fullName.trim();
+    if (!nextName) {
+      setStatus('error');
+      setMessage(t.profileUpdateFailed);
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+    try {
+      const response = await fetch('/api/me', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(session)
+        },
+        body: JSON.stringify({ fullName: nextName })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error || 'PROFILE_UPDATE_FAILED');
+      }
+      if (payload.user) onProfileChange(payload.user);
+      setStatus('success');
+      setMessage(t.profileSaved);
+    } catch {
+      setStatus('error');
+      setMessage(t.profileUpdateFailed);
+    }
+  }
+
+  return (
+    <div
+      className="previewOverlay accountOverlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section className="accountDialog" role="dialog" aria-modal="true" aria-labelledby="account-title">
+        <button className="previewClose" type="button" onClick={onClose} aria-label={t.closePreview}>
+          <X size={20} />
+        </button>
+        <div className="accountHeader">
+          <div className="accountAvatar">
+            {avatarUrl ? <img src={avatarUrl} alt="" /> : <UserCircle size={44} />}
+          </div>
+          <div>
+            <span className="eyebrow">
+              <Settings size={16} />
+              {t.accountSettings}
+            </span>
+            <h2 id="account-title">{t.accountTitle}</h2>
+            <p>{t.accountSubtitle}</p>
+          </div>
+        </div>
+
+        <div className="accountGrid">
+          <form className="accountForm" onSubmit={handleSubmit}>
+            <label>
+              <span>{t.displayName}</span>
+              <input
+                value={fullName}
+                maxLength={80}
+                onChange={(event) => setFullName(event.target.value)}
+              />
+            </label>
+            <div className="accountEmail">
+              <span>{t.account}</span>
+              <strong>{email}</strong>
+              <em>{t.googleAvatarSource}</em>
+            </div>
+            <button type="submit" disabled={status === 'loading'}>
+              {status === 'loading' ? <LoaderCircle className="spinIcon" size={16} /> : <Check size={16} />}
+              {t.saveProfile}
+            </button>
+            {message ? (
+              <p className={cx('authMessage', status === 'error' && 'error', status === 'success' && 'sent')}>
+                {message}
+              </p>
+            ) : null}
+          </form>
+
+          <section className="accountOverview">
+            <h3>{t.accountOverview}</h3>
+            <div className="accountMetrics">
+              <div>
+                <span>{t.creditBalance}</span>
+                <strong>{profile?.creditBalance || 0}</strong>
+              </div>
+              <div>
+                <span>{t.currentPlan}</span>
+                <strong>{formatMembershipStatus(profile?.membership, language)}</strong>
+              </div>
+              <div>
+                <span>{t.totalGenerations}</span>
+                <strong>{Number(usage.totalGenerations || 0)}</strong>
+              </div>
+              <div>
+                <span>{t.totalGenerationCredits}</span>
+                <strong>{Number(usage.totalGenerationCredits || 0)}</strong>
+              </div>
+            </div>
+            <button className="portalButton accountBillingButton" type="button" onClick={onBilling}>
+              <CreditCard size={16} />
+              {t.membershipCenter}
+            </button>
+          </section>
+        </div>
+
+        <section className="transactionSection accountTransactions">
+          <h3>
+            <ReceiptText size={18} />
+            {t.recentUsage}
+          </h3>
+          {recentTransactions.length ? (
+            <div className="transactionList">
+              {recentTransactions.map((transaction) => (
+                <div className="transactionItem" key={transaction.id}>
+                  <span>{transactionLabel(transaction, language)}</span>
+                  <strong className={transaction.amount >= 0 ? 'positive' : 'negative'}>
+                    {transaction.amount >= 0 ? '+' : ''}{transaction.amount}
+                  </strong>
+                  <em>
+                    {transaction.createdAt
+                      ? new Date(transaction.createdAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')
+                      : '-'}
+                  </em>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="emptyTransactions">{t.noTransactions}</p>
+          )}
+        </section>
+      </section>
     </div>
   );
 }
@@ -1749,10 +1883,10 @@ function PreviewDialog({
   const isGenerating = generationState.status === 'generating';
   const generatedImage = !isTemplate ? generationState.image : '';
   const isSignedIn = Boolean(session?.access_token);
+  const creditBalance = Number(profile?.creditBalance || 0);
   const isOutOfCredits = isSignedIn
-    && !profile?.isSuperAdmin
-    && Boolean(profile?.freeUsed)
-    && Number(profile?.creditBalance || 0) <= 0;
+    && creditBalance <= 0
+    && (profile?.isSuperAdmin || Boolean(profile?.freeUsed));
   const generationLocked = isGenerating;
   const quotaText = isSignedIn ? getGenerationQuotaText(profile, language) : t.authRequired;
 
@@ -1986,6 +2120,7 @@ function App() {
   const [session, setSession] = useState(null);
   const [profile, setProfile] = useState(null);
   const [authOpen, setAuthOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
   const [billingOpen, setBillingOpen] = useState(false);
   const [billingNotice, setBillingNotice] = useState('');
@@ -2138,6 +2273,7 @@ function App() {
     if (supabase) await supabase.auth.signOut();
     setSession(null);
     setProfile(null);
+    setAccountOpen(false);
     setAdminOpen(false);
     setBillingOpen(false);
   }
@@ -2180,6 +2316,7 @@ function App() {
             profile={profile}
             onSignIn={() => setAuthOpen(true)}
             onSignOut={handleSignOut}
+            onAccount={() => setAccountOpen(true)}
             onAdmin={() => setAdminOpen(true)}
             onBilling={() => {
               setBillingNotice('');
@@ -2324,6 +2461,19 @@ function App() {
         open={authOpen}
         language={language}
         onClose={() => setAuthOpen(false)}
+      />
+      <AccountPanel
+        open={accountOpen}
+        language={language}
+        session={session}
+        profile={profile}
+        onClose={() => setAccountOpen(false)}
+        onProfileChange={handleProfileChange}
+        onBilling={() => {
+          setAccountOpen(false);
+          setBillingNotice('');
+          setBillingOpen(true);
+        }}
       />
       <AdminPanel
         open={adminOpen}
