@@ -2282,10 +2282,16 @@ button {
   grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 10px;
   align-items: center;
-  min-height: 38px;
+  min-height: 46px;
   border-radius: 7px;
-  padding: 0 10px;
+  padding: 8px 10px;
   background: rgba(3, 7, 15, 0.5);
+}
+
+.transactionInfo {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
 }
 
 .transactionItem strong {
@@ -2298,6 +2304,31 @@ button {
 
 .transactionItem strong.negative {
   color: #ffd0d8;
+}
+
+.transactionCaseLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 28px;
+  border: 1px solid rgba(103, 232, 249, 0.26);
+  border-radius: 7px;
+  padding: 0 9px;
+  background: rgba(103, 232, 249, 0.08);
+  color: #d8fbff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.transactionCaseLink:hover {
+  border-color: rgba(120, 255, 185, 0.5);
+  background: rgba(120, 255, 185, 0.12);
+}
+
+.transactionCaseLink:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
 }
 
 .emptyTransactions {

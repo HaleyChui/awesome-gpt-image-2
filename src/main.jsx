@@ -127,7 +127,10 @@ const copy = {
     accountOverview: 'Account overview',
     totalGenerations: 'Generated tests',
     totalGenerationCredits: 'Credits spent',
-    recentUsage: 'Recent credit activity',
+    generationUsage: 'Generation spending',
+    openCase: 'View case',
+    sourceCase: 'Source case',
+    noGenerationTransactions: 'No generation spending yet.',
     adminPanel: 'Admin',
     membershipCenter: 'Membership & Credits',
     superAdmin: 'Super admin',
@@ -272,7 +275,10 @@ const copy = {
     accountOverview: '账户概览',
     totalGenerations: '生成测试数',
     totalGenerationCredits: '已消耗积分',
-    recentUsage: '最近积分动态',
+    generationUsage: '生图消耗记录',
+    openCase: '查看案例',
+    sourceCase: '关联案例',
+    noGenerationTransactions: '暂无生图消耗记录。',
     adminPanel: '管理后台',
     membershipCenter: '会员与积分',
     superAdmin: '超级管理员',
@@ -564,6 +570,48 @@ function transactionLabel(transaction, language) {
     adjustment: language === 'zh' ? '管理员调整' : 'Admin adjustment'
   };
   return typeMap[transaction.type] || transaction.type || '-';
+}
+
+function transactionCaseId(transaction) {
+  const rawCaseId = transaction?.caseId || transaction?.metadata?.caseId;
+  const caseId = Number(rawCaseId);
+  return Number.isFinite(caseId) && caseId > 0 ? caseId : null;
+}
+
+function TransactionItem({ transaction, language, casesById, onOpenCase }) {
+  const t = copy[language];
+  const caseId = transactionCaseId(transaction);
+  const caseItem = caseId ? casesById?.get(caseId) : null;
+  const caseLabel = caseItem
+    ? `${t.openCase} #${caseId} · ${compactText(caseItem.title, 28)}`
+    : `${t.sourceCase} #${caseId}`;
+
+  return (
+    <div className={cx('transactionItem', caseId && 'hasCase')}>
+      <div className="transactionInfo">
+        <span>{transactionLabel(transaction, language)}</span>
+        {caseId ? (
+          <button
+            className="transactionCaseLink"
+            type="button"
+            onClick={() => caseItem && onOpenCase?.(caseItem)}
+            disabled={!caseItem}
+          >
+            <ImageIcon size={14} />
+            {caseLabel}
+          </button>
+        ) : null}
+      </div>
+      <strong className={transaction.amount >= 0 ? 'positive' : 'negative'}>
+        {transaction.amount >= 0 ? '+' : ''}{transaction.amount}
+      </strong>
+      <em>
+        {transaction.createdAt
+          ? new Date(transaction.createdAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')
+          : '-'}
+      </em>
+    </div>
+  );
 }
 
 function formatTemplatePrompt(item, language, styleLibrary) {
@@ -972,7 +1020,17 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
   );
 }
 
-function AccountPanel({ open, language, session, profile, onClose, onBilling, onProfileChange }) {
+function AccountPanel({
+  open,
+  language,
+  session,
+  profile,
+  casesById,
+  onClose,
+  onBilling,
+  onProfileChange,
+  onOpenCase
+}) {
   const t = copy[language];
   const [fullName, setFullName] = useState('');
   const [status, setStatus] = useState('idle');
@@ -991,6 +1049,7 @@ function AccountPanel({ open, language, session, profile, onClose, onBilling, on
   const avatarUrl = profile?.avatarUrl || session?.user?.user_metadata?.avatar_url || session?.user?.user_metadata?.picture || '';
   const usage = profile?.usage || {};
   const recentTransactions = profile?.recentTransactions || [];
+  const generationTransactions = recentTransactions.filter((transaction) => transaction.type === 'generation');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -1107,26 +1166,22 @@ function AccountPanel({ open, language, session, profile, onClose, onBilling, on
         <section className="transactionSection accountTransactions">
           <h3>
             <ReceiptText size={18} />
-            {t.recentUsage}
+            {t.generationUsage}
           </h3>
-          {recentTransactions.length ? (
+          {generationTransactions.length ? (
             <div className="transactionList">
-              {recentTransactions.map((transaction) => (
-                <div className="transactionItem" key={transaction.id}>
-                  <span>{transactionLabel(transaction, language)}</span>
-                  <strong className={transaction.amount >= 0 ? 'positive' : 'negative'}>
-                    {transaction.amount >= 0 ? '+' : ''}{transaction.amount}
-                  </strong>
-                  <em>
-                    {transaction.createdAt
-                      ? new Date(transaction.createdAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')
-                      : '-'}
-                  </em>
-                </div>
+              {generationTransactions.map((transaction) => (
+                <TransactionItem
+                  transaction={transaction}
+                  language={language}
+                  casesById={casesById}
+                  onOpenCase={onOpenCase}
+                  key={transaction.id}
+                />
               ))}
             </div>
           ) : (
-            <p className="emptyTransactions">{t.noTransactions}</p>
+            <p className="emptyTransactions">{t.noGenerationTransactions}</p>
           )}
         </section>
       </section>
@@ -1335,9 +1390,11 @@ function BillingPanel({
   session,
   profile,
   notice,
+  casesById,
   onClose,
   onAuthRequired,
-  onProfileChange
+  onProfileChange,
+  onOpenCase
 }) {
   const t = copy[language];
   const [plans, setPlans] = useState([]);
@@ -1582,17 +1639,13 @@ function BillingPanel({
           {transactions.length ? (
             <div className="transactionList">
               {transactions.map((transaction) => (
-                <div className="transactionItem" key={transaction.id}>
-                  <span>{transactionLabel(transaction, language)}</span>
-                  <strong className={transaction.amount >= 0 ? 'positive' : 'negative'}>
-                    {transaction.amount >= 0 ? '+' : ''}{transaction.amount}
-                  </strong>
-                  <em>
-                    {transaction.createdAt
-                      ? new Date(transaction.createdAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')
-                      : '-'}
-                  </em>
-                </div>
+                <TransactionItem
+                  transaction={transaction}
+                  language={language}
+                  casesById={casesById}
+                  onOpenCase={onOpenCase}
+                  key={transaction.id}
+                />
               ))}
             </div>
           ) : (
@@ -2268,6 +2321,7 @@ function App() {
   );
 
   const visibleCases = filteredCases.slice(0, 72);
+  const casesById = useMemo(() => new Map((siteData?.cases || []).map((caseItem) => [caseItem.id, caseItem])), [siteData]);
 
   async function handleSignOut() {
     if (supabase) await supabase.auth.signOut();
@@ -2280,6 +2334,12 @@ function App() {
 
   function handleProfileChange(nextProfile) {
     if (nextProfile) setProfile(nextProfile);
+  }
+
+  function handleOpenCaseFromAccount(caseItem) {
+    setAccountOpen(false);
+    setBillingOpen(false);
+    setPreview({ type: 'case', item: caseItem });
   }
 
   if (!siteData || !styleLibrary) {
@@ -2467,8 +2527,10 @@ function App() {
         language={language}
         session={session}
         profile={profile}
+        casesById={casesById}
         onClose={() => setAccountOpen(false)}
         onProfileChange={handleProfileChange}
+        onOpenCase={handleOpenCaseFromAccount}
         onBilling={() => {
           setAccountOpen(false);
           setBillingNotice('');
@@ -2487,9 +2549,11 @@ function App() {
         session={session}
         profile={profile}
         notice={billingNotice}
+        casesById={casesById}
         onClose={() => setBillingOpen(false)}
         onAuthRequired={() => setAuthOpen(true)}
         onProfileChange={handleProfileChange}
+        onOpenCase={handleOpenCaseFromAccount}
       />
     </main>
   );
