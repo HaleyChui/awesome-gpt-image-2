@@ -8487,3 +8487,125 @@ Generate an illustration of "me" as you imagine it. Features include a Japanese 
 ```
 
 ***
+
+<a name="case-424"></a>
+
+### 例 424：FMCG 棒棒糖霓虹广告
+
+![FMCG 棒棒糖霓虹广告](../data/images/case424.jpg)
+
+**来源：** [@Diplomeme](https://x.com/Diplomeme/status/2054061713583219149) / [Prompt reply](https://x.com/Diplomeme/status/2054061980240224476)
+
+**提示词：**
+
+```text
+Hyper-realistic cinematic FMCG billboard advertising poster for Chupa Chups India, focusing on playful energy, bold flavor explosion, and Gen-Z candy culture.
+
+Scene: a giant glossy Chupa Chups lollipop floating above a vibrant Indian street at night, candy shards and liquid flavor bursts exploding outward mid-air.
+
+Environment: neon-lit urban backdrop inspired by Mumbai nightlife, glowing signage, reflective wet streets, colorful haze.
+
+Subject: oversized strawberry swirl lollipop as the hero object, ultra-detailed glossy texture, cinematic flavor splash motion.
+
+Visual storytelling: iconic Chupa Chups flower logo glowing subtly on wrapper, reflections visible on wet surfaces and candy syrup splashes.
+
+Composition: dramatic low-angle shot, giant centered product dominating frame, dynamic explosion spreading diagonally across billboard composition.
+
+Typography:
+top left — Chupa Chups logo.
+center massive — “UNWRAP THE FUN” ultra bold playful typography.
+behind product (oversized layered text) — “LICK / SPIN / REPEAT”.
+mid-left — “FLAVOR THAT POPS.” bold condensed font.
+bottom left — “STRAWBERRY BURST · GLOBAL ICON · 2026 EDITION”.
+bottom right — “http://chupachups.com”.
+left vertical edge — “FUN · FLAVOR · CANDY CULTURE”.
+
+Typography style: playful bold sans-serif, glossy layered opacity, oversized billboard scale.
+
+Color palette: vibrant reds, yellows, pinks, neon orange accents, glossy candy textures.
+
+Lighting: dramatic neon backlight with glowing highlights and candy reflections.
+
+Atmosphere: sugar particles, mist, syrup splashes, floating candy dust.
+
+Mood: energetic, youthful, addictive, vibrant.
+
+Shot on ARRI Alexa Mini LF, 35mm anamorphic, HDR, ultra cinematic, premium FMCG billboard style, 4:5 portrait.
+```
+
+***
+
+<a name="case-425"></a>
+
+### 例 425：黑白时尚人像拼贴海报
+
+![黑白时尚人像拼贴海报](../data/images/case425.jpg)
+
+**来源：** [@XSydneyFan](https://x.com/XSydneyFan/status/2054054476429009086)
+
+**提示词：**
+
+```text
+{
+  "prompt": "Vertical poster collage design, beige background, four stacked horizontal rounded rectangles containing black and white cinematic portraits of the same young woman wearing sunglasses in different stylish poses. Foreground features a full-color high-quality cutout of the woman on the left side, wearing a pink mauve fitted shirt, black pants, sunglasses, confident cool pose, modern fashion editorial style, soft studio lighting, ultra realistic, premium magazine aesthetic, depth and shadow effects, clean minimal layout, 2:3 aspect ratio.",
+  "aspect_ratio": "2:3"
+}
+```
+
+***
+
+<a name="case-426"></a>
+
+### 例 426：日韩咖啡馆情侣写真
+
+![日韩咖啡馆情侣写真](../data/images/case426.jpg)
+
+**来源：** [@sha_zdiii](https://x.com/sha_zdiii/status/2054047328420634927)
+
+**提示词：**
+
+```text
+Ultra-realistic cozy Japanese-Korean café photography featuring a cute young [Japanese/Korean] couple sitting together naturally in a trendy aesthetic café. The young couple should look stylish and youthful, wearing [fashion style/outfit colors], smiling softly and enjoying desserts together.
+
+The table is beautifully filled with [desserts/foods] such as pancakes, strawberry cakes, macarons, croissants, pastries, iced coffees, matcha lattes, fruit desserts, and aesthetic drinks arranged in a visually satisfying composition. Add small aesthetic café props like [flowers/ribbons/books/candles/pearls/notebooks] on the table for a premium Pinterest moodboard feel.
+
+Soft [lighting style] lighting enters through the café windows creating dreamy highlights, creamy shadows, glossy reflections on drinks, and realistic dessert textures. Background should contain softly blurred [Japanese/Korean] signs, glowing café boards, handwritten Japanese text, neon typography, and aesthetic city café elements for an authentic Tokyo/Seoul vibe.
+
+Add cute scrapbook-style doodles and handwritten notes around the image in [doodle color] ink — tiny hearts, stars, sparkles, ribbons, arrows, smiley sketches, bows, diary stickers, and handwritten café notes.
+
+Color palette should focus on [color theme] tones. Style inspired by viral Pinterest café photography, Korean lifestyle aesthetics, Japanese cozy café culture, dreamy Gen-Z romance mood, shallow depth of field, cinematic composition, ultra realistic food textures, soft blurry background, ultra detailed realistic photography, clean aesthetic layout, 8k.
+```
+
+***
+
+<a name="case-427"></a>
+
+### 例 427：9-frame 时尚人像拼贴
+
+![9-frame 时尚人像拼贴](../data/images/case427.jpg)
+
+**来源：** [@saniaspeaks_](https://x.com/saniaspeaks_/status/2054046866497573214)
+
+**提示词：**
+
+```text
+Edit this photo and don't change the face, portrait 9:16. A 9-frame fashion portrait collage featuring a stylish young woman with playful expressions and sporty streetwear aesthetics. The concept combines modern model test photography, casual Gen-Z energy, and clean editorial studio vibes. Each frame captures different candid facial expressions and subtle attitude poses, creating a cool, confident, and slightly mischievous mood. Minimalist composition with strong focus on facial expressions, cap styling, and soft fashion portrait lighting.
+
+Frame Descriptions (9 poses)
+
+Frame 1 – Eyes closed with playful scrunched expression, slight smile, relaxed shoulders.
+Frame 2 – Looking slightly sideways with lips parted, confident casual attitude.
+Frame 3 – Head tilted slightly upward, calm expression, direct cool-girl energy.
+Frame 4 – Eyes closed while sticking tongue slightly out, playful candid vibe.
+Frame 5 – Both index fingers pressing cheeks while making duck lips, cute playful expression.
+Frame 6 – Direct eye contact with subtle smile, relaxed natural pose.
+Frame 7 – Body turned sideways, hand near chin, confident editorial profile look.
+Frame 8 – Eyes squeezed shut while making pout lips, exaggerated playful expression.
+Frame 9 – Wrinkled nose with gritted teeth, rebellious fashion attitude.
+
+She wears oversized black long sleeves. Soft matte fabric with sporty streetwear silhouette. Relaxed fit with slightly oversized sleeves. Black New York Yankees baseball cap worn forward and backward in different frames. Minimal jewelry. Long soft wavy blonde hair. Soft loose waves with natural texture. Middle-part hairstyle. Hair flowing naturally around shoulders. Soft glam douyin girl makeup. Dewy glass skin finish. Brushed up natural brows, winged eyeliner, wispy natural lashes, soft pink blush (igari blush style), ombre gradient rosy pink lips with glossy finish.
+
+Background minimal white studio backdrop. Photobooth-style collage layout with black frame borders. Shot with Canon EOS R6 / Sony A7 III / Fujifilm X-T5. High-fashion portrait photography style. 50mm or 85mm portrait lens. Eye-level framing. Tight portrait crop. Centered composition. Photobooth-inspired close-up angles. Soft diffused studio lighting. Balanced frontal light. Minimal harsh shadows. Clean editorial illumination. Cool neutral tones. Slightly desaturated blacks. Soft contrast with crisp details. Subtle film grain. Modern fashion editorial color grading.
+```
+
+***

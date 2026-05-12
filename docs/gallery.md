@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 423。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 427。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-423](./gallery-part-2.md)
+- [Part 2：例 166-427](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -91,21 +91,25 @@
 - [例 421：iPhone 屏幕遮脸创意人像](./gallery-part-2.md#case-421)
 - [例 422：冬季生存惊悚 Storyboard](./gallery-part-2.md#case-422)
 - [例 423：日系手绘涂鸦半身插画](./gallery-part-2.md#case-423)
+- [例 424：FMCG 棒棒糖霓虹广告](./gallery-part-2.md#case-424)
+- [例 425：黑白时尚人像拼贴海报](./gallery-part-2.md#case-425)
+- [例 426：日韩咖啡馆情侣写真](./gallery-part-2.md#case-426)
+- [例 427：9-frame 时尚人像拼贴](./gallery-part-2.md#case-427)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-423，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-427，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
 - UI与界面：63
 - 图表与信息可视化：45
 - 海报与排版：69
-- 商品与电商：27
+- 商品与电商：28
 - 品牌与标志：20
 - 建筑与空间：10
-- 摄影与写实：48
+- 摄影与写实：51
 - 插画与艺术：39
 - 人物与角色：20
 - 场景与叙事：16
@@ -308,7 +312,7 @@
 
 <a name="cat-product"></a>
 
-### 🛍️ 商品与电商 · 27 cases
+### 🛍️ 商品与电商 · 28 cases
 
 - [例 17：界面交互设计图](./gallery-part-1.md#case-17)
 - [例 33：电商商品展示设计](./gallery-part-1.md#case-33)
@@ -337,6 +341,7 @@
 - [例 368：印度餐厅菜单改造宣传图](./gallery-part-2.md#case-368)
 - [例 370：Crumple Chair 概念沙发研发板](./gallery-part-2.md#case-370)
 - [例 373：高端肉类海鲜品牌英雄图](./gallery-part-2.md#case-373)
+- [例 424：FMCG 棒棒糖霓虹广告](./gallery-part-2.md#case-424)
 
 <a name="cat-brand"></a>
 
@@ -380,7 +385,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 48 cases
+### 📷 摄影与写实 · 51 cases
 
 - [例 24：漫画分镜叙事设计](./gallery-part-1.md#case-24)
 - [例 26：建筑空间场景图](./gallery-part-1.md#case-26)
@@ -430,6 +435,9 @@
 - [例 414：室内晨间写实摄影](./gallery-part-2.md#case-414)
 - [例 420：红跑道低角度夏日人像](./gallery-part-2.md#case-420)
 - [例 421：iPhone 屏幕遮脸创意人像](./gallery-part-2.md#case-421)
+- [例 425：黑白时尚人像拼贴海报](./gallery-part-2.md#case-425)
+- [例 426：日韩咖啡馆情侣写真](./gallery-part-2.md#case-426)
+- [例 427：9-frame 时尚人像拼贴](./gallery-part-2.md#case-427)
 
 <a name="cat-illustration"></a>
 

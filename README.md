@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-423-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-427-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-423](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-427](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -67,7 +67,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>🛍️ Products & E-commerce</strong><br><sub>27 cases</sub></p>
+      <p><strong>🛍️ Products & E-commerce</strong><br><sub>28 cases</sub></p>
       <a href="docs/gallery.md#cat-product"><img src="data/images/category-covers/product.jpg" alt="Products and e-commerce" width="220"></a><br>
       <sub>Product shots, detail pages, packaging, selling points, and ads.</sub><br>
       <a href="docs/gallery.md#cat-product"><strong>View Cases</strong></a>
@@ -87,7 +87,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>48 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>51 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 423 cases by gallery part and category.</sub><br>
+      <sub>Browse all 427 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-423"><img src="data/images/case423.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-427"><img src="data/images/case427.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-423"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-427"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -293,9 +293,10 @@ Setup checklist:
 
 - Apply [`supabase/migrations/202605090001_user_credits.sql`](supabase/migrations/202605090001_user_credits.sql) to the Supabase project.
 - Apply [`supabase/migrations/20260509090000_membership_billing.sql`](supabase/migrations/20260509090000_membership_billing.sql) to add membership plans, credit packs, Stripe order records, and credit adjustment RPCs.
+- Apply [`supabase/migrations/20260512090000_google_account_center.sql`](supabase/migrations/20260512090000_google_account_center.sql) to add account usage summaries and forced credit charging for super admins.
 - Add `https://gpt-image2.canghe.ai` and local dev URLs such as `http://127.0.0.1:5173` to Supabase Auth redirect URLs.
-- Enable Email OTP or magic links in Supabase Auth.
 - Enable the Google Provider after adding Google OAuth credentials in the Supabase Dashboard.
+- To force Google-only sign-in, disable the Email Provider in Supabase Auth settings.
 - Keep `SUPABASE_SERVICE_ROLE_KEY` only in server-side environments such as Vercel Environment Variables.
 - Configure Stripe Checkout with the webhook URL `https://gpt-image2.canghe.ai/api/billing/webhook`.
 - Subscribe the Stripe webhook to `checkout.session.completed`, `invoice.payment_succeeded`, `customer.subscription.updated`, and `customer.subscription.deleted`.
@@ -398,23 +399,31 @@ Only the latest collection and import run is shown here. Older imports stay in t
 
 <table>
   <tr>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 421: iPhone Screen Portrait</strong></p>
-      <a href="docs/gallery-part-2.md#case-421"><img src="data/images/case421.jpg" alt="iPhone screen portrait" width="140"></a><br>
-      <sub>A phone-screen portrait setup that keeps identity, reflection, store context, and live camera framing aligned.</sub><br>
-      <a href="docs/gallery-part-2.md#case-421"><strong>View Case</strong></a>
+    <td width="50%" valign="top" align="center">
+      <p><strong>Case 424: FMCG Lollipop Billboard</strong></p>
+      <a href="docs/gallery-part-2.md#case-424"><img src="data/images/case424.jpg" alt="FMCG lollipop billboard" width="140"></a><br>
+      <sub>A cinematic candy billboard prompt with neon street lighting, flavor splash motion, and layered campaign typography.</sub><br>
+      <a href="docs/gallery-part-2.md#case-424"><strong>View Case</strong></a>
     </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 422: Survival Thriller Storyboard</strong></p>
-      <a href="docs/gallery-part-2.md#case-422"><img src="data/images/case422.jpg" alt="Survival thriller storyboard" width="140"></a><br>
-      <sub>A film production board with character references, environment blocking, camera moves, and 10 cut storyboard panels.</sub><br>
-      <a href="docs/gallery-part-2.md#case-422"><strong>View Case</strong></a>
+    <td width="50%" valign="top" align="center">
+      <p><strong>Case 425: Black-and-White Portrait Collage</strong></p>
+      <a href="docs/gallery-part-2.md#case-425"><img src="data/images/case425.jpg" alt="Black-and-white portrait collage" width="140"></a><br>
+      <sub>A clean editorial portrait collage that mixes color cutout foreground with stacked monochrome frames.</sub><br>
+      <a href="docs/gallery-part-2.md#case-425"><strong>View Case</strong></a>
     </td>
-    <td width="33%" valign="top" align="center">
-      <p><strong>Case 423: Japanese Graffiti Illustration</strong></p>
-      <a href="docs/gallery-part-2.md#case-423"><img src="data/images/case423.jpg" alt="Japanese graffiti illustration" width="140"></a><br>
-      <sub>A Japanese illustration portrait with ink splatter, pastel accents, symbolic elements, and clean white background.</sub><br>
-      <a href="docs/gallery-part-2.md#case-423"><strong>View Case</strong></a>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <p><strong>Case 426: Japanese-Korean Cafe Date</strong></p>
+      <a href="docs/gallery-part-2.md#case-426"><img src="data/images/case426.jpg" alt="Japanese-Korean cafe date" width="140"></a><br>
+      <sub>A cozy cafe photography system with dessert styling, window light, doodles, and Tokyo/Seoul atmosphere variables.</sub><br>
+      <a href="docs/gallery-part-2.md#case-426"><strong>View Case</strong></a>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <p><strong>Case 427: 9-Frame Fashion Portrait Collage</strong></p>
+      <a href="docs/gallery-part-2.md#case-427"><img src="data/images/case427.jpg" alt="9-frame fashion portrait collage" width="140"></a><br>
+      <sub>A photobooth-style fashion collage with nine expressions, cap styling, studio lighting, and film borders.</sub><br>
+      <a href="docs/gallery-part-2.md#case-427"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>
