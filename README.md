@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/stars/freestylefly/awesome-gpt-image-2?style=flat-square&color=rgb(25%2C%20121%2C%20255)" alt="Stars"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/github/forks/freestylefly/awesome-gpt-image-2?style=flat-square&color=green" alt="Forks"></a>
-  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-427-blueviolet?style=flat-square" alt="Cases"></a>
+  <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/Cases-431-blueviolet?style=flat-square" alt="Cases"></a>
   <a href="https://github.com/freestylefly/awesome-gpt-image-2"><img src="https://img.shields.io/badge/100%25-Original_AI_Rewritten-green?style=flat-square" alt="Original"></a>
 </p>
 
@@ -32,7 +32,7 @@ The core goal is simple: compress prose-style prompts into structured protocols.
 
 - [Full case gallery](docs/gallery.md)
 - [Gallery Part 1: cases 1-165](docs/gallery-part-1.md)
-- [Gallery Part 2: cases 166-427](docs/gallery-part-2.md)
+- [Gallery Part 2: cases 166-431](docs/gallery-part-2.md)
 - [Industrial prompt templates and pitfalls guide](docs/templates.md)
 - [Agent skill: GPT-Image2 Style Library](agents/skills/gpt-image-2-style-library/SKILL.md)
 - [MIT License](LICENSE)
@@ -59,7 +59,7 @@ Start with the case album to find a visual direction, then open the prompt templ
       <a href="docs/gallery.md#cat-infographic"><strong>View Cases</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
-      <p><strong>📰 Posters & Typography</strong><br><sub>69 cases</sub></p>
+      <p><strong>📰 Posters & Typography</strong><br><sub>70 cases</sub></p>
       <a href="docs/gallery.md#cat-poster"><img src="data/images/category-covers/poster.jpg" alt="Posters and typography" width="220"></a><br>
       <sub>Event posters, covers, type-driven visuals, and strong layout compositions.</sub><br>
       <a href="docs/gallery.md#cat-poster"><strong>View Cases</strong></a>
@@ -87,7 +87,7 @@ Start with the case album to find a visual direction, then open the prompt templ
   </tr>
   <tr>
     <td width="33%" valign="top" align="center">
-      <p><strong>📷 Photography & Realism</strong><br><sub>51 cases</sub></p>
+      <p><strong>📷 Photography & Realism</strong><br><sub>53 cases</sub></p>
       <a href="docs/gallery.md#cat-photo"><img src="data/images/category-covers/photo.jpg" alt="Photography and realism" width="220"></a><br>
       <sub>Portraits, phone photography, film texture, and commercial photography.</sub><br>
       <a href="docs/gallery.md#cat-photo"><strong>View Cases</strong></a>
@@ -135,14 +135,14 @@ Start with the case album to find a visual direction, then open the prompt templ
     <td width="33%" valign="top" align="center">
       <h4>🖼️ Full Gallery</h4>
       <a href="docs/gallery.md"><img src="data/images/category-covers/gallery.jpg" alt="Full gallery" width="220"></a><br>
-      <sub>Browse all 427 cases by gallery part and category.</sub><br>
+      <sub>Browse all 431 cases by gallery part and category.</sub><br>
       <a href="docs/gallery.md"><strong>Open Gallery</strong></a>
     </td>
     <td width="33%" valign="top" align="center">
       <h4>⭐ Latest Additions</h4>
-      <a href="docs/gallery-part-2.md#case-427"><img src="data/images/case427.jpg" alt="Latest additions" width="220"></a><br>
+      <a href="docs/gallery-part-2.md#case-431"><img src="data/images/case431.jpg" alt="Latest additions" width="220"></a><br>
       <sub>The newest community cases and workflows collected in the repo.</sub><br>
-      <a href="docs/gallery-part-2.md#case-427"><strong>View Latest</strong></a>
+      <a href="docs/gallery-part-2.md#case-431"><strong>View Latest</strong></a>
     </td>
   </tr>
 </table>
@@ -409,30 +409,30 @@ Only the latest collection and import run is shown here. Older imports stay in t
 <table>
   <tr>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 424: FMCG Lollipop Billboard</strong></p>
-      <a href="docs/gallery-part-2.md#case-424"><img src="data/images/case424.jpg" alt="FMCG lollipop billboard" width="140"></a><br>
-      <sub>A cinematic candy billboard prompt with neon street lighting, flavor splash motion, and layered campaign typography.</sub><br>
-      <a href="docs/gallery-part-2.md#case-424"><strong>View Case</strong></a>
+      <p><strong>Case 428: F1 Live Broadcast Screenshot</strong></p>
+      <a href="docs/gallery-part-2.md#case-428"><img src="data/images/case428.jpg" alt="F1 live broadcast screenshot" width="140"></a><br>
+      <sub>A paddock broadcast frame with timing tower, final-lap overlays, radio headset, and realistic garage depth.</sub><br>
+      <a href="docs/gallery-part-2.md#case-428"><strong>View Case</strong></a>
     </td>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 425: Black-and-White Portrait Collage</strong></p>
-      <a href="docs/gallery-part-2.md#case-425"><img src="data/images/case425.jpg" alt="Black-and-white portrait collage" width="140"></a><br>
-      <sub>A clean editorial portrait collage that mixes color cutout foreground with stacked monochrome frames.</sub><br>
-      <a href="docs/gallery-part-2.md#case-425"><strong>View Case</strong></a>
+      <p><strong>Case 429: Korean Convenience Store Portrait</strong></p>
+      <a href="docs/gallery-part-2.md#case-429"><img src="data/images/case429.jpg" alt="Korean convenience store portrait" width="140"></a><br>
+      <sub>A cozy late-night store portrait with refrigerator glow, pink hoodie styling, and iPhone-flash realism.</sub><br>
+      <a href="docs/gallery-part-2.md#case-429"><strong>View Case</strong></a>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 426: Japanese-Korean Cafe Date</strong></p>
-      <a href="docs/gallery-part-2.md#case-426"><img src="data/images/case426.jpg" alt="Japanese-Korean cafe date" width="140"></a><br>
-      <sub>A cozy cafe photography system with dessert styling, window light, doodles, and Tokyo/Seoul atmosphere variables.</sub><br>
-      <a href="docs/gallery-part-2.md#case-426"><strong>View Case</strong></a>
+      <p><strong>Case 430: Sketch Fashion Editorial</strong></p>
+      <a href="docs/gallery-part-2.md#case-430"><img src="data/images/case430.jpg" alt="Sketch fashion editorial" width="140"></a><br>
+      <sub>A monochrome pencil-sketch fashion illustration with charcoal texture and a bold orange geometry backdrop.</sub><br>
+      <a href="docs/gallery-part-2.md#case-430"><strong>View Case</strong></a>
     </td>
     <td width="50%" valign="top" align="center">
-      <p><strong>Case 427: 9-Frame Fashion Portrait Collage</strong></p>
-      <a href="docs/gallery-part-2.md#case-427"><img src="data/images/case427.jpg" alt="9-frame fashion portrait collage" width="140"></a><br>
-      <sub>A photobooth-style fashion collage with nine expressions, cap styling, studio lighting, and film borders.</sub><br>
-      <a href="docs/gallery-part-2.md#case-427"><strong>View Case</strong></a>
+      <p><strong>Case 431: Travel Typography Poster</strong></p>
+      <a href="docs/gallery-part-2.md#case-431"><img src="data/images/case431.jpg" alt="Travel typography poster" width="140"></a><br>
+      <sub>A city-name poster system where each giant letter becomes a framed vector scene from the destination.</sub><br>
+      <a href="docs/gallery-part-2.md#case-431"><strong>View Case</strong></a>
     </td>
   </tr>
 </table>

@@ -8609,3 +8609,106 @@ Background minimal white studio backdrop. Photobooth-style collage layout with b
 ```
 
 ***
+
+<a name="case-428"></a>
+
+### 例 428：F1 直播转播围场截图
+
+![F1 直播转播围场截图](../data/images/case428.jpg)
+
+**来源：** [@bigwonbots](https://x.com/bigwonbots/status/2054573714012787059)
+
+**提示词：**
+
+```text
+Ultra-realistic F1 live TV broadcast screenshot. A strikingly beautiful, 25-year-old young woman with bright light blue hair and captivating bright cerulean blue eyes is sitting in the VIP paddock / team garage during a Formula 1 race. Shown on the official live race broadcast as the girlfriend of an F1 driver, she is listening to the team radio through a professional racing headset. It is the final lap, and she is watching the garage monitors with a proud, enchanting smile.
+She wears a fitted white tank top, an oversized racing team jacket (with generic, unbranded or blank team logos) draped over her shoulders, large black team-radio headset with boom mic, gold jewelry, and soft glam makeup. A slim, unbranded paddock pass hangs naturally from her neck.
+Add realistic F1 broadcast graphics: "FINAL LAP" banner, lap counter showing final lap, driver timing tower on the left, small F1-style logo bug, "LIVE" indicator, and a lower-third identifying her as a driver partner / paddock guest (e.g., "MIA ANDERSEN - Paddock Guest / Partner"). No fake oversized badges, no selfie angle.
+Team staff (in generic kit), headsets, garage screens, and generic race equipment are blurred around her. Telephoto broadcast camera shot from across the garage, professional depth of field, compression artifacts, digital noise, bright paddock lighting, natural skin texture, no smoothing, 8k quality, cinematic lighting.
+```
+
+***
+
+<a name="case-429"></a>
+
+### 例 429：韩国便利店粉色 Hoodie 人像
+
+![韩国便利店粉色 Hoodie 人像](../data/images/case429.jpg)
+
+**来源：** [@john_my07](https://x.com/john_my07/status/2054573350199111928)
+
+**提示词：**
+
+```text
+Ultra-realistic cozy Korean convenience store portrait of a beautiful Korean woman standing in front of glowing refrigerator aisles at night, wearing an oversized fluffy pastel pink hoodie with the hood up. She holds a bottle of strawberry milk in one hand and a tiny strawberry cake in the other while shyly looking toward the camera. Long soft black hair, glossy eyes, natural skin texture, subtle blushy makeup, gentle expression, youthful Korean beauty aesthetic. Warm fluorescent convenience store lighting mixed with realistic iPhone flash photography. Tiny reflections on drink bottles and glass refrigerator doors, dreamy romantic atmosphere, soft pink and cream color palette, slice-of-life anime realism blended with cinematic photography, highly detailed, cozy late-night Seoul convenience store vibe, shallow depth of field, realistic Korean snack packaging, candid aesthetic, soft glow, ultra photorealistic.
+```
+
+***
+
+<a name="case-430"></a>
+
+### 例 430：铅笔素描时尚编辑插画
+
+![铅笔素描时尚编辑插画](../data/images/case430.jpg)
+
+**来源：** [@harboriis](https://x.com/harboriis/status/2054573031343931418)
+
+**提示词：**
+
+```text
+A high-detail digital illustration of a stylish woman sitting gracefully on a stone ledge, posing with one hand near her chin and legs crossed. She is wearing vintage-inspired round sunglasses, a white blouse with rolled-up sleeves, denim overalls, and rugged lace-up combat boots. The subject is rendered in a desaturated, monochromatic pencil-sketch style with soft cross-hatching and charcoal textures. In the background, a large, vibrant solid orange circle creates a bold geometric contrast against a clean, light grey backdrop. The overall composition is minimalist, editorial, and features a clean "indie-magazine" aesthetic with sharp linework and soft shading.
+
+Aspect ratio is 9:16
+```
+
+***
+
+<a name="case-431"></a>
+
+### 例 431：城市文字旅行海报
+
+![城市文字旅行海报](../data/images/case431.jpg)
+
+**来源：** [@iamaiistudio](https://x.com/iamaiistudio/status/2054563354899857757)
+
+**提示词：**
+
+```text
+Ultra-high-resolution typography travel poster themed around [CITY NAME]. 16:9 poster ratio.
+
+IMPORTANT: every visible word on the poster must be in English, perfectly spelled, professionally typeset. No distorted letters, no random symbols, no broken text, no AI gibberish.
+
+CORE COMPOSITION:
+Place the giant English word "[CITY_NAME]" front and center. Each letter is a tall, bold, elongated sans-serif form, and each one frames a different illustrated scene from the city, like a row of gallery windows. Spread landmarks, streets, transport, nature, culture, and architecture across the letters so the scenes flow from one letter into the next as a single connected urban panorama.
+
+TOP HORIZONTAL STRIP:
+Across the top of the poster, a thin panoramic band: city skyline silhouettes, cars, trams or trains, boats where it fits, birds, clouds, sun. Keep it minimalist, elegant, rhythmically balanced.
+
+STYLE: mid-century modern editorial poster, Swiss graphic design, minimal vector illustration, architectural infographic feel, travel typography poster, flat geometric illustration, ultra-clean composition, premium magazine design, screen-print poster vibe, retro-futuristic travel branding.
+
+ILLUSTRATION:
+Flat vector shapes only. No realism, no gradients, no noise. Clean geometric shadows, simplified architectural forms, a mix of map-like top-down with side-view cityscape. Subtle line-art details, crisp vector edges, strong negative space, harmonious rhythm between the letters.
+
+TYPOGRAPHY:
+Giant bold sans-serif, letters fill most of the canvas height. Pixel-perfect alignment. Each letter acts as its own framed illustration panel. Soft rounded corners where it suits. Editorial spacing. Print-ready and geometrically clean.
+
+COLOR PALETTE:
+Pull a cohesive palette inspired by [CITY_NAME]:
+coastal city -> aqua, sand, coral, muted teal
+desert city -> terracotta, beige, warm cream
+cyber city -> mint, navy, steel blue
+historic European city -> dusty rose, olive green, parchment
+Muted pastels, soft vintage travel-poster colors, low saturation. Max 4 to 6 colors.
+
+CONTENT:
+Include iconic landmarks, famous streets and transport, local urban patterns, nearby nature, skyline silhouettes, bridges/rivers/coastline if relevant, culturally symbolic architecture, recognizable local atmosphere.
+
+COMPOSITION:
+Centered typography on a white or soft ivory background. Lots of breathing room. The top panoramic strip balances the heavy typography below. Asymmetrical but visually balanced. Each letter shows its own scene depth and perspective. Museum-quality poster hierarchy.
+
+MOOD: premium, intellectual, calm, design-forward, travel-editorial, stylish enough for a museum gift-shop wall.
+
+QUALITY: 8K ultra-detailed, print-ready, razor-sharp vector edges, flawless typography, zero distorted text, zero random characters, zero spelling errors, zero AI artifacts.
+```
+
+***

@@ -1,10 +1,10 @@
 ## 🖼️ 魔法画廊总览
 
-完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 427。
+完整画廊已按 GitHub 渲染体积拆成两册，避免页面被截断；当前总案例数为 431。
 
 - [返回 README 首页](../README.md)
 - [Part 1：例 1-165](./gallery-part-1.md)
-- [Part 2：例 166-427](./gallery-part-2.md)
+- [Part 2：例 166-431](./gallery-part-2.md)
 - [工业级提示词模板与防坑指南](./templates.md)
 - [声明、Star 趋势图与公众号](./disclaimer.md)
 
@@ -95,21 +95,25 @@
 - [例 425：黑白时尚人像拼贴海报](./gallery-part-2.md#case-425)
 - [例 426：日韩咖啡馆情侣写真](./gallery-part-2.md#case-426)
 - [例 427：9-frame 时尚人像拼贴](./gallery-part-2.md#case-427)
+- [例 428：F1 直播转播围场截图](./gallery-part-2.md#case-428)
+- [例 429：韩国便利店粉色 Hoodie 人像](./gallery-part-2.md#case-429)
+- [例 430：铅笔素描时尚编辑插画](./gallery-part-2.md#case-430)
+- [例 431：城市文字旅行海报](./gallery-part-2.md#case-431)
 
 ## 分册说明
 
 - `gallery-part-1.md`：例 1-165，覆盖信息图、界面、海报、摄影、插画等基础主流类型。
-- `gallery-part-2.md`：例 166-427，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
+- `gallery-part-2.md`：例 166-431，包含更多品牌、卡牌、直播截图、国风、商业视觉、作者新增实测与社区案例。
 
 ## 分类概览
 
 - UI与界面：63
 - 图表与信息可视化：45
-- 海报与排版：69
+- 海报与排版：70
 - 商品与电商：28
 - 品牌与标志：20
 - 建筑与空间：10
-- 摄影与写实：51
+- 摄影与写实：53
 - 插画与艺术：39
 - 人物与角色：20
 - 场景与叙事：16
@@ -239,7 +243,7 @@
 
 <a name="cat-poster"></a>
 
-### 📰 海报与排版 · 69 cases
+### 📰 海报与排版 · 70 cases
 
 - [例 3：足球主题电影海报](./gallery-part-1.md#case-3)
 - [例 5：主题海报版式设计](./gallery-part-1.md#case-5)
@@ -309,6 +313,7 @@
 - [例 406：巨型游戏手柄街头 Campaign](./gallery-part-2.md#case-406)
 - [例 417：复古印尼猫薄荷广告](./gallery-part-2.md#case-417)
 - [例 418：中世纪城市旅行海报](./gallery-part-2.md#case-418)
+- [例 431：城市文字旅行海报](./gallery-part-2.md#case-431)
 
 <a name="cat-product"></a>
 
@@ -385,7 +390,7 @@
 
 <a name="cat-photo"></a>
 
-### 📷 摄影与写实 · 51 cases
+### 📷 摄影与写实 · 53 cases
 
 - [例 24：漫画分镜叙事设计](./gallery-part-1.md#case-24)
 - [例 26：建筑空间场景图](./gallery-part-1.md#case-26)
@@ -438,6 +443,8 @@
 - [例 425：黑白时尚人像拼贴海报](./gallery-part-2.md#case-425)
 - [例 426：日韩咖啡馆情侣写真](./gallery-part-2.md#case-426)
 - [例 427：9-frame 时尚人像拼贴](./gallery-part-2.md#case-427)
+- [例 428：F1 直播转播围场截图](./gallery-part-2.md#case-428)
+- [例 429：韩国便利店粉色 Hoodie 人像](./gallery-part-2.md#case-429)
 
 <a name="cat-illustration"></a>
 
@@ -482,6 +489,7 @@
 - [例 409：拙劣 MS Paint 风重绘](./gallery-part-2.md#case-409)
 - [例 410：夸张动漫风主体重绘](./gallery-part-2.md#case-410)
 - [例 423：日系手绘涂鸦半身插画](./gallery-part-2.md#case-423)
+- [例 430：铅笔素描时尚编辑插画](./gallery-part-2.md#case-430)
 
 <a name="cat-character"></a>
 
