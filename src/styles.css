@@ -1925,6 +1925,40 @@ button {
   color: #ffffff;
 }
 
+.adminCustomRange {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(3, 7, 15, 0.38);
+}
+
+.adminCustomRange label {
+  display: grid;
+  gap: 5px;
+}
+
+.adminCustomRange span {
+  color: #93a4bc;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.adminCustomRange input {
+  width: 142px;
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 0 9px;
+  background: rgba(3, 7, 15, 0.72);
+  color: #ffffff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .adminDashboard,
 .adminBlock {
   display: grid;
@@ -1969,6 +2003,17 @@ button {
   color: #ffe1a8;
   font-size: 13px;
   font-weight: 800;
+}
+
+.adminRangeSummary {
+  margin: -2px 0 0;
+  color: #aebcd0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.adminRangeSummary strong {
+  color: #ffffff;
 }
 
 .adminMetricGrid {
@@ -2023,9 +2068,14 @@ button {
   font-style: normal;
 }
 
+.adminChartGrid {
+  display: grid;
+  gap: 10px;
+}
+
 .adminTrafficGrid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -2037,6 +2087,91 @@ button {
   border-radius: 8px;
   padding: 12px;
   background: rgba(3, 7, 15, 0.45);
+}
+
+.adminPanelCard.chart {
+  min-height: 334px;
+}
+
+.adminTrendChart {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.adminChartLegend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.adminChartLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #aebcd0;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.adminChartLegend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+}
+
+.adminTrendChart svg {
+  width: 100%;
+  height: auto;
+  min-height: 260px;
+  overflow: visible;
+}
+
+.adminTrendChart line {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+}
+
+.adminTrendChart text {
+  fill: #93a4bc;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.adminChartDate {
+  fill: #aebcd0;
+}
+
+.adminChartArea {
+  pointer-events: none;
+}
+
+.adminChartLine {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.adminChartActive > line {
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-dasharray: 4 6;
+}
+
+.adminChartActive circle {
+  stroke: #07101f;
+  stroke-width: 2;
+}
+
+.adminChartTooltip rect {
+  fill: rgba(3, 7, 15, 0.92);
+  stroke: rgba(255, 255, 255, 0.16);
+}
+
+.adminChartTooltip text {
+  fill: #ffffff;
+  font-size: 12px;
 }
 
 .adminMiniBars {
@@ -2727,6 +2862,19 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .adminCustomRange {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .adminCustomRange label {
+    flex: 1 1 160px;
+  }
+
+  .adminCustomRange input {
+    width: 100%;
+  }
+
   .adminTrafficGrid {
     grid-template-columns: 1fr;
   }
@@ -2959,6 +3107,15 @@ button {
 
   .adminRangeToggle button {
     flex: 1;
+  }
+
+  .adminCustomRange {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .adminTrendChart svg {
+    min-height: 224px;
   }
 
   .adminMetricGrid,

@@ -173,14 +173,24 @@ const copy = {
     businessMetrics: 'Business',
     analyticsNotConfigured: 'GA4 is not configured yet. Business metrics are still available.',
     analyticsLoadFailed: 'GA4 data could not be loaded. Business metrics are still available.',
+    invalidDateRange: 'Choose a date range within 180 days.',
+    rangeToday: 'Today',
     range7d: '7 days',
     range30d: '30 days',
+    range90d: '90 days',
+    customRange: 'Custom',
+    startDate: 'Start date',
+    endDate: 'End date',
+    applyRange: 'Apply',
+    selectedRange: 'Selected range',
     pv: 'PV',
     uv: 'UV',
+    visits: 'Visits',
     sessions: 'Sessions',
     newUsers: 'New users',
     registeredUsers: 'Registered users',
     newRegistrations: 'New registrations',
+    newMembers: 'New members',
     activeMemberships: 'Active members',
     totalGenerationsMetric: 'Total generations',
     rangeGenerations: 'Range generations',
@@ -192,6 +202,9 @@ const copy = {
     purchasedCredits: 'Purchased credits',
     membershipCredits: 'Membership credits',
     dailyTraffic: 'Daily traffic',
+    trafficTrend: 'Traffic trend',
+    businessTrend: 'Business trend',
+    registrations: 'Registrations',
     topPages: 'Top pages',
     channels: 'Channels',
     countries: 'Countries',
@@ -353,14 +366,24 @@ const copy = {
     businessMetrics: '业务数据',
     analyticsNotConfigured: 'GA4 还没有配置，当前先展示业务数据。',
     analyticsLoadFailed: 'GA4 数据暂时读取失败，当前先展示业务数据。',
+    invalidDateRange: '请选择 180 天以内的日期范围。',
+    rangeToday: '今天',
     range7d: '近 7 天',
     range30d: '近 30 天',
+    range90d: '近 90 天',
+    customRange: '自定义',
+    startDate: '开始日期',
+    endDate: '结束日期',
+    applyRange: '应用',
+    selectedRange: '当前区间',
     pv: 'PV',
     uv: 'UV',
+    visits: '访问数',
     sessions: 'Sessions',
     newUsers: '新访客',
     registeredUsers: '注册用户',
     newRegistrations: '新增注册',
+    newMembers: '新增会员',
     activeMemberships: '活跃会员',
     totalGenerationsMetric: '总生图量',
     rangeGenerations: '区间生图量',
@@ -372,6 +395,9 @@ const copy = {
     purchasedCredits: '购买积分',
     membershipCredits: '会员发放积分',
     dailyTraffic: '每日流量',
+    trafficTrend: '流量趋势',
+    businessTrend: '业务趋势',
+    registrations: '注册',
     topPages: '热门页面',
     channels: '来源渠道',
     countries: '国家/地区',
@@ -526,6 +552,29 @@ function formatShortDate(value, language) {
     month: 'short',
     day: 'numeric'
   });
+}
+
+function formatRangeDate(value, language) {
+  if (!value) return '-';
+  return new Date(`${value}T00:00:00`).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+function dateInputValue(daysAgo = 0) {
+  const date = new Date();
+  date.setDate(date.getDate() - daysAgo);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function firstNumber(...values) {
+  const value = values.find((item) => item !== undefined && item !== null);
+  return Number(value || 0);
 }
 
 function percentOf(value, max) {
@@ -1333,22 +1382,138 @@ function AdminMetricCard({ icon, label, value, hint }) {
   );
 }
 
-function AdminMiniBars({ rows, language }) {
-  const maxViews = Math.max(...rows.map((row) => Number(row.pageViews || 0)), 0);
-  const maxUsers = Math.max(...rows.map((row) => Number(row.activeUsers || 0)), 0);
+function AdminTrendChart({ rows = [], series = [], language, emptyLabel }) {
+  const chartRef = useRef(null);
+  const [hoverIndex, setHoverIndex] = useState(null);
+  const width = 720;
+  const height = 260;
+  const padding = { top: 24, right: 24, bottom: 38, left: 54 };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
+  const maxValue = Math.max(
+    1,
+    ...rows.flatMap((row) => series.map((item) => Number(row[item.key] || 0)))
+  );
+
+  function pointFor(row, index, key) {
+    const x = padding.left + (rows.length <= 1 ? chartWidth / 2 : (index / (rows.length - 1)) * chartWidth);
+    const y = padding.top + chartHeight - (Number(row[key] || 0) / maxValue) * chartHeight;
+    return { x, y };
+  }
+
+  function linePath(points) {
+    return points.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join(' ');
+  }
+
+  function areaPath(points) {
+    if (!points.length) return '';
+    const bottom = padding.top + chartHeight;
+    const lastPoint = points[points.length - 1];
+    return `${linePath(points)} L ${lastPoint.x.toFixed(2)} ${bottom} L ${points[0].x.toFixed(2)} ${bottom} Z`;
+  }
+
+  function handlePointerMove(event) {
+    if (!chartRef.current || !rows.length) return;
+    const clientX = event.touches?.[0]?.clientX ?? event.clientX;
+    const rect = chartRef.current.getBoundingClientRect();
+    const relativeX = ((clientX - rect.left) / rect.width) * width;
+    const ratio = Math.min(1, Math.max(0, (relativeX - padding.left) / chartWidth));
+    setHoverIndex(Math.round(ratio * (rows.length - 1)));
+  }
+
+  if (!rows.length) {
+    return <p className="emptyTransactions">{emptyLabel}</p>;
+  }
+
+  const gridLines = [0, 0.25, 0.5, 0.75, 1];
+  const xLabelIndexes = rows.length <= 8
+    ? rows.map((_, index) => index)
+    : [0, Math.round((rows.length - 1) / 2), rows.length - 1];
+  const activeIndex = hoverIndex ?? rows.length - 1;
+  const activeRow = rows[activeIndex];
+  const activeX = pointFor(activeRow, activeIndex, series[0]?.key).x;
+  const tooltipX = Math.min(activeX + 12, width - 178);
 
   return (
-    <div className="adminMiniBars">
-      {rows.map((row) => (
-        <div className="adminMiniBar" key={row.date}>
-          <span>{formatShortDate(row.date, language)}</span>
-          <div>
-            <i style={{ width: `${percentOf(row.pageViews, maxViews)}%` }} />
-            <b style={{ width: `${percentOf(row.activeUsers, maxUsers)}%` }} />
-          </div>
-          <strong>{formatNumber(row.pageViews)}</strong>
-        </div>
-      ))}
+    <div className="adminTrendChart">
+      <div className="adminChartLegend">
+        {series.map((item) => (
+          <span key={item.key}>
+            <i style={{ background: item.color }} />
+            {item.label}
+          </span>
+        ))}
+      </div>
+      <svg
+        ref={chartRef}
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={series.map((item) => item.label).join(', ')}
+        onMouseMove={handlePointerMove}
+        onMouseLeave={() => setHoverIndex(null)}
+        onTouchMove={handlePointerMove}
+        onTouchEnd={() => setHoverIndex(null)}
+      >
+        <defs>
+          {series.filter((item) => item.area).map((item) => (
+            <linearGradient id={`area-${item.key}`} key={item.key} x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor={item.color} stopOpacity="0.38" />
+              <stop offset="100%" stopColor={item.color} stopOpacity="0.02" />
+            </linearGradient>
+          ))}
+        </defs>
+        {gridLines.map((line) => {
+          const y = padding.top + chartHeight * line;
+          return (
+            <g key={line}>
+              <line x1={padding.left} x2={width - padding.right} y1={y} y2={y} />
+              <text x={padding.left - 10} y={y + 4} textAnchor="end">
+                {formatNumber(Math.round(maxValue * (1 - line)))}
+              </text>
+            </g>
+          );
+        })}
+        {xLabelIndexes.map((index) => {
+          const point = pointFor(rows[index], index, series[0]?.key);
+          return (
+            <text className="adminChartDate" key={`${rows[index].date}-${index}`} x={point.x} y={height - 10} textAnchor="middle">
+              {formatShortDate(rows[index].date, language)}
+            </text>
+          );
+        })}
+        {series.map((item) => {
+          const points = rows.map((row, index) => pointFor(row, index, item.key));
+          return (
+            <g key={item.key}>
+              {item.area ? <path className="adminChartArea" d={areaPath(points)} fill={`url(#area-${item.key})`} /> : null}
+              <path
+                className="adminChartLine"
+                d={linePath(points)}
+                stroke={item.color}
+                strokeDasharray={item.dashed ? '8 7' : undefined}
+              />
+            </g>
+          );
+        })}
+        {activeRow ? (
+          <g className="adminChartActive">
+            <line x1={activeX} x2={activeX} y1={padding.top} y2={padding.top + chartHeight} />
+            {series.map((item) => {
+              const point = pointFor(activeRow, activeIndex, item.key);
+              return <circle key={item.key} cx={point.x} cy={point.y} r="4.5" fill={item.color} />;
+            })}
+            <g className="adminChartTooltip" transform={`translate(${tooltipX} 34)`}>
+              <rect width="164" height={38 + series.length * 18} rx="8" />
+              <text x="12" y="22">{formatRangeDate(activeRow.date, language)}</text>
+              {series.map((item, index) => (
+                <text key={item.key} x="12" y={44 + index * 18}>
+                  {item.label}: {formatNumber(activeRow[item.key])}
+                </text>
+              ))}
+            </g>
+          </g>
+        ) : null}
+      </svg>
     </div>
   );
 }
@@ -1383,12 +1548,14 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
   const [users, setUsers] = useState([]);
   const [metrics, setMetrics] = useState(null);
   const [range, setRange] = useState('7d');
+  const [customStart, setCustomStart] = useState(() => dateInputValue(29));
+  const [customEnd, setCustomEnd] = useState(() => dateInputValue());
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const [adjustment, setAdjustment] = useState(null);
   const [adjustStatus, setAdjustStatus] = useState('idle');
 
-  async function loadAdminData(nextRange = range) {
+  async function loadAdminData(nextRange = range, nextStart = customStart, nextEnd = customEnd) {
     if (!session?.access_token) {
       setStatus('error');
       setMessage(t.adminOnly);
@@ -1399,9 +1566,14 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
     setMessage('');
     try {
       const headers = getAuthHeaders(session);
+      const params = new URLSearchParams({ range: nextRange });
+      if (nextRange === 'custom') {
+        params.set('start', nextStart);
+        params.set('end', nextEnd);
+      }
       const [usersResponse, metricsResponse] = await Promise.all([
         fetch('/api/admin/users', { headers }),
-        fetch(`/api/admin/metrics?range=${encodeURIComponent(nextRange)}`, { headers })
+        fetch(`/api/admin/metrics?${params.toString()}`, { headers })
       ]);
       const usersPayload = await usersResponse.json().catch(() => ({}));
       const metricsPayload = await metricsResponse.json().catch(() => ({}));
@@ -1416,8 +1588,22 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
       setStatus('ready');
     } catch (error) {
       setStatus('error');
-      setMessage(error.message === 'SERVER_NOT_CONFIGURED' ? t.checkoutUnavailable : generationErrorMessage(error.message, language));
+      setMessage(
+        error.message === 'SERVER_NOT_CONFIGURED'
+          ? t.checkoutUnavailable
+          : error.message === 'INVALID_DATE_RANGE'
+            ? t.invalidDateRange
+            : generationErrorMessage(error.message, language)
+      );
     }
+  }
+
+  function handleCustomApply() {
+    if (range !== 'custom') {
+      setRange('custom');
+      return;
+    }
+    loadAdminData('custom', customStart, customEnd);
   }
 
   async function handleAdjustCredits(event) {
@@ -1460,11 +1646,27 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
   const traffic = metrics?.traffic || {};
   const business = metrics?.business || {};
   const trafficTotals = traffic.totals || {};
+  const businessTotals = business.totals || {};
+  const businessRange = business.range || {};
+  const selectedRange = metrics?.range;
+  const selectedRangeLabel = selectedRange?.startDate && selectedRange?.endDate
+    ? `${formatRangeDate(selectedRange.startDate, language)} - ${formatRangeDate(selectedRange.endDate, language)}`
+    : '';
   const analyticsMessage = !traffic.configured
     ? t.analyticsNotConfigured
     : traffic.error
       ? t.analyticsLoadFailed
       : '';
+  const trafficSeries = [
+    { key: 'pv', label: t.pv, color: '#42e6ff', area: true },
+    { key: 'uv', label: t.uv, color: '#c7ff65' },
+    { key: 'visits', label: t.visits, color: '#ff8f70', dashed: true }
+  ];
+  const businessSeries = [
+    { key: 'generations', label: t.rangeGenerations, color: '#42e6ff', area: true },
+    { key: 'registrations', label: t.registrations, color: '#c7ff65' },
+    { key: 'creditsConsumed', label: t.creditsConsumed, color: '#ff8f70', dashed: true }
+  ];
 
   return (
     <div
@@ -1490,8 +1692,11 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
           <div className="adminHeaderActions">
             <div className="adminRangeToggle" role="group" aria-label={t.adminMetrics}>
               {[
+                ['today', t.rangeToday],
                 ['7d', t.range7d],
-                ['30d', t.range30d]
+                ['30d', t.range30d],
+                ['90d', t.range90d],
+                ['custom', t.customRange]
               ].map(([value, label]) => (
                 <button
                   className={cx(range === value && 'active')}
@@ -1503,6 +1708,21 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
                 </button>
               ))}
             </div>
+            {range === 'custom' ? (
+              <div className="adminCustomRange">
+                <label>
+                  <span>{t.startDate}</span>
+                  <input type="date" value={customStart} onChange={(event) => setCustomStart(event.target.value)} />
+                </label>
+                <label>
+                  <span>{t.endDate}</span>
+                  <input type="date" value={customEnd} onChange={(event) => setCustomEnd(event.target.value)} />
+                </label>
+                <button type="button" onClick={handleCustomApply} disabled={status === 'loading'}>
+                  {t.applyRange}
+                </button>
+              </div>
+            ) : null}
             <button type="button" onClick={() => loadAdminData()} disabled={status === 'loading'}>
               {status === 'loading' ? <LoaderCircle className="spinIcon" size={17} /> : <RefreshCw size={17} />}
               {t.refresh}
@@ -1518,21 +1738,28 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
                 {t.trafficMetrics}
               </h3>
               {analyticsMessage ? <p className="adminNotice">{analyticsMessage}</p> : null}
+              {selectedRangeLabel ? (
+                <p className="adminRangeSummary">
+                  {t.selectedRange}: <strong>{selectedRangeLabel}</strong>
+                </p>
+              ) : null}
               <div className="adminMetricGrid">
-                <AdminMetricCard icon={<BarChart3 size={18} />} label={t.pv} value={trafficTotals.pageViews} />
-                <AdminMetricCard icon={<Users size={18} />} label={t.uv} value={trafficTotals.activeUsers} />
-                <AdminMetricCard icon={<ReceiptText size={18} />} label={t.sessions} value={trafficTotals.sessions} />
+                <AdminMetricCard icon={<BarChart3 size={18} />} label={t.pv} value={firstNumber(trafficTotals.pv, trafficTotals.pageViews)} />
+                <AdminMetricCard icon={<Users size={18} />} label={t.uv} value={firstNumber(trafficTotals.uv, trafficTotals.activeUsers)} />
+                <AdminMetricCard icon={<ReceiptText size={18} />} label={t.visits} value={firstNumber(trafficTotals.visits, trafficTotals.sessions)} />
                 <AdminMetricCard icon={<UserPlus size={18} />} label={t.newUsers} value={trafficTotals.newUsers} />
               </div>
-              <div className="adminTrafficGrid">
-                <div className="adminPanelCard wide">
-                  <h4>{t.dailyTraffic}</h4>
-                  {traffic.daily?.length ? (
-                    <AdminMiniBars rows={traffic.daily} language={language} />
+              <div className="adminChartGrid">
+                <div className="adminPanelCard chart">
+                  <h4>{t.trafficTrend}</h4>
+                  {traffic.configured && traffic.daily?.length ? (
+                    <AdminTrendChart rows={traffic.daily} series={trafficSeries} language={language} emptyLabel={t.noAnalyticsRows} />
                   ) : (
                     <p className="emptyTransactions">{t.noAnalyticsRows}</p>
                   )}
                 </div>
+              </div>
+              <div className="adminTrafficGrid">
                 <div className="adminPanelCard">
                   <h4>{t.topPages}</h4>
                   <AdminRankList rows={traffic.topPages || []} type="pages" language={language} />
@@ -1554,16 +1781,26 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
                 {t.businessMetrics}
               </h3>
               <div className="adminMetricGrid">
-                <AdminMetricCard icon={<Users size={18} />} label={t.registeredUsers} value={business.totalUsers} hint={`${t.newRegistrations}: ${formatNumber(business.rangeUsers)}`} />
-                <AdminMetricCard icon={<Crown size={18} />} label={t.activeMemberships} value={business.activeMemberships} />
-                <AdminMetricCard icon={<ImageIcon size={18} />} label={t.totalGenerationsMetric} value={business.totalGenerations} hint={`${t.rangeGenerations}: ${formatNumber(business.rangeGenerations)}`} />
-                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsConsumed} value={business.totalGenerationCredits} hint={`${t.rangeGenerations}: ${formatNumber(business.rangeGenerationCredits)}`} />
-                <AdminMetricCard icon={<PackageCheck size={18} />} label={t.succeeded} value={business.succeededGenerations} />
-                <AdminMetricCard icon={<X size={18} />} label={t.failed} value={business.failedGenerations} />
-                <AdminMetricCard icon={<LoaderCircle size={18} />} label={t.pending} value={business.pendingGenerations} />
-                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsInCirculation} value={business.totalCreditBalance} />
-                <AdminMetricCard icon={<CreditCard size={18} />} label={t.purchasedCredits} value={business.purchasedCredits} />
-                <AdminMetricCard icon={<Crown size={18} />} label={t.membershipCredits} value={business.membershipCredits} />
+                <AdminMetricCard icon={<Users size={18} />} label={t.registeredUsers} value={firstNumber(businessTotals.registeredUsers, business.totalUsers)} hint={`${t.newRegistrations}: ${formatNumber(firstNumber(businessRange.newRegistrations, business.rangeUsers))}`} />
+                <AdminMetricCard icon={<Crown size={18} />} label={t.activeMemberships} value={firstNumber(businessTotals.activeMembers, business.activeMemberships)} hint={`${t.newMembers}: ${formatNumber(firstNumber(businessRange.newMembers, business.rangeMemberships))}`} />
+                <AdminMetricCard icon={<ImageIcon size={18} />} label={t.totalGenerationsMetric} value={firstNumber(businessTotals.totalGenerations, business.totalGenerations)} hint={`${t.rangeGenerations}: ${formatNumber(firstNumber(businessRange.generations, business.rangeGenerations))}`} />
+                <AdminMetricCard icon={<PackageCheck size={18} />} label={t.succeeded} value={firstNumber(businessTotals.succeededGenerations, business.succeededGenerations)} hint={`${t.rangeGenerations}: ${formatNumber(firstNumber(businessRange.succeededGenerations, business.rangeSucceededGenerations))}`} />
+                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsConsumed} value={firstNumber(businessTotals.totalCreditsConsumed, business.totalGenerationCredits)} hint={`${t.rangeGenerations}: ${formatNumber(firstNumber(businessRange.creditsConsumed, business.rangeGenerationCredits))}`} />
+                <AdminMetricCard icon={<X size={18} />} label={t.failed} value={firstNumber(businessTotals.failedGenerations, business.failedGenerations)} />
+                <AdminMetricCard icon={<LoaderCircle size={18} />} label={t.pending} value={firstNumber(businessTotals.pendingGenerations, business.pendingGenerations)} />
+                <AdminMetricCard icon={<Coins size={18} />} label={t.creditsInCirculation} value={firstNumber(businessTotals.totalCreditBalance, business.totalCreditBalance)} />
+                <AdminMetricCard icon={<CreditCard size={18} />} label={t.purchasedCredits} value={firstNumber(businessTotals.purchasedCredits, business.purchasedCredits)} />
+                <AdminMetricCard icon={<Crown size={18} />} label={t.membershipCredits} value={firstNumber(businessTotals.membershipCredits, business.membershipCredits)} />
+              </div>
+              <div className="adminChartGrid">
+                <div className="adminPanelCard chart">
+                  <h4>{t.businessTrend}</h4>
+                  {business.daily?.length ? (
+                    <AdminTrendChart rows={business.daily} series={businessSeries} language={language} emptyLabel={t.noAnalyticsRows} />
+                  ) : (
+                    <p className="emptyTransactions">{t.noAnalyticsRows}</p>
+                  )}
+                </div>
               </div>
             </section>
           </div>
