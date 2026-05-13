@@ -2742,26 +2742,46 @@ button {
 
 @media (max-width: 640px) {
   .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 8px;
+    row-gap: 10px;
     min-height: 64px;
   }
 
   .brand {
-    max-width: 205px;
+    grid-column: 1;
+    grid-row: 1;
+    width: fit-content;
+    max-width: min(100%, 205px);
+  }
+
+  .topbarControls {
+    display: contents;
   }
 
   .topbar nav {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
     max-width: 100%;
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .topbar nav::-webkit-scrollbar {
+    display: none;
   }
 
   .topbar nav a {
     padding: 0 8px;
   }
 
-  .topbarControls {
-    justify-content: flex-start;
-    width: 100%;
-    gap: 6px;
+  .languageSwitch {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
   }
 
   .accountButton,
@@ -2772,7 +2792,10 @@ button {
 
   .accountButton,
   .userMenu {
-    margin-left: auto;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    margin-left: 0;
   }
 
   .dropdownTrigger {
