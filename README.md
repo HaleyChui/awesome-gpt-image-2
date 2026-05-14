@@ -16,6 +16,24 @@
 > Updated irregularly with new workflows. Stars are welcome.
 > This project is sponsored by [Ciyuan API](https://ciyuan.today/), an AI aggregation platform for cost-effective GPT Image 2 access.
 
+## 🌐 Visual Website
+
+Use the live site at [gpt-image2.canghe.ai](https://gpt-image2.canghe.ai/) to browse the gallery as a product experience: open large previews, copy full prompts, filter by style or scenario, test generation after Google sign-in, and jump back to the source case on GitHub.
+
+<p align="center">
+  <a href="https://gpt-image2.canghe.ai/">
+    <img src="data/images/site-preview.png" alt="GPT-Image2 Gallery website preview" width="900">
+  </a>
+</p>
+
+## WeChat Official Account
+
+Search **苍何** on WeChat or scan the QR card below. To join the GPT-Image2 community group, follow the account and reply with **gpt-image-2交流群**.
+
+<p align="center">
+  <img src="data/images/wechat-community.jpg" alt="Canghe WeChat community QR card" width="760">
+</p>
+
 <a name="section-vision"></a>
 
 ## ⚡️ Project Vision
@@ -473,12 +491,6 @@ All prompt cases and generated images in this repository were initially inspired
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=freestylefly/awesome-gpt-image-2&type=Date)](https://star-history.com/#freestylefly/awesome-gpt-image-2&Date)
-
-## WeChat Official Account
-
-Search **苍何** on WeChat or scan the QR code below to follow Canghe's original WeChat official account. Reply with **AI** to get more AI prompt learning resources.
-
-![Canghe WeChat Official Account](data/images/公众号.png)
 
 ## 📜 License
 
