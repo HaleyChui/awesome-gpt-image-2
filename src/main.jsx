@@ -51,7 +51,7 @@ const copy = {
     eyebrow: 'Live GPT-Image2 prompt gallery',
     title: 'From viral images to reusable prompts.',
     subtitle:
-      'A visual front door for the awesome-gpt-image-2 repository: copy production-ready prompts, filter by style or scene, and jump straight into the GitHub source.',
+      'A visual workspace for GPT-Image2 creation: browse real cases, copy prompts, test image generation, explore industrial templates, and join the creator community.',
     explore: 'Explore cases',
     githubProject: 'GitHub project',
     cases: 'cases',
@@ -246,7 +246,7 @@ const copy = {
     eyebrow: '实时更新的 GPT-Image2 提示词画廊',
     title: '从爆款图片，到可复用 Prompt。',
     subtitle:
-      '这是 awesome-gpt-image-2 的可视化入口：复制可直接复用的 Prompt，按风格或场景筛选，并一键跳转到 GitHub 源项目。',
+      '一个面向 GPT-Image2 创作的可视化工作台：浏览真实案例、复制 Prompt、在线测试生图、查看工业级模板，并加入创作者交流群。',
     explore: '浏览案例',
     githubProject: 'GitHub 项目',
     cases: '个案例',
