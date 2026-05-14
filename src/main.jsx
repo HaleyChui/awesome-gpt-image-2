@@ -16,6 +16,7 @@ import {
   LoaderCircle,
   LogIn,
   LogOut,
+  MessageCircle,
   PackageCheck,
   RefreshCw,
   ReceiptText,
@@ -33,6 +34,7 @@ import {
 } from 'lucide-react';
 import './styles.css';
 import { isSupabaseConfigured, supabase } from './supabaseClient';
+import wechatCommunityImage from './assets/wechat-community.jpg';
 import skillExampleImage from '../agents/skills/gpt-image-2-style-library/assets/city-life-system-map.png';
 
 const fallbackRepoUrl = 'https://github.com/freestylefly/awesome-gpt-image-2';
@@ -45,6 +47,8 @@ const copy = {
     navCases: 'Cases',
     navSkill: 'Skill',
     navTemplates: 'Templates',
+    navCommunity: 'Community',
+    communityQrAlt: 'WeChat community invite card for GPT-Image2',
     eyebrow: 'Live GPT-Image2 prompt gallery',
     title: 'From viral images to reusable prompts.',
     subtitle:
@@ -238,6 +242,8 @@ const copy = {
     navCases: '案例',
     navSkill: '技能',
     navTemplates: '模板',
+    navCommunity: '交流群',
+    communityQrAlt: 'GPT-Image2 微信交流群邀请卡',
     eyebrow: '实时更新的 GPT-Image2 提示词画廊',
     title: '从爆款图片，到可复用 Prompt。',
     subtitle:
@@ -982,6 +988,36 @@ function LanguageSwitch({ language, setLanguage }) {
         </div>
       ) : null}
     </div>
+  );
+}
+
+function CommunityNavItem({ language }) {
+  const t = copy[language];
+  const [open, setOpen] = useState(false);
+  return (
+    <span
+      className={cx('communityNavItem', open && 'open')}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
+      <button
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label={t.navCommunity}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <MessageCircle size={17} />
+        {t.navCommunity}
+      </button>
+      <span className="communityPopover" role="dialog" aria-label={t.navCommunity}>
+        <img src={wechatCommunityImage} alt={t.communityQrAlt} loading="lazy" />
+      </span>
+    </span>
   );
 }
 
@@ -2921,6 +2957,7 @@ function App() {
             <a href="#gallery">{t.navCases}</a>
             <a href="#templates">{t.navTemplates}</a>
             <a href="#agent-skill">{t.navSkill}</a>
+            <CommunityNavItem language={language} />
             <a href={repoUrl} target="_blank" rel="noreferrer">
               GitHub
             </a>
