@@ -1296,6 +1296,7 @@ function AccountPanel({
   profile,
   casesById,
   favoriteRows,
+  initialSection,
   onClose,
   onBilling,
   onProfileChange,
@@ -1305,6 +1306,7 @@ function AccountPanel({
   const [fullName, setFullName] = useState('');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
+  const favoritesRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
@@ -1312,6 +1314,14 @@ function AccountPanel({
     setStatus('idle');
     setMessage('');
   }, [open, profile?.fullName, session?.user?.user_metadata?.name]);
+
+  useEffect(() => {
+    if (!open || initialSection !== 'favorites') return;
+    const frame = window.requestAnimationFrame(() => {
+      favoritesRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [open, initialSection, favoriteRows]);
 
   if (!open) return null;
 
@@ -1439,7 +1449,7 @@ function AccountPanel({
           </section>
         </div>
 
-        <section className="transactionSection favoritesSection">
+        <section className="transactionSection favoritesSection" ref={favoritesRef}>
           <h3>
             <Heart size={18} />
             {t.myFavorites}
@@ -2890,6 +2900,7 @@ function App() {
   const [favoriteMessage, setFavoriteMessage] = useState('');
   const [authOpen, setAuthOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const [accountInitialSection, setAccountInitialSection] = useState('overview');
   const [adminOpen, setAdminOpen] = useState(false);
   const [billingOpen, setBillingOpen] = useState(false);
   const [billingNotice, setBillingNotice] = useState('');
@@ -2966,6 +2977,29 @@ function App() {
     };
   }, [session?.access_token]);
 
+  async function loadFavorites({ silent = true } = {}) {
+    if (!session?.access_token) {
+      setFavoriteRows([]);
+      return [];
+    }
+
+    try {
+      const response = await fetch('/api/favorites', {
+        headers: getAuthHeaders(session)
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload.error || 'FAVORITES_LOAD_FAILED');
+      }
+      const favorites = normalizeFavoriteRows(payload.favorites);
+      setFavoriteRows(favorites);
+      return favorites;
+    } catch {
+      if (!silent) setTimedFavoriteMessage(t.favoriteFailed);
+      return [];
+    }
+  }
+
   useEffect(() => {
     let cancelled = false;
 
@@ -2976,18 +3010,10 @@ function App() {
       };
     }
 
-    fetch('/api/favorites', {
-      headers: getAuthHeaders(session)
-    })
-      .then((response) => response.json())
-      .then((payload) => {
-        if (!cancelled && payload?.ok) {
-          setFavoriteRows(normalizeFavoriteRows(payload.favorites));
-        }
-      })
-      .catch(() => {
-        if (!cancelled) setFavoriteRows([]);
-      });
+    loadFavorites().then((favorites) => {
+      if (cancelled) return;
+      setFavoriteRows(favorites);
+    });
 
     return () => {
       cancelled = true;
@@ -3088,6 +3114,7 @@ function App() {
 
   function handleOpenCaseFromAccount(caseItem) {
     setAccountOpen(false);
+    setAccountInitialSection('overview');
     setBillingOpen(false);
     setPreview({ type: 'case', item: caseItem });
   }
@@ -3160,6 +3187,19 @@ function App() {
     }
   }
 
+  function handleOpenAccount(section = 'overview') {
+    setAccountInitialSection(section);
+    setAccountOpen(true);
+    if (section === 'favorites') {
+      loadFavorites({ silent: false });
+    }
+  }
+
+  function handleCloseAccount() {
+    setAccountOpen(false);
+    setAccountInitialSection('overview');
+  }
+
   if (!siteData || !styleLibrary) {
     return (
       <main>
@@ -3195,8 +3235,8 @@ function App() {
             profile={profile}
             onSignIn={() => setAuthOpen(true)}
             onSignOut={handleSignOut}
-            onAccount={() => setAccountOpen(true)}
-            onFavorites={() => setAccountOpen(true)}
+            onAccount={() => handleOpenAccount('overview')}
+            onFavorites={() => handleOpenAccount('favorites')}
             onAdmin={() => setAdminOpen(true)}
             onBilling={() => {
               setBillingNotice('');
@@ -3356,7 +3396,8 @@ function App() {
         profile={profile}
         casesById={casesById}
         favoriteRows={favoriteRows}
-        onClose={() => setAccountOpen(false)}
+        initialSection={accountInitialSection}
+        onClose={handleCloseAccount}
         onProfileChange={handleProfileChange}
         onOpenCase={handleOpenCaseFromAccount}
         onBilling={() => {
