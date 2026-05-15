@@ -519,6 +519,8 @@ const GENERATED_TESTS_STORAGE_KEY = 'gpt-image-2-generated-tests:v1';
 const MAX_SAVED_GENERATIONS = 12;
 const HERO_CASE_COUNT = 5;
 const HOT_STRIP_CASE_COUNT = 8;
+let bodyScrollLockCount = 0;
+let bodyScrollLockState = null;
 
 function pagePathWithHash() {
   return `${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -561,6 +563,45 @@ function useGaPageViews() {
       window.removeEventListener('popstate', sendGaPageView);
     };
   }, []);
+}
+
+function useBodyScrollLock(active) {
+  useEffect(() => {
+    if (!active) return undefined;
+
+    if (bodyScrollLockCount === 0) {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      bodyScrollLockState = {
+        scrollY,
+        bodyOverflow: document.body.style.overflow,
+        bodyPosition: document.body.style.position,
+        bodyTop: document.body.style.top,
+        bodyWidth: document.body.style.width,
+        htmlOverflow: document.documentElement.style.overflow
+      };
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    }
+
+    bodyScrollLockCount += 1;
+
+    return () => {
+      bodyScrollLockCount = Math.max(0, bodyScrollLockCount - 1);
+      if (bodyScrollLockCount > 0 || !bodyScrollLockState) return;
+
+      const { scrollY, bodyOverflow, bodyPosition, bodyTop, bodyWidth, htmlOverflow } = bodyScrollLockState;
+      document.documentElement.style.overflow = htmlOverflow;
+      document.body.style.overflow = bodyOverflow;
+      document.body.style.position = bodyPosition;
+      document.body.style.top = bodyTop;
+      document.body.style.width = bodyWidth;
+      bodyScrollLockState = null;
+      window.scrollTo(0, scrollY);
+    };
+  }, [active]);
 }
 
 function formatNumber(value) {
@@ -1093,6 +1134,7 @@ function AuthModal({ open, language, onClose }) {
   const t = copy[language];
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
+  useBodyScrollLock(open);
 
   useEffect(() => {
     if (!open) return;
@@ -1307,6 +1349,7 @@ function AccountPanel({
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const favoritesRef = useRef(null);
+  useBodyScrollLock(open);
 
   useEffect(() => {
     if (!open) return;
@@ -1690,6 +1733,7 @@ function AdminPanel({ open, language, session, casesById, onClose, onOpenCase })
   const [message, setMessage] = useState('');
   const [adjustment, setAdjustment] = useState(null);
   const [adjustStatus, setAdjustStatus] = useState('idle');
+  useBodyScrollLock(open);
 
   async function loadAdminData(nextRange = range, nextStart = customStart, nextEnd = customEnd) {
     if (!session?.access_token) {
@@ -2090,6 +2134,7 @@ function BillingPanel({
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const [busyProduct, setBusyProduct] = useState('');
+  useBodyScrollLock(open);
 
   async function loadBilling() {
     setStatus('loading');
@@ -2584,12 +2629,10 @@ function PreviewDialog({
     image: '',
     message: ''
   });
+  useBodyScrollLock(Boolean(preview));
 
   useEffect(() => {
     if (!preview) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
     function handleKeyDown(event) {
       if (event.key === 'Escape') onClose();
@@ -2597,7 +2640,6 @@ function PreviewDialog({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [preview, onClose]);

@@ -1395,9 +1395,11 @@ button {
   z-index: 60;
   display: grid;
   place-items: center;
+  overscroll-behavior: contain;
   padding: 24px;
   background: rgba(3, 6, 13, 0.78);
   backdrop-filter: blur(16px);
+  touch-action: none;
 }
 
 .previewDialog {
@@ -1413,6 +1415,8 @@ button {
     radial-gradient(circle at 10% 0%, rgba(66, 230, 255, 0.12), transparent 34%),
     linear-gradient(145deg, rgba(11, 17, 33, 0.98), rgba(7, 11, 22, 0.96));
   box-shadow: 0 34px 120px rgba(0, 0, 0, 0.56);
+  overscroll-behavior: contain;
+  touch-action: auto;
 }
 
 .previewClose {
@@ -1516,6 +1520,8 @@ button {
 }
 
 .previewContent {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   overflow: auto;
   padding: 30px;
 }
@@ -1812,6 +1818,8 @@ button {
   position: relative;
   width: min(100%, 460px);
   max-height: min(860px, 92vh);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   overflow: auto;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
@@ -1819,6 +1827,7 @@ button {
     radial-gradient(circle at 18% 0%, rgba(66, 230, 255, 0.15), transparent 38%),
     linear-gradient(145deg, rgba(12, 18, 36, 0.98), rgba(6, 10, 21, 0.96));
   box-shadow: 0 34px 120px rgba(0, 0, 0, 0.56);
+  touch-action: auto;
 }
 
 .authDialog {
@@ -1936,7 +1945,12 @@ button {
 
 .accountDialog {
   width: min(920px, 100%);
+  max-height: min(860px, 92vh);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  overflow: auto;
   padding: 24px;
+  touch-action: auto;
 }
 
 .accountHeader {
