@@ -12,6 +12,7 @@ import {
   Crown,
   Eye,
   Github,
+  Heart,
   ImageIcon,
   LoaderCircle,
   LogIn,
@@ -89,6 +90,15 @@ const copy = {
     copied: 'Copied',
     copyPrompt: 'Copy Prompt',
     copyTemplatePrompt: 'Copy Template',
+    favorite: 'Favorite',
+    favorited: 'Favorited',
+    unfavorite: 'Remove Favorite',
+    myFavorites: 'My Favorites',
+    noFavorites: 'No favorites yet.',
+    signInToFavorite: 'Sign in to save favorite cases.',
+    favoriteSaved: 'Favorite saved.',
+    favoriteRemoved: 'Favorite removed.',
+    favoriteFailed: 'Favorite update failed. Please try again.',
     closePreview: 'Close preview',
     viewDetails: 'View Details',
     generateTest: 'Generate Test',
@@ -284,6 +294,15 @@ const copy = {
     copied: '已复制',
     copyPrompt: '复制 Prompt',
     copyTemplatePrompt: '复制模板',
+    favorite: '收藏',
+    favorited: '已收藏',
+    unfavorite: '取消收藏',
+    myFavorites: '我的收藏',
+    noFavorites: '暂无收藏案例。',
+    signInToFavorite: '登录后即可收藏案例。',
+    favoriteSaved: '已加入收藏。',
+    favoriteRemoved: '已取消收藏。',
+    favoriteFailed: '收藏更新失败，请稍后再试。',
     closePreview: '关闭预览',
     viewDetails: '查看详情',
     generateTest: '生成测试',
@@ -621,6 +640,16 @@ function saveGeneratedTest(caseId, entry) {
       // visible for the current dialog state when persistence is unavailable.
     }
   }
+}
+
+function normalizeFavoriteRows(favorites = []) {
+  const rows = Array.isArray(favorites) ? favorites : [];
+  return rows
+    .map((favorite) => ({
+      caseId: Number(favorite.caseId || favorite.case_id),
+      createdAt: favorite.createdAt || favorite.created_at || ''
+    }))
+    .filter((favorite) => Number.isInteger(favorite.caseId) && favorite.caseId > 0);
 }
 
 function takeDistinctCases(cases, count, excludedIds = new Set()) {
@@ -1128,7 +1157,7 @@ function AuthModal({ open, language, onClose }) {
   );
 }
 
-function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, onBilling, onAccount }) {
+function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, onBilling, onAccount, onFavorites }) {
   const t = copy[language];
   const [open, setOpen] = useState(false);
   const ref = useDropdownDismiss(open, setOpen);
@@ -1210,6 +1239,18 @@ function UserMenu({ language, session, profile, onSignIn, onSignOut, onAdmin, on
             role="menuitem"
             onClick={() => {
               setOpen(false);
+              onFavorites();
+            }}
+          >
+            <Heart size={17} />
+            {t.myFavorites}
+          </button>
+          <button
+            className="dropdownAction"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
               onBilling();
             }}
           >
@@ -1254,6 +1295,7 @@ function AccountPanel({
   session,
   profile,
   casesById,
+  favoriteRows,
   onClose,
   onBilling,
   onProfileChange,
@@ -1278,6 +1320,12 @@ function AccountPanel({
   const usage = profile?.usage || {};
   const recentTransactions = profile?.recentTransactions || [];
   const generationTransactions = recentTransactions.filter((transaction) => transaction.type === 'generation');
+  const favoriteCases = normalizeFavoriteRows(favoriteRows)
+    .map((favorite) => ({
+      ...favorite,
+      caseItem: casesById?.get(favorite.caseId)
+    }))
+    .filter((favorite) => favorite.caseItem);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -1390,6 +1438,36 @@ function AccountPanel({
             </button>
           </section>
         </div>
+
+        <section className="transactionSection favoritesSection">
+          <h3>
+            <Heart size={18} />
+            {t.myFavorites}
+          </h3>
+          {favoriteCases.length ? (
+            <div className="favoriteGrid">
+              {favoriteCases.map(({ caseId, createdAt, caseItem }) => (
+                <button
+                  className="favoriteCard"
+                  type="button"
+                  onClick={() => onOpenCase?.(caseItem)}
+                  key={caseId}
+                >
+                  <img src={caseItem.image} alt={caseItem.imageAlt} />
+                  <span>#{caseId}</span>
+                  <strong>{caseItem.title}</strong>
+                  <em>
+                    {createdAt
+                      ? new Date(createdAt).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US')
+                      : localizeLabel(caseItem.category, language, null)}
+                  </em>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="emptyTransactions">{t.noFavorites}</p>
+          )}
+        </section>
 
         <section className="transactionSection accountTransactions">
           <h3>
@@ -2397,7 +2475,18 @@ function TemplateSection({ language, styleLibrary, onOpenTemplate }) {
   );
 }
 
-function PromptCard({ caseItem, copied, language, onCopy, onOpen, onGenerate, styleLibrary }) {
+function PromptCard({
+  caseItem,
+  copied,
+  favorited,
+  favoriteBusy,
+  language,
+  onCopy,
+  onOpen,
+  onGenerate,
+  onToggleFavorite,
+  styleLibrary
+}) {
   const t = copy[language];
   const tags = [...new Set([...caseItem.styles, ...caseItem.scenes])].slice(0, 4);
 
@@ -2430,6 +2519,16 @@ function PromptCard({ caseItem, copied, language, onCopy, onOpen, onGenerate, st
           ))}
         </div>
         <div className="cardActions caseActions">
+          <button
+            className={cx('favoriteAction', favorited && 'active')}
+            type="button"
+            onClick={() => onToggleFavorite(caseItem)}
+            disabled={favoriteBusy}
+            aria-pressed={Boolean(favorited)}
+          >
+            {favoriteBusy ? <LoaderCircle className="spinIcon" size={17} /> : <Heart size={17} />}
+            {favorited ? t.favorited : t.favorite}
+          </button>
           <button type="button" onClick={() => onCopy(caseItem)}>
             {copied ? <Check size={17} /> : <Copy size={17} />}
             {copied ? t.copied : t.copyPrompt}
@@ -2458,8 +2557,11 @@ function PreviewDialog({
   copiedId,
   session,
   profile,
+  favorite,
+  favoriteBusy,
   onClose,
   onCopyText,
+  onToggleFavorite,
   onAuthRequired,
   onBillingRequired,
   onProfileChange
@@ -2657,6 +2759,18 @@ function PreviewDialog({
             </div>
           ) : null}
           <div className="previewActions">
+            {!isTemplate ? (
+              <button
+                className={cx('favoriteAction', favorite && 'active')}
+                type="button"
+                onClick={() => onToggleFavorite(item)}
+                disabled={favoriteBusy}
+                aria-pressed={Boolean(favorite)}
+              >
+                {favoriteBusy ? <LoaderCircle className="spinIcon" size={17} /> : <Heart size={17} />}
+                {favorite ? t.unfavorite : t.favorite}
+              </button>
+            ) : null}
             <button type="button" onClick={() => onCopyText(promptText, copyId)}>
               {isCopied ? <Check size={17} /> : <Copy size={17} />}
               {isCopied ? t.copied : isTemplate ? t.copyTemplatePrompt : t.copyPrompt}
@@ -2771,6 +2885,9 @@ function App() {
   const [preview, setPreview] = useState(null);
   const [session, setSession] = useState(null);
   const [profile, setProfile] = useState(null);
+  const [favoriteRows, setFavoriteRows] = useState([]);
+  const [favoriteBusyId, setFavoriteBusyId] = useState(null);
+  const [favoriteMessage, setFavoriteMessage] = useState('');
   const [authOpen, setAuthOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -2825,6 +2942,7 @@ function App() {
 
     if (!session?.access_token) {
       setProfile(null);
+      setFavoriteRows([]);
       return () => {
         cancelled = true;
       };
@@ -2841,6 +2959,34 @@ function App() {
       })
       .catch(() => {
         if (!cancelled) setProfile(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [session?.access_token]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!session?.access_token) {
+      setFavoriteRows([]);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    fetch('/api/favorites', {
+      headers: getAuthHeaders(session)
+    })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!cancelled && payload?.ok) {
+          setFavoriteRows(normalizeFavoriteRows(payload.favorites));
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setFavoriteRows([]);
       });
 
     return () => {
@@ -2921,11 +3067,16 @@ function App() {
 
   const visibleCases = filteredCases.slice(0, 72);
   const casesById = useMemo(() => new Map((siteData?.cases || []).map((caseItem) => [caseItem.id, caseItem])), [siteData]);
+  const favoriteCaseIds = useMemo(
+    () => new Set(normalizeFavoriteRows(favoriteRows).map((favorite) => favorite.caseId)),
+    [favoriteRows]
+  );
 
   async function handleSignOut() {
     if (supabase) await supabase.auth.signOut();
     setSession(null);
     setProfile(null);
+    setFavoriteRows([]);
     setAccountOpen(false);
     setAdminOpen(false);
     setBillingOpen(false);
@@ -2944,6 +3095,69 @@ function App() {
   function handleOpenCaseFromAdmin(caseItem) {
     setAdminOpen(false);
     setPreview({ type: 'case', item: caseItem });
+  }
+
+  function setTimedFavoriteMessage(message) {
+    setFavoriteMessage(message);
+    window.setTimeout(() => {
+      setFavoriteMessage((current) => (current === message ? '' : current));
+    }, 2400);
+  }
+
+  async function handleToggleFavorite(caseItem) {
+    if (!caseItem?.id) return;
+    if (!session?.access_token) {
+      setAuthOpen(true);
+      setTimedFavoriteMessage(t.signInToFavorite);
+      return;
+    }
+
+    const caseId = Number(caseItem.id);
+    const isFavorite = favoriteCaseIds.has(caseId);
+    const previousRows = favoriteRows;
+    setFavoriteBusyId(caseId);
+
+    if (isFavorite) {
+      setFavoriteRows((current) => normalizeFavoriteRows(current).filter((favorite) => favorite.caseId !== caseId));
+    } else {
+      setFavoriteRows((current) => [
+        { caseId, createdAt: new Date().toISOString() },
+        ...normalizeFavoriteRows(current).filter((favorite) => favorite.caseId !== caseId)
+      ]);
+    }
+
+    try {
+      const response = await fetch(isFavorite ? `/api/favorites?caseId=${caseId}` : '/api/favorites', {
+        method: isFavorite ? 'DELETE' : 'POST',
+        headers: {
+          ...(isFavorite ? {} : { 'Content-Type': 'application/json' }),
+          ...getAuthHeaders(session)
+        },
+        body: isFavorite ? undefined : JSON.stringify({ caseId })
+      });
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok || !payload.ok) {
+        if (payload.error === 'AUTH_REQUIRED' || payload.loginRequired) setAuthOpen(true);
+        throw new Error(payload.error || 'FAVORITE_FAILED');
+      }
+
+      if (!isFavorite && payload.favorite) {
+        const favorite = normalizeFavoriteRows([payload.favorite])[0];
+        if (favorite) {
+          setFavoriteRows((current) => [
+            favorite,
+            ...normalizeFavoriteRows(current).filter((item) => item.caseId !== caseId)
+          ]);
+        }
+      }
+      setTimedFavoriteMessage(isFavorite ? t.favoriteRemoved : t.favoriteSaved);
+    } catch {
+      setFavoriteRows(previousRows);
+      setTimedFavoriteMessage(t.favoriteFailed);
+    } finally {
+      setFavoriteBusyId(null);
+    }
   }
 
   if (!siteData || !styleLibrary) {
@@ -2982,6 +3196,7 @@ function App() {
             onSignIn={() => setAuthOpen(true)}
             onSignOut={handleSignOut}
             onAccount={() => setAccountOpen(true)}
+            onFavorites={() => setAccountOpen(true)}
             onAdmin={() => setAdminOpen(true)}
             onBilling={() => {
               setBillingNotice('');
@@ -2990,6 +3205,7 @@ function App() {
           />
         </div>
       </header>
+      {favoriteMessage ? <div className="toastNotice">{favoriteMessage}</div> : null}
 
       <Hero
         latestCases={heroCases}
@@ -3079,6 +3295,8 @@ function App() {
             <PromptCard
               caseItem={caseItem}
               copied={copiedId === `case-${caseItem.id}`}
+              favorited={favoriteCaseIds.has(caseItem.id)}
+              favoriteBusy={favoriteBusyId === caseItem.id}
               language={language}
               onCopy={copyPrompt}
               onOpen={(item) => setPreview({ type: 'case', item })}
@@ -3086,6 +3304,7 @@ function App() {
                 setPreview({ type: 'case', item });
                 if (!session?.access_token) setAuthOpen(true);
               }}
+              onToggleFavorite={handleToggleFavorite}
               styleLibrary={styleLibrary}
               key={caseItem.id}
             />
@@ -3113,8 +3332,11 @@ function App() {
         copiedId={copiedId}
         session={session}
         profile={profile}
+        favorite={preview?.type === 'case' ? favoriteCaseIds.has(preview.item.id) : false}
+        favoriteBusy={preview?.type === 'case' && favoriteBusyId === preview.item.id}
         onClose={() => setPreview(null)}
         onCopyText={copyText}
+        onToggleFavorite={handleToggleFavorite}
         onAuthRequired={() => setAuthOpen(true)}
         onBillingRequired={() => {
           setBillingNotice(t.creditsRequired);
@@ -3133,6 +3355,7 @@ function App() {
         session={session}
         profile={profile}
         casesById={casesById}
+        favoriteRows={favoriteRows}
         onClose={() => setAccountOpen(false)}
         onProfileChange={handleProfileChange}
         onOpenCase={handleOpenCaseFromAccount}

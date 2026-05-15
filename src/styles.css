@@ -1345,10 +1345,6 @@ button {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 42px;
 }
 
-.caseActions button:first-child {
-  grid-column: 1 / -1;
-}
-
 .templateActions {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
@@ -1374,6 +1370,16 @@ button {
 .cardActions a:hover {
   border-color: rgba(120, 255, 185, 0.74);
   background: rgba(120, 255, 185, 0.14);
+}
+
+.favoriteAction.active {
+  border-color: rgba(255, 113, 161, 0.44);
+  background: rgba(255, 113, 161, 0.13);
+  color: #ffd6e4;
+}
+
+.favoriteAction.active svg {
+  fill: currentColor;
 }
 
 .cardActions button:disabled,
@@ -1581,6 +1587,12 @@ button {
   color: #d8ffe4;
 }
 
+.previewActions .favoriteAction.active {
+  border-color: rgba(255, 113, 161, 0.44);
+  background: rgba(255, 113, 161, 0.13);
+  color: #ffd6e4;
+}
+
 .previewActions button:hover,
 .previewActions a:hover {
   border-color: rgba(103, 232, 249, 0.7);
@@ -1589,6 +1601,22 @@ button {
 
 .spinIcon {
   animation: spin 0.9s linear infinite;
+}
+
+.toastNotice {
+  position: fixed;
+  top: 86px;
+  right: max(18px, calc((100vw - 1180px) / 2));
+  z-index: 80;
+  max-width: min(360px, calc(100vw - 32px));
+  border: 1px solid rgba(120, 255, 185, 0.28);
+  border-radius: 8px;
+  padding: 11px 13px;
+  background: rgba(8, 14, 28, 0.94);
+  color: #d8ffe4;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
 }
 
 .previewSection {
@@ -2744,6 +2772,58 @@ button {
 .transactionList {
   display: grid;
   gap: 8px;
+}
+
+.favoriteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.favoriteCard {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(3, 7, 15, 0.5);
+  color: #ffffff;
+  text-align: left;
+}
+
+.favoriteCard:hover {
+  border-color: rgba(103, 232, 249, 0.48);
+  background: rgba(103, 232, 249, 0.1);
+}
+
+.favoriteCard img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.favoriteCard span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: rgba(120, 255, 185, 0.1);
+  color: #c8ffb8;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.favoriteCard strong {
+  color: #eaf3ff;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.favoriteCard em {
+  color: #93a4bc;
+  font-size: 12px;
+  font-style: normal;
 }
 
 .transactionItem {
